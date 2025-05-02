@@ -7,6 +7,7 @@ type User = {
   username: string;
   email: string;
   learning_style: string;
+  name: string; // Add name property
 };
 
 type AuthContextType = {
@@ -47,6 +48,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
           username: "demo_user",
           email: "demo@example.com",
           learning_style: "balanced",
+          name: "Demo User", // Add name field
         };
         setUser(mockUser);
         localStorage.setItem("user", JSON.stringify(mockUser));
@@ -75,6 +77,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         username,
         email,
         learning_style: "balanced",
+        name: username, // Use username as name for now
       };
       setUser(mockUser);
       localStorage.setItem("user", JSON.stringify(mockUser));
