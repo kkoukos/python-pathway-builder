@@ -2,7 +2,8 @@
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle, XCircle } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface Option {
   id: string;
@@ -34,19 +35,17 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
       {options.map((option) => {
         const isCorrect = correctOption === option.id;
         const isSelected = selectedOption === option.id;
+        const showIncorrect = correctOption && isSelected && !isCorrect;
         
         return (
           <div
             key={option.id}
-            className={`flex items-center space-x-3 rounded-md border p-3 ${
-              isDisabled ? "opacity-70" : ""
-            } ${
-              correctOption && isCorrect
-                ? "border-green-500 bg-green-50"
-                : correctOption && isSelected && !isCorrect
-                ? "border-red-500 bg-red-50"
-                : ""
-            }`}
+            className={cn(
+              "flex items-center space-x-3 rounded-md border p-3 transition-colors",
+              isDisabled ? "opacity-70" : "hover:bg-accent/50",
+              isCorrect && correctOption ? "border-green-500 bg-green-50 dark:bg-green-950/30" : "",
+              showIncorrect ? "border-red-500 bg-red-50 dark:bg-red-950/30" : ""
+            )}
           >
             <RadioGroupItem
               value={option.id}
@@ -60,7 +59,10 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
               {option.text}
             </Label>
             {correctOption && isCorrect && (
-              <CheckCircle className="h-5 w-5 text-green-500" />
+              <CheckCircle className="h-5 w-5 text-green-500 shrink-0" />
+            )}
+            {showIncorrect && (
+              <XCircle className="h-5 w-5 text-red-500 shrink-0" />
             )}
           </div>
         );
