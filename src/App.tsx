@@ -20,6 +20,7 @@ import ModuleList from "./pages/ModuleList";
 import ModuleDetail from "./pages/ModuleDetail";
 import LessonDetail from "./pages/LessonDetail";
 import UserProgress from "./pages/UserProgress";
+import UserProfile from "./pages/UserProfile";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ModuleTests from "./pages/ModuleTests";
@@ -46,6 +47,7 @@ const App = () => (
                 <Route path="/modules/:slug/tests" element={<ModuleTests />} />
                 <Route path="/modules/:slug/tests/:testId" element={<TestView />} />
                 <Route path="/progress" element={<UserProgress />} />
+                <Route path="/profile" element={<UserProfile />} />
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
               </Route>

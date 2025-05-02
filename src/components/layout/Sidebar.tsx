@@ -1,67 +1,128 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Home,
+  BookOpen,
+  BarChart,
+  User,
+  Info,
+  Settings,
+  Moon,
+  Sun,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { CheckCircle } from "lucide-react";
-import { useProgress } from "@/contexts/ProgressContext";
-import { modules } from "@/services/mockData";
+import { useTheme } from "@/components/ui/theme-provider";
 
-const Sidebar = () => {
+interface SidebarProps {
+  isCollapsed: boolean;
+  setIsCollapsed: (isCollapsed: boolean) => void;
+}
+
+const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, setIsCollapsed }) => {
   const location = useLocation();
-  const { isLessonCompleted } = useProgress();
+  const isMobile = useIsMobile();
+  const { theme, setTheme } = useTheme();
+
+  const toggleTheme = () => {
+    setTheme(theme === "light" ? "dark" : "light");
+  };
+
+  const closeSidebar = () => {
+    if (isMobile) {
+      setIsCollapsed(true);
+    }
+  };
+
+  const sidebarItems = [
+  {
+    title: "Home",
+    icon: Home,
+    to: "/",
+  },
+  {
+    title: "Modules",
+    icon: BookOpen,
+    to: "/modules",
+  },
+  {
+    title: "My Progress",
+    icon: BarChart,
+    to: "/progress",
+  },
+  {
+    title: "My Profile",
+    icon: User,
+    to: "/profile",
+  },
+  {
+    title: "About",
+    icon: Info,
+    to: "/about",
+  },
+];
 
   return (
-    <div className="flex flex-col h-full bg-sidebar border-r">
-      <div className="p-4 border-b border-sidebar-border">
-        <h2 className="text-lg font-semibold text-sidebar-foreground">
-          Course Contents
-        </h2>
+    <div
+      className={cn(
+        "flex flex-col h-screen p-4 bg-secondary border-r border-muted transition-all",
+        isCollapsed ? "w-20" : "w-64",
+        isCollapsed && isMobile ? "hidden" : ""
+      )}
+    >
+      <div className="flex items-center justify-between mb-6">
+        <Link to="/" className="flex items-center text-lg font-semibold">
+          <span className="text-2xl mr-2">
+            {/* <Logo /> */}
+            📚
+          </span>
+          {!isCollapsed && <span>LearnPython</span>}
+        </Link>
+        {!isCollapsed && (
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsCollapsed(true)}
+            className="md:hidden"
+          >
+            <Settings className="h-5 w-5" />
+          </Button>
+        )}
       </div>
-      <ScrollArea className="flex-1">
-        <div className="p-4">
-          {modules.map((module) => (
-            <div key={module.id} className="mb-6">
-              <div className="mb-2 text-sidebar-foreground">
-                <Link
-                  to={`/modules/${module.slug}`}
-                  className="text-md font-medium hover:text-sidebar-primary"
-                >
-                  {module.title}
-                </Link>
-              </div>
-              <div className="pl-4 border-l border-sidebar-border">
-                {module.lessons.map((lesson) => {
-                  const isActive = location.pathname === `/modules/${module.slug}/lessons/${lesson.id}`;
-                  const isCompleted = isLessonCompleted(module.id, lesson.id);
 
-                  return (
-                    <Link
-                      key={lesson.id}
-                      to={`/modules/${module.slug}/lessons/${lesson.id}`}
-                    >
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className={cn(
-                          "w-full justify-start mb-1 text-sidebar-foreground hover:text-sidebar-primary-foreground hover:bg-sidebar-primary",
-                          isActive && "bg-sidebar-accent text-sidebar-accent-foreground"
-                        )}
-                      >
-                        <span className="truncate">{lesson.title}</span>
-                        {isCompleted && (
-                          <CheckCircle className="ml-2 h-4 w-4 text-green-400" />
-                        )}
-                      </Button>
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
+      <nav className="flex-grow">
+        <ul className="flex flex-col space-y-2">
+          {sidebarItems.map((item) => (
+            <li key={item.title}>
+              <Link
+                to={item.to}
+                className={cn(
+                  "flex items-center px-4 py-2 rounded-md hover:bg-accent hover:text-accent-foreground transition-colors",
+                  location.pathname === item.to
+                    ? "bg-accent text-accent-foreground"
+                    : "text-muted-foreground"
+                )}
+                onClick={closeSidebar}
+              >
+                <item.icon className="h-4 w-4 mr-2" />
+                {!isCollapsed && <span>{item.title}</span>}
+              </Link>
+            </li>
           ))}
-        </div>
-      </ScrollArea>
+        </ul>
+      </nav>
+
+      <div className="border-t border-muted pt-4">
+        <Button
+          variant="ghost"
+          className="w-full justify-start gap-2"
+          onClick={toggleTheme}
+        >
+          {theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          {!isCollapsed && <span>Toggle {theme === "dark" ? "Light" : "Dark"}</span>}
+        </Button>
+      </div>
     </div>
   );
 };
