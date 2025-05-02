@@ -22,6 +22,8 @@ import LessonDetail from "./pages/LessonDetail";
 import UserProgress from "./pages/UserProgress";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
+import ModuleTests from "./pages/ModuleTests";
+import TestView from "./pages/TestView";
 
 const queryClient = new QueryClient();
 
@@ -41,6 +43,8 @@ const App = () => (
                 <Route path="/modules" element={<ModuleList />} />
                 <Route path="/modules/:slug" element={<ModuleDetail />} />
                 <Route path="/modules/:slug/lessons/:lessonId" element={<LessonDetail />} />
+                <Route path="/modules/:slug/tests" element={<ModuleTests />} />
+                <Route path="/modules/:slug/tests/:testId" element={<TestView />} />
                 <Route path="/progress" element={<UserProgress />} />
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<NotFound />} />
