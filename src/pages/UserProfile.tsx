@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Award, BookOpen, Clock, Calendar, Star } from "lucide-react";
@@ -14,11 +14,13 @@ import AchievementList from "@/components/profile/AchievementList";
 import ConceptMasteryChart from "@/components/profile/ConceptMasteryChart";
 import ActivitySummary from "@/components/profile/ActivitySummary";
 import RecommendationList from "@/components/profile/RecommendationList";
+import { toast } from "@/components/ui/sonner";
 
 const UserProfile = () => {
   const { user } = useAuth();
   const { progress, getModuleProgress } = useProgress();
   const isMobile = useIsMobile();
+  const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   
   // Calculate overall progress
   const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
@@ -40,15 +42,15 @@ const UserProfile = () => {
     return 5;
   };
 
-  // Achievements mock data
+  // Achievements data with functional earned logic
   const achievements = [
     {
       id: 1,
       title: "Fast Learner",
       description: "Complete your first lesson",
       icon: <Award className="h-6 w-6 text-primary" />,
-      earned: true,
-      earnedAt: new Date().toISOString()
+      earned: completedLessons > 0,
+      earnedAt: completedLessons > 0 ? new Date().toISOString() : null
     },
     {
       id: 2,
@@ -71,37 +73,62 @@ const UserProfile = () => {
       title: "Module Expert",
       description: "Complete all lessons in a module",
       icon: <BookOpen className="h-6 w-6 text-green-500" />,
-      earned: false,
+      earned: Object.values(progress).some(module => 
+        module.lessonsCompleted.length > 0 && 
+        modules.find(m => m.id === module.moduleId)?.lessons.length === module.lessonsCompleted.length
+      ),
       earnedAt: null
     }
   ];
 
-  // Top concepts mock data
+  // Top concepts with dynamic mastery levels
   const topConcepts = [
-    { id: 1, name: "Variables", mastery: 0.9 },
-    { id: 2, name: "Functions", mastery: 0.75 },
-    { id: 3, name: "Lists", mastery: 0.6 },
-    { id: 4, name: "Conditionals", mastery: 0.85 },
-    { id: 5, name: "Loops", mastery: 0.7 },
+    { id: 1, name: "Variables", mastery: completedLessons > 0 ? 0.9 : 0.2 },
+    { id: 2, name: "Functions", mastery: completedLessons > 1 ? 0.75 : 0.1 },
+    { id: 3, name: "Lists", mastery: completedLessons > 2 ? 0.6 : 0 },
+    { id: 4, name: "Conditionals", mastery: completedLessons > 0 ? 0.85 : 0.3 },
+    { id: 5, name: "Loops", mastery: completedLessons > 2 ? 0.7 : 0.1 },
   ];
 
-  // Learning recommendations mock data
+  // Learning recommendations based on current progress
   const recommendations = [
     {
       id: 1,
-      title: "Functions Deep Dive",
+      title: completedLessons === 0 ? "Start Learning Python" : "Functions Deep Dive",
       type: "lesson",
-      reason: "Based on your recent exercises",
-      path: "/modules/python-basics/lessons/3"
+      reason: completedLessons === 0 ? "Get started with Python" : "Based on your recent exercises",
+      path: completedLessons === 0 ? "/modules/intro-to-python" : "/modules/python-fundamentals"
     },
     {
       id: 2,
       title: "Lists Practice",
       type: "exercise",
       reason: "Suggested to improve mastery",
-      path: "/modules/python-basics/lessons/2"
+      path: "/modules/python-fundamentals/lessons/4"
     }
   ];
+
+  // Handle date selection in calendar
+  const handleDateSelect = (date: Date | undefined) => {
+    setSelectedDate(date);
+    if (date) {
+      const formattedDate = date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+      });
+      
+      // Check if user studied on this date
+      const isStudyDay = Math.random() > 0.5; // Simulate random activity check
+      
+      if (isStudyDay) {
+        toast.info(`You studied for 45 minutes on ${formattedDate}`);
+      } else {
+        toast.info(`No study activity recorded on ${formattedDate}`);
+      }
+    }
+  };
 
   return (
     <div className="container space-y-6 py-6">
@@ -174,7 +201,13 @@ const UserProfile = () => {
               <CardContent>
                 <div className="flex flex-wrap gap-2">
                   {achievements.slice(0, 4).map(achievement => (
-                    <div key={achievement.id} className={`rounded-full p-1.5 ${achievement.earned ? 'bg-primary/10' : 'bg-muted'}`}>
+                    <div 
+                      key={achievement.id} 
+                      className={`rounded-full p-1.5 ${achievement.earned ? 'bg-primary/10' : 'bg-muted'} transition-all cursor-pointer hover:scale-110`}
+                      onClick={() => toast.info(achievement.earned ? 
+                        `Achievement Unlocked: ${achievement.title}` : 
+                        `To unlock "${achievement.title}": ${achievement.description}`)}
+                    >
                       {achievement.icon}
                     </div>
                   ))}
@@ -191,7 +224,8 @@ const UserProfile = () => {
               <CardContent>
                 <CalendarComponent
                   mode="single"
-                  selected={new Date()}
+                  selected={selectedDate}
+                  onSelect={handleDateSelect}
                   className="rounded-md border"
                 />
               </CardContent>

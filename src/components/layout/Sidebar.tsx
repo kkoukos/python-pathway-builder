@@ -1,3 +1,4 @@
+
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/components/ui/theme-provider";
+import { toast } from "@/components/ui/sonner";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -26,7 +28,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed, setIsCollapsed }) => {
   const { theme, setTheme } = useTheme();
 
   const toggleTheme = () => {
-    setTheme(theme === "light" ? "dark" : "light");
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    toast.success(`Switched to ${newTheme} theme`);
   };
 
   const closeSidebar = () => {
