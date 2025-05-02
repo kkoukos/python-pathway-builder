@@ -1,9 +1,26 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
+
+// Contexts
+import { AuthProvider } from "./contexts/AuthContext";
+import { ProgressProvider } from "./contexts/ProgressContext";
+
+// Layout
+import MainLayout from "./components/layout/MainLayout";
+
+// Pages
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ModuleList from "./pages/ModuleList";
+import ModuleDetail from "./pages/ModuleDetail";
+import LessonDetail from "./pages/LessonDetail";
+import UserProgress from "./pages/UserProgress";
+import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -13,13 +30,25 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <AuthProvider>
+        <ProgressProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<MainLayout />}>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/modules" element={<ModuleList />} />
+                <Route path="/modules/:slug" element={<ModuleDetail />} />
+                <Route path="/modules/:slug/lessons/:lessonId" element={<LessonDetail />} />
+                <Route path="/progress" element={<UserProgress />} />
+                <Route path="/about" element={<About />} />
+                <Route path="*" element={<NotFound />} />
+              </Route>
+            </Routes>
+          </BrowserRouter>
+        </ProgressProvider>
+      </AuthProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
