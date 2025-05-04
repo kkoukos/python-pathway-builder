@@ -1,15 +1,24 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useProgress } from "@/contexts/ProgressContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { modules } from "@/services/mockData";
+import { toast } from "@/components/ui/sonner";
 
 const UserProgress = () => {
-  const { user } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const { progress, getModuleProgress } = useProgress();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast.error("You must be logged in to view your progress");
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   // Calculate overall progress
   const totalLessons = modules.reduce((sum, module) => sum + module.lessons.length, 0);
@@ -18,6 +27,10 @@ const UserProgress = () => {
     0
   );
   const overallPercentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+
+  if (!isAuthenticated) {
+    return null; // This is a fallback; the useEffect will redirect
+  }
 
   return (
     <div className="container">

@@ -2,9 +2,18 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-const ActivitySummary = () => {
-  // Mock activity data - in a real app this would come from backend
-  const activityData = [
+interface ActivityData {
+  day: string;
+  level: number;
+}
+
+interface ActivitySummaryProps {
+  activityData?: ActivityData[];
+}
+
+const ActivitySummary: React.FC<ActivitySummaryProps> = ({ activityData }) => {
+  // Use provided activityData or fallback to mock data
+  const data = activityData || [
     { day: "Mon", level: 3 },
     { day: "Tue", level: 2 },
     { day: "Wed", level: 4 },
@@ -25,8 +34,8 @@ const ActivitySummary = () => {
   return (
     <div className="space-y-2">
       <div className="flex justify-between">
-        {activityData.map((day) => (
-          <div key={day.day} className="flex flex-col items-center gap-1">
+        {data.map((day, index) => (
+          <div key={`${day.day}-${index}`} className="flex flex-col items-center gap-1">
             <div className={cn(
               "w-4 rounded-sm",
               getActivityColor(day.level)

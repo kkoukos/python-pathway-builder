@@ -1,66 +1,81 @@
 
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import { ChevronRight } from "lucide-react";
+import React, { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { modules } from "@/services/mockData";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Progress } from "@/components/ui/progress";
 import { useProgress } from "@/contexts/ProgressContext";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/contexts/AuthContext";
+import { toast } from "@/components/ui/sonner";
 
 const ModuleList = () => {
-  const { getModuleProgress } = useProgress();
+  const { progress, getModuleProgress } = useProgress();
+  const { isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast.error("You must be logged in to access modules");
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
+  
+  if (!isAuthenticated) {
+    return null; // This is a fallback; the useEffect will redirect
+  }
 
   return (
-    <div className="container">
-      <div className="flex flex-col gap-6">
-        <div>
-          <h1 className="text-3xl font-bold mb-2">Python Learning Modules</h1>
-          <p className="text-muted-foreground mb-6">
-            Select a module to begin or continue your learning journey
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {modules.map((module) => {
-            const lessonsCount = module.lessons.length;
-            const completedCount = getModuleProgress(module.id);
-            const progressPercentage = lessonsCount > 0 
-              ? Math.round((completedCount / lessonsCount) * 100)
-              : 0;
-
-            return (
-              <Card key={module.id} className="flex flex-col">
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <CardTitle className="text-xl">{module.title}</CardTitle>
-                    <span className="text-sm text-muted-foreground">
-                      {lessonsCount} Lessons
-                    </span>
+    <div className="container py-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Learning Modules</h1>
+      </div>
+      
+      <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {modules.map((module) => {
+          const completedLessons = getModuleProgress(module.id);
+          const totalLessons = module.lessons.length;
+          const progressPercentage = totalLessons > 0 
+            ? Math.round((completedLessons / totalLessons) * 100) 
+            : 0;
+          
+          return (
+            <Card key={module.id} className="flex flex-col h-full">
+              <CardHeader>
+                <div className="flex justify-between">
+                  <Badge variant={progressPercentage === 100 ? "default" : "outline"}>
+                    {progressPercentage === 100 
+                      ? "Completed" 
+                      : progressPercentage > 0 
+                        ? "In Progress" 
+                        : "Not Started"}
+                  </Badge>
+                </div>
+                <CardTitle className="mt-2">{module.title}</CardTitle>
+                <CardDescription>{module.lessons.length} Lessons</CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow">
+                <p className="text-muted-foreground mb-4">{module.description}</p>
+                
+                <div className="space-y-2">
+                  <div className="flex justify-between text-sm font-medium">
+                    <span>Progress</span>
+                    <span>{progressPercentage}%</span>
                   </div>
-                  <CardDescription>{module.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1">
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-sm">
-                      <span>Progress</span>
-                      <span>{progressPercentage}%</span>
-                    </div>
-                    <Progress value={progressPercentage} className="h-2" />
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Link to={`/modules/${module.slug}`} className="w-full">
-                    <Button className="w-full justify-between">
-                      <span>{completedCount > 0 ? "Continue" : "Start"} Module</span>
-                      <ChevronRight className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            );
-          })}
-        </div>
+                  <Progress value={progressPercentage} className="h-2" />
+                </div>
+              </CardContent>
+              <CardFooter>
+                <Link to={`/modules/${module.slug}`} className="w-full">
+                  <Button variant="default" className="w-full">
+                    {progressPercentage === 0 ? "Start Module" : "Continue Module"}
+                  </Button>
+                </Link>
+              </CardFooter>
+            </Card>
+          );
+        })}
       </div>
     </div>
   );
