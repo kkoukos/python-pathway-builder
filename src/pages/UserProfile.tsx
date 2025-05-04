@@ -1,27 +1,29 @@
 
 import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trophy, Award, BookOpen, Clock, Calendar, Star } from "lucide-react";
-import { Calendar as CalendarComponent } from "@/components/ui/calendar";
-import { Progress } from "@/components/ui/progress";
+import { Award, Trophy, BookOpen, Calendar } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useProgress } from "@/contexts/ProgressContext";
 import { modules } from "@/services/mockData";
-import { useIsMobile } from "@/hooks/use-mobile";
 import { Badge } from "@/components/ui/badge";
-import AchievementList from "@/components/profile/AchievementList";
-import ConceptMasteryChart from "@/components/profile/ConceptMasteryChart";
-import ActivitySummary from "@/components/profile/ActivitySummary";
-import RecommendationList from "@/components/profile/RecommendationList";
 import { toast } from "@/components/ui/sonner";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 
+// Profile Components
+import ProfileHeader from "@/components/profile/ProfileHeader";
+import OverallProgressCard from "@/components/profile/OverallProgressCard";
+import ActivityCard from "@/components/profile/ActivityCard";
+import AchievementsCard from "@/components/profile/AchievementsCard";
+import CalendarCard from "@/components/profile/CalendarCard";
+import RecommendationsCard from "@/components/profile/RecommendationsCard";
+import ModuleProgressCard from "@/components/profile/ModuleProgressCard";
+import AchievementList from "@/components/profile/AchievementList";
+import ConceptMasteryCard from "@/components/profile/ConceptMasteryCard";
+
 const UserProfile = () => {
   const { user, isAuthenticated } = useAuth();
   const { progress, getModuleProgress } = useProgress();
-  const isMobile = useIsMobile();
   const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(new Date());
   const [activeDays, setActiveDays] = useState(0);
@@ -172,7 +174,6 @@ const UserProfile = () => {
     (sum, moduleProgress) => sum + moduleProgress.lessonsCompleted.length,
     0
   );
-  const overallPercentage = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
 
   // Generate dynamic achievements data based on actual user progress
   const achievements = [
@@ -293,24 +294,11 @@ const UserProfile = () => {
 
   return (
     <div className="container space-y-6 py-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-        <div>
-          <h1 className="text-3xl font-bold tracking-tight">{user?.name}'s Dashboard</h1>
-          <p className="text-muted-foreground">
-            Track your progress, achievements, and learning insights
-          </p>
-        </div>
-        <div className="flex items-center gap-2">
-          <Badge variant="outline" className="text-sm font-medium">
-            <Star className="h-3.5 w-3.5 mr-1 text-yellow-500" />
-            Level {level}
-          </Badge>
-          <Badge variant="outline" className="text-sm font-medium">
-            <Clock className="h-3.5 w-3.5 mr-1 text-blue-500" />
-            {streak} Day Streak
-          </Badge>
-        </div>
-      </div>
+      <ProfileHeader 
+        userName={user?.name || 'User'} 
+        level={level} 
+        streak={streak} 
+      />
 
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="mb-4">
@@ -322,146 +310,46 @@ const UserProfile = () => {
 
         <TabsContent value="overview" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Overall Progress</CardTitle>
-                <CardDescription>
-                  {completedLessons} of {totalLessons} lessons completed
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-2">
-                  <div className="flex justify-between text-sm">
-                    <span>{completedLessons} lessons</span>
-                    <span>{overallPercentage}%</span>
-                  </div>
-                  <Progress value={overallPercentage} className="h-2" />
-                </div>
-              </CardContent>
-            </Card>
+            <OverallProgressCard 
+              completedLessons={completedLessons}
+              totalLessons={totalLessons}
+            />
             
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Activity</CardTitle>
-                <CardDescription>
-                  {activeDays} active days this month
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <ActivitySummary activityData={activityData} />
-              </CardContent>
-            </Card>
+            <ActivityCard 
+              activeDays={activeDays}
+              activityData={activityData}
+            />
             
-            <Card>
-              <CardHeader className="pb-2">
-                <CardTitle className="text-lg">Achievements</CardTitle>
-                <CardDescription>
-                  {achievements.filter(a => a.earned).length} of {achievements.length} unlocked
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex flex-wrap gap-2">
-                  {achievements.slice(0, 4).map(achievement => (
-                    <div 
-                      key={achievement.id} 
-                      className={`rounded-full p-1.5 ${achievement.earned ? 'bg-primary/10' : 'bg-muted'} transition-all cursor-pointer hover:scale-110`}
-                      onClick={() => toast.info(achievement.earned ? 
-                        `Achievement Unlocked: ${achievement.title}` : 
-                        `To unlock "${achievement.title}": ${achievement.description}`)}
-                    >
-                      {achievement.icon}
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+            <AchievementsCard 
+              achievements={achievements}
+            />
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            <Card className="col-span-1">
-              <CardHeader>
-                <CardTitle className="text-lg">Learning Calendar</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CalendarComponent
-                  mode="single"
-                  selected={selectedDate}
-                  onSelect={handleDateSelect}
-                  className="rounded-md border"
-                />
-              </CardContent>
-            </Card>
+            <CalendarCard 
+              selectedDate={selectedDate}
+              onDateSelect={handleDateSelect}
+            />
             
-            <Card className="col-span-1">
-              <CardHeader>
-                <CardTitle className="text-lg">Recommended Next</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <RecommendationList recommendations={recommendations} />
-              </CardContent>
-            </Card>
+            <RecommendationsCard 
+              recommendations={recommendations}
+            />
           </div>
         </TabsContent>
 
         <TabsContent value="progress" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Module Progress</CardTitle>
-              <CardDescription>Your progress through each learning module</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                {modules.map((module) => {
-                  const lessonsCount = module.lessons.length;
-                  const completedCount = getModuleProgress(module.id);
-                  const modulePercentage = lessonsCount > 0 
-                    ? Math.round((completedCount / lessonsCount) * 100)
-                    : 0;
-
-                  return (
-                    <div key={module.id} className="space-y-1">
-                      <div className="flex justify-between items-center">
-                        <h4 className="text-sm font-medium">{module.title}</h4>
-                        <span className="text-sm text-muted-foreground">
-                          {modulePercentage}%
-                        </span>
-                      </div>
-                      <Progress value={modulePercentage} className="h-2" />
-                      <p className="text-xs text-muted-foreground">
-                        {completedCount} of {lessonsCount} lessons completed
-                      </p>
-                    </div>
-                  )
-                })}
-              </div>
-            </CardContent>
-          </Card>
+          <ModuleProgressCard 
+            modules={modules}
+            getModuleProgress={getModuleProgress}
+          />
         </TabsContent>
 
         <TabsContent value="achievements" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Your Achievements</CardTitle>
-              <CardDescription>Track your learning milestones</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <AchievementList achievements={achievements} />
-            </CardContent>
-          </Card>
+          <AchievementList achievements={achievements} />
         </TabsContent>
 
         <TabsContent value="concepts" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Concept Mastery</CardTitle>
-              <CardDescription>Visualize your understanding of key programming concepts</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className={isMobile ? "h-[300px]" : "h-[400px]"}>
-                <ConceptMasteryChart concepts={topConcepts} />
-              </div>
-            </CardContent>
-          </Card>
+          <ConceptMasteryCard concepts={topConcepts} />
         </TabsContent>
       </Tabs>
     </div>
