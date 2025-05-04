@@ -31,6 +31,15 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const isCompleted = isExerciseCompleted(moduleId, lessonId, exercise.id);
 
+  // Reset state when exercise changes
+  React.useEffect(() => {
+    setUserAnswer(null);
+    setUserCode(exercise.content.starterCode || "");
+    setShowHint(false);
+    setIsCorrect(null);
+    setShowSolution(false);
+  }, [exercise.id, exercise.content.starterCode]);
+
   const handleSubmit = () => {
     let result = false;
     
@@ -77,6 +86,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
             onSelectOption={setUserAnswer}
             isDisabled={isCompleted || isCorrect === true}
             correctOption={isCorrect === false && showSolution ? exercise.content.correctOption : undefined}
+            exerciseId={exercise.id} // Pass the exercise ID to ensure uniqueness
           />
         );
       case "code_completion":

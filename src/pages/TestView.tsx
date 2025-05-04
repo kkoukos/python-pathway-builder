@@ -21,7 +21,7 @@ import { Clock, AlertTriangle, CheckCircle, X } from "lucide-react";
 const TestView = () => {
   const { slug, testId } = useParams<{ slug: string; testId: string }>();
   const navigate = useNavigate();
-  const { markTestComplete } = useProgress();
+  const { markTestComplete, isTestCompleted, getTestResult } = useProgress();
   
   const module = slug ? getModuleBySlug(slug) : null;
   const test = testId ? getTestById(parseInt(testId)) : null;
@@ -37,6 +37,21 @@ const TestView = () => {
     passed: boolean;
     timeSpent: number;
   } | null>(null);
+  const [retaking, setRetaking] = useState(false);
+
+  // Check if the test is already completed
+  const previousResult = module && test ? getTestResult(module.id, test.id) : null;
+  
+  useEffect(() => {
+    if (previousResult && !retaking) {
+      setTestCompleted(true);
+      setTestResult({
+        score: previousResult.score,
+        passed: previousResult.passed,
+        timeSpent: 0 // We don't store this information
+      });
+    }
+  }, [previousResult, retaking]);
 
   useEffect(() => {
     let timer: NodeJS.Timeout | null = null;
@@ -89,6 +104,12 @@ const TestView = () => {
 
   const handleStartTest = () => {
     setTestStarted(true);
+    setRetaking(true);
+    setTestCompleted(false);
+    setTestResult(null);
+    setAnswers({});
+    setCurrentExerciseIndex(0);
+    setTimeRemaining(test.timeLimit ? test.timeLimit * 60 : 0);
   };
 
   const handleSubmitTest = () => {
@@ -112,8 +133,86 @@ const TestView = () => {
     markTestComplete(module.id, test.id, score, passed);
   };
 
-  // If the test isn't started yet, show the start screen
-  if (!testStarted) {
+  // If the test is completed and the user is not retaking it, show the results screen
+  if (testCompleted && !retaking) {
+    return (
+      <div className="container max-w-4xl">
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2 text-sm text-muted-foreground">
+            <Link to="/modules" className="hover:underline">
+              Modules
+            </Link>
+            <span>/</span>
+            <Link to={`/modules/${slug}`} className="hover:underline">
+              {module.title}
+            </Link>
+            <span>/</span>
+            <Link to={`/modules/${slug}/tests`} className="hover:underline">
+              Tests
+            </Link>
+            <span>/</span>
+            <span>{test.title}</span>
+          </div>
+          <h1 className="text-3xl font-bold mb-6">Test Results</h1>
+        </div>
+        
+        <Card className="mb-6">
+          <CardHeader>
+            <div className="flex justify-between items-center">
+              <CardTitle>Your Score</CardTitle>
+              <div className={`flex items-center gap-2 ${testResult?.passed ? 'text-green-500' : 'text-red-500'}`}>
+                {testResult?.passed ? (
+                  <CheckCircle className="h-5 w-5" />
+                ) : (
+                  <X className="h-5 w-5" />
+                )}
+                <span className="text-lg font-bold">
+                  {testResult?.passed ? "Passed" : "Failed"}
+                </span>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <div className="space-y-2">
+              <div className="flex justify-between text-sm">
+                <span>Score</span>
+                <span>{Math.round(testResult?.score || 0)}%</span>
+              </div>
+              <Progress value={testResult?.score || 0} className="h-2" />
+            </div>
+            
+            <div className="grid grid-cols-2 gap-4">
+              <div className="p-4 bg-muted rounded-lg">
+                <div className="text-sm text-muted-foreground mb-1">Test Completion</div>
+                <div className="text-lg">{previousResult ? new Date(previousResult.completedAt).toLocaleDateString() : "-"}</div>
+              </div>
+              
+              <div className="p-4 bg-muted rounded-lg">
+                <div className="text-sm text-muted-foreground mb-1">Passing Score</div>
+                <div className="text-lg">{test.passingScore}%</div>
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="border-t flex justify-between p-4">
+            <Button variant="outline" onClick={() => navigate(`/modules/${slug}/tests`)}>
+              Back to Tests
+            </Button>
+            <div className="space-x-2">
+              <Button onClick={handleStartTest}>
+                Retake Test
+              </Button>
+              <Button variant="outline" onClick={() => navigate(`/modules/${slug}`)}>
+                Continue Learning
+              </Button>
+            </div>
+          </CardFooter>
+        </Card>
+      </div>
+    );
+  }
+
+  // If the test isn't started yet and not retaking, show the start screen
+  if (!testStarted && !retaking) {
     return (
       <div className="container max-w-4xl">
         <div className="mb-6">
@@ -159,7 +258,7 @@ const TestView = () => {
           </CardContent>
           <CardFooter className="border-t flex justify-center p-4">
             <Button size="lg" onClick={handleStartTest}>
-              Start Test
+              {previousResult ? "Retake Test" : "Start Test"}
             </Button>
           </CardFooter>
         </Card>
@@ -178,8 +277,8 @@ const TestView = () => {
     );
   }
 
-  // If the test is completed, show the results screen
-  if (testCompleted && testResult) {
+  // If the test is completed and the user is retaking it, show the results screen
+  if (testCompleted && retaking) {
     return (
       <div className="container max-w-4xl">
         <div className="mb-6">
@@ -205,14 +304,14 @@ const TestView = () => {
           <CardHeader>
             <div className="flex justify-between items-center">
               <CardTitle>Your Score</CardTitle>
-              <div className={`flex items-center gap-2 ${testResult.passed ? 'text-green-500' : 'text-red-500'}`}>
-                {testResult.passed ? (
+              <div className={`flex items-center gap-2 ${testResult?.passed ? 'text-green-500' : 'text-red-500'}`}>
+                {testResult?.passed ? (
                   <CheckCircle className="h-5 w-5" />
                 ) : (
                   <X className="h-5 w-5" />
                 )}
                 <span className="text-lg font-bold">
-                  {testResult.passed ? "Passed" : "Failed"}
+                  {testResult?.passed ? "Passed" : "Failed"}
                 </span>
               </div>
             </div>
@@ -221,15 +320,15 @@ const TestView = () => {
             <div className="space-y-2">
               <div className="flex justify-between text-sm">
                 <span>Score</span>
-                <span>{Math.round(testResult.score)}%</span>
+                <span>{Math.round(testResult?.score || 0)}%</span>
               </div>
-              <Progress value={testResult.score} className="h-2" />
+              <Progress value={testResult?.score || 0} className="h-2" />
             </div>
             
             <div className="grid grid-cols-2 gap-4">
               <div className="p-4 bg-muted rounded-lg">
                 <div className="text-sm text-muted-foreground mb-1">Time Spent</div>
-                <div className="text-lg">{formatTime(testResult.timeSpent)}</div>
+                <div className="text-lg">{formatTime(testResult?.timeSpent || 0)}</div>
               </div>
               
               <div className="p-4 bg-muted rounded-lg">
@@ -242,9 +341,14 @@ const TestView = () => {
             <Button variant="outline" onClick={() => navigate(`/modules/${slug}/tests`)}>
               Back to Tests
             </Button>
-            <Button onClick={() => navigate(`/modules/${slug}`)}>
-              Continue Learning
-            </Button>
+            <div className="space-x-2">
+              <Button onClick={handleStartTest}>
+                Retake Test
+              </Button>
+              <Button variant="outline" onClick={() => navigate(`/modules/${slug}`)}>
+                Continue Learning
+              </Button>
+            </div>
           </CardFooter>
         </Card>
       </div>
@@ -276,6 +380,7 @@ const TestView = () => {
       
       {currentExercise && (
         <ExerciseDetail
+          key={`test-${test.id}-exercise-${currentExercise.id}`} // Add a key to force re-render when exercise changes
           exercise={currentExercise}
           moduleId={module.id}
           lessonId={0} // Tests don't have a specific lesson ID

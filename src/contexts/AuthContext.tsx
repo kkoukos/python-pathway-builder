@@ -10,6 +10,7 @@ type UserProfile = {
   email: string;
   learning_style: string;
   name: string;
+  avatar_url?: string;
 };
 
 type AuthContextType = {
@@ -21,6 +22,7 @@ type AuthContextType = {
   register: (username: string, email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
   updateProfile: (profile: Partial<UserProfile>) => Promise<void>;
+  getAvatarUrl: () => Promise<string | null>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -199,6 +201,27 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  // Get avatar URL function
+  const getAvatarUrl = async () => {
+    if (!user) return null;
+    
+    try {
+      const { data, error } = await supabase
+        .storage
+        .from('avatars')
+        .createSignedUrl(`${user.id}`, 60 * 60); // 1 hour expiry
+        
+      if (error || !data) {
+        return null;
+      }
+      
+      return data.signedUrl;
+    } catch (error) {
+      console.error("Error getting avatar URL:", error);
+      return null;
+    }
+  };
+
   const value = {
     user,
     session,
@@ -208,6 +231,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     register,
     logout,
     updateProfile,
+    getAvatarUrl,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

@@ -3,6 +3,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { useAuth } from "./AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/sonner";
+import { getModuleBySlug } from "@/services/mockData";
 
 type ModuleProgress = {
   moduleId: number;
@@ -22,8 +23,10 @@ type ProgressContextType = {
   isExerciseCompleted: (moduleId: number, lessonId: number, exerciseId: number) => boolean;
   markTestComplete: (moduleId: number, testId: number, score: number, passed: boolean) => void;
   isTestCompleted: (moduleId: number, testId: number) => boolean;
-  getTestResult: (moduleId: number, testId: number) => { score: number; passed: boolean } | null;
+  getTestResult: (moduleId: number, testId: number) => { score: number; passed: boolean; completedAt: string } | null;
   getModuleProgress: (moduleId: number) => number;
+  isModuleCompleted: (moduleId: number) => boolean;
+  checkAndMarkModuleComplete: (moduleId: number) => Promise<boolean>;
 };
 
 const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
@@ -216,6 +219,9 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
         
         return prev;
       });
+
+      // Check if the module is complete
+      await checkAndMarkModuleComplete(moduleId);
     } catch (error) {
       console.error("Error marking lesson as complete:", error);
       toast.error("Failed to save your progress");
@@ -277,6 +283,9 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
         
         return prev;
       });
+
+      // Check if the module is complete
+      await checkAndMarkModuleComplete(moduleId);
     } catch (error) {
       console.error("Error marking exercise as complete:", error);
       toast.error("Failed to save your progress");
@@ -298,7 +307,8 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
           module_id: moduleId,
           test_id: testId,
           score: score,
-          passed: passed
+          passed: passed,
+          completed_at: new Date().toISOString()
         });
 
       if (error) {
@@ -334,6 +344,9 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
           }
         };
       });
+
+      // Check if the module is complete
+      await checkAndMarkModuleComplete(moduleId);
     } catch (error) {
       console.error("Error recording test result:", error);
       toast.error("Failed to save your test results");
@@ -365,6 +378,81 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     return moduleProgress.lessonsCompleted.length;
   };
 
+  const isModuleCompleted = (moduleId: number): boolean => {
+    return !!progress[moduleId]?.completed;
+  };
+
+  const checkAndMarkModuleComplete = async (moduleId: number): Promise<boolean> => {
+    if (!isAuthenticated || !user) {
+      return false;
+    }
+
+    // Get the module
+    const module = getModuleBySlug(moduleId.toString());
+    if (!module) return false;
+
+    // Get current progress
+    const moduleProgress = progress[moduleId];
+    if (!moduleProgress) return false;
+
+    // If already completed, return true
+    if (moduleProgress.completed) return true;
+
+    // Check if all lessons are completed
+    const allLessonsCompleted = module.lessons.every(lesson => 
+      moduleProgress.lessonsCompleted.includes(lesson.id)
+    );
+
+    // Check if all exercises in all lessons are completed
+    const allExercisesCompleted = module.lessons.every(lesson => {
+      if (!lesson.exercises || lesson.exercises.length === 0) return true;
+      
+      const completedExercises = moduleProgress.exercisesCompleted[lesson.id] || [];
+      return lesson.exercises.every(exercise => 
+        completedExercises.includes(exercise.id)
+      );
+    });
+
+    // Check if final tests are completed and passed (if they exist)
+    const moduleTests = module.tests || [];
+    const hasTests = moduleTests.length > 0;
+    const allTestsPassed = hasTests ? moduleTests.every(test => {
+      const testResult = moduleProgress.testsCompleted[test.id];
+      return testResult && testResult.passed;
+    }) : true;
+
+    // For module to be completed:
+    // 1. All lessons must be completed
+    // 2. All exercises must be completed
+    // 3. If there are tests, all tests must be passed
+    const isComplete = allLessonsCompleted && allExercisesCompleted && allTestsPassed;
+
+    if (isComplete && !moduleProgress.completed) {
+      try {
+        // Update local state first
+        setProgress(prev => ({
+          ...prev,
+          [moduleId]: {
+            ...prev[moduleId],
+            completed: true,
+            completedAt: new Date().toISOString()
+          }
+        }));
+
+        // We don't have a specific table for module completion,
+        // but we could record it in a future implementation
+        
+        toast.success(`${module.title} module completed!`);
+        return true;
+      } catch (error) {
+        console.error("Error marking module as complete:", error);
+        return false;
+      }
+    }
+
+    return isComplete;
+  };
+
   const value = {
     progress,
     markLessonComplete,
@@ -374,7 +462,9 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     markTestComplete,
     isTestCompleted,
     getTestResult,
-    getModuleProgress
+    getModuleProgress,
+    isModuleCompleted,
+    checkAndMarkModuleComplete
   };
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;

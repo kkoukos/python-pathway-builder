@@ -16,6 +16,7 @@ interface MultipleChoiceExerciseProps {
   onSelectOption: (optionId: string) => void;
   isDisabled?: boolean;
   correctOption?: string;
+  exerciseId?: number; // Add exerciseId to ensure uniqueness
 }
 
 const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
@@ -24,6 +25,7 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
   onSelectOption,
   isDisabled = false,
   correctOption,
+  exerciseId = 0, // Default to 0 if not provided
 }) => {
   return (
     <RadioGroup
@@ -49,11 +51,11 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
           >
             <RadioGroupItem
               value={option.id}
-              id={`option-${option.id}`}
+              id={`option-${exerciseId}-${option.id}`} // Include exerciseId in the id to ensure uniqueness
               className="h-5 w-5"
             />
             <Label
-              htmlFor={`option-${option.id}`}
+              htmlFor={`option-${exerciseId}-${option.id}`} // Include exerciseId in the id to ensure uniqueness
               className="flex-1 cursor-pointer text-sm leading-snug"
             >
               {option.text}

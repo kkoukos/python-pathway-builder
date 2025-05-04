@@ -22,6 +22,7 @@ import ModuleDetail from "./pages/ModuleDetail";
 import LessonDetail from "./pages/LessonDetail";
 import UserProgress from "./pages/UserProgress";
 import UserProfile from "./pages/UserProfile";
+import UserSettings from "./pages/UserSettings";
 import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import ModuleTests from "./pages/ModuleTests";
@@ -92,6 +93,11 @@ const AppRoutes = () => {
           <Route path="/profile" element={
             <ProtectedRoute>
               <UserProfile />
+            </ProtectedRoute>
+          } />
+          <Route path="/settings" element={
+            <ProtectedRoute>
+              <UserSettings />
             </ProtectedRoute>
           } />
           
