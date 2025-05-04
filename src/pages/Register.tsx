@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "@/components/ui/sonner";
 
 type FormData = {
   username: string;
@@ -22,8 +23,13 @@ const Register = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    await registerUser(data.username, data.email, data.password);
-    navigate("/modules");
+    try {
+      await registerUser(data.username, data.email, data.password);
+      navigate("/modules");
+    } catch (error) {
+      // Error is handled in the registerUser function
+      console.error("Registration submission error:", error);
+    }
   };
 
   return (

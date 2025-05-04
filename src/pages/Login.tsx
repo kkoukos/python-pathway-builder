@@ -8,6 +8,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Link, useNavigate } from "react-router-dom";
 import { Loader } from "lucide-react";
 import { useForm } from "react-hook-form";
+import { toast } from "@/components/ui/sonner";
 
 type FormData = {
   email: string;
@@ -20,8 +21,13 @@ const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    await login(data.email, data.password);
-    navigate("/modules");
+    try {
+      await login(data.email, data.password);
+      navigate("/modules");
+    } catch (error) {
+      // Error is handled in the login function
+      console.error("Login submission error:", error);
+    }
   };
 
   return (
@@ -70,9 +76,7 @@ const Login = () => {
               )}
             </div>
             <div className="text-sm text-muted-foreground">
-              For demo purposes, use: <br />
-              Email: <strong>demo@example.com</strong><br />
-              Password: <strong>password</strong>
+              For a quick start, you can register a new account
             </div>
           </CardContent>
           <CardFooter className="flex flex-col space-y-4">

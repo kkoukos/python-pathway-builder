@@ -9,7 +9,126 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
-      [_ in never]: never
+      exercise_attempts: {
+        Row: {
+          answer: string | null
+          attempt_at: string
+          correct: boolean
+          exercise_id: number
+          id: string
+          lesson_id: number
+          module_id: number
+          user_id: string
+        }
+        Insert: {
+          answer?: string | null
+          attempt_at?: string
+          correct: boolean
+          exercise_id: number
+          id?: string
+          lesson_id: number
+          module_id: number
+          user_id: string
+        }
+        Update: {
+          answer?: string | null
+          attempt_at?: string
+          correct?: boolean
+          exercise_id?: number
+          id?: string
+          lesson_id?: number
+          module_id?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          learning_style: string | null
+          name: string | null
+          username: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id: string
+          learning_style?: string | null
+          name?: string | null
+          username: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          learning_style?: string | null
+          name?: string | null
+          username?: string
+        }
+        Relationships: []
+      }
+      test_results: {
+        Row: {
+          completed_at: string
+          id: string
+          module_id: number
+          passed: boolean
+          score: number
+          test_id: number
+          user_id: string
+        }
+        Insert: {
+          completed_at?: string
+          id?: string
+          module_id: number
+          passed: boolean
+          score: number
+          test_id: number
+          user_id: string
+        }
+        Update: {
+          completed_at?: string
+          id?: string
+          module_id?: number
+          passed?: boolean
+          score?: number
+          test_id?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_progress: {
+        Row: {
+          completed: boolean | null
+          completed_at: string | null
+          created_at: string
+          id: string
+          lesson_id: number
+          module_id: number
+          user_id: string
+        }
+        Insert: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          lesson_id: number
+          module_id: number
+          user_id: string
+        }
+        Update: {
+          completed?: boolean | null
+          completed_at?: string | null
+          created_at?: string
+          id?: string
+          lesson_id?: number
+          module_id?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
