@@ -2,7 +2,6 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Award } from "lucide-react";
 import { Achievement } from "@/services/profileService";
 
 interface AchievementsCardProps {
@@ -23,29 +22,33 @@ const AchievementsCard: React.FC<AchievementsCardProps> = ({ achievements }) => 
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
-          {achievements.slice(0, 3).map(achievement => (
-            <div 
-              key={achievement.id} 
-              className={`flex items-center gap-3 ${!achievement.earned ? 'opacity-50' : ''}`}
-            >
-              <div className="flex-shrink-0">
-                {React.createElement(achievement.icon)}
+          {achievements.slice(0, 3).map(achievement => {
+            const IconComponent = achievement.icon;
+            
+            return (
+              <div 
+                key={achievement.id} 
+                className={`flex items-center gap-3 ${!achievement.earned ? 'opacity-50' : ''}`}
+              >
+                <div className="flex-shrink-0">
+                  <IconComponent className="h-6 w-6 text-primary" />
+                </div>
+                <div className="flex-grow">
+                  <p className="text-sm font-medium">{achievement.title}</p>
+                  <p className="text-xs text-muted-foreground">{achievement.description}</p>
+                </div>
+                {achievement.earned ? (
+                  <Badge variant="outline" className="ml-auto bg-green-50 text-green-700 border-green-200">
+                    Earned
+                  </Badge>
+                ) : (
+                  <Badge variant="outline" className="ml-auto">
+                    Locked
+                  </Badge>
+                )}
               </div>
-              <div className="flex-grow">
-                <p className="text-sm font-medium">{achievement.title}</p>
-                <p className="text-xs text-muted-foreground">{achievement.description}</p>
-              </div>
-              {achievement.earned ? (
-                <Badge variant="outline" className="ml-auto bg-green-50 text-green-700 border-green-200">
-                  Earned
-                </Badge>
-              ) : (
-                <Badge variant="outline" className="ml-auto">
-                  Locked
-                </Badge>
-              )}
-            </div>
-          ))}
+            );
+          })}
           
           {achievements.length > 3 && (
             <p className="text-xs text-muted-foreground text-center pt-2">

@@ -98,7 +98,7 @@ export interface Achievement {
   id: number;
   title: string;
   description: string;
-  icon: ReactNode;
+  icon: any; // Changed from ReactNode to any to avoid JSX in .ts file
   earned: boolean;
   earnedAt: string | null;
 }
@@ -114,7 +114,7 @@ export const generateAchievements = (
       id: 1,
       title: "Fast Learner",
       description: "Complete your first lesson",
-      icon: () => <Award className="h-6 w-6 text-primary" />,
+      icon: Award,
       earned: completedLessons > 0,
       earnedAt: completedLessons > 0 ? new Date().toISOString() : null
     },
@@ -122,7 +122,7 @@ export const generateAchievements = (
       id: 2,
       title: "Code Master",
       description: "Complete 10 code exercises",
-      icon: () => <Trophy className="h-6 w-6 text-yellow-500" />,
+      icon: Trophy,
       earned: completedLessons >= 3,
       earnedAt: completedLessons >= 3 ? new Date().toISOString() : null
     },
@@ -130,7 +130,7 @@ export const generateAchievements = (
       id: 3,
       title: "Persistent Coder",
       description: "Maintain a 5-day learning streak",
-      icon: () => <Calendar className="h-6 w-6 text-blue-500" />,
+      icon: Calendar,
       earned: streak >= 5,
       earnedAt: streak >= 5 ? new Date().toISOString() : null
     },
@@ -138,7 +138,7 @@ export const generateAchievements = (
       id: 4,
       title: "Module Expert",
       description: "Complete all lessons in a module",
-      icon: () => <BookOpen className="h-6 w-6 text-green-500" />,
+      icon: BookOpen,
       earned: Object.values(progress).some(module => 
         module.lessonsCompleted.length > 0 && 
         modules.find(m => m.id === module.moduleId)?.lessons.length === module.lessonsCompleted.length
@@ -202,7 +202,7 @@ export const formatLessonContent = (content: string): string => {
   
   // Replace markdown-style headers with proper HTML
   return content
-    .replace(/##\s*([^#\n]+)/g, "<h2>$1</h2>")
-    .replace(/###\s*([^#\n]+)/g, "<h3>$1</h3>")
-    .replace(/####\s*([^#\n]+)/g, "<h4>$1</h4>");
+    .replace(/##\s+([^#\n]+)/g, "<h2>$1</h2>")
+    .replace(/###\s+([^#\n]+)/g, "<h3>$1</h3>")
+    .replace(/####\s+([^#\n]+)/g, "<h4>$1</h4>");
 };

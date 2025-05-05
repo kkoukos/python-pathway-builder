@@ -7,7 +7,7 @@ export const formatContent = (content: string): string => {
   if (!content) return "";
   
   // Replace markdown-style headers with proper HTML
-  // Use lookbehind to ensure there's whitespace after the hashes
+  // Add space after # to ensure it's properly formatted
   let formatted = content
     .replace(/##\s+([^#\n]+)/g, "<h2>$1</h2>")
     .replace(/###\s+([^#\n]+)/g, "<h3>$1</h3>")
