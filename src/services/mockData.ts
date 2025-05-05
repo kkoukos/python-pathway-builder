@@ -1,4 +1,3 @@
-
 // This file contains mock data for the application
 // In a real application, this would come from an API
 
@@ -76,6 +75,7 @@ export interface Module {
   description: string;
   slug: string;
   lessons: Lesson[];
+  tests?: Test[]; // Add tests as an optional property to the Module interface
 }
 
 // Mock user data
@@ -572,4 +572,3 @@ export function getModuleTests(moduleId: number): Test[] {
 export function getTestById(id: number): Test | undefined {
   return tests.find((test) => test.id === id);
 }
-

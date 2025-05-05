@@ -2,12 +2,16 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 
-interface ActivityBarProps {
+interface ActivityData {
   day: string;
   level: number;
 }
 
-const ActivityBar: React.FC<ActivityBarProps> = ({ day, level }) => {
+interface ActivityBarProps {
+  activityData: ActivityData[];
+}
+
+const ActivityBar: React.FC<ActivityBarProps> = ({ activityData }) => {
   const getActivityColor = (level: number) => {
     if (level === 0) return "bg-muted";
     if (level === 1) return "bg-primary/30";
@@ -17,13 +21,16 @@ const ActivityBar: React.FC<ActivityBarProps> = ({ day, level }) => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-1">
-      <div className={cn(
-        "w-4 rounded-sm",
-        getActivityColor(level)
-      )} 
-      style={{ height: `${(level + 1) * 8}px` }} />
-      <span className="text-xs text-muted-foreground">{day}</span>
+    <div className="flex gap-1 justify-between w-full">
+      {activityData.map((item, index) => (
+        <div key={index} className="flex flex-col items-center gap-1">
+          <div 
+            className={cn("w-4 rounded-sm", getActivityColor(item.level))} 
+            style={{ height: `${(item.level + 1) * 8}px` }} 
+          />
+          <span className="text-xs text-muted-foreground">{item.day}</span>
+        </div>
+      ))}
     </div>
   );
 };

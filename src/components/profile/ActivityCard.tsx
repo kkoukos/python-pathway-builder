@@ -2,6 +2,7 @@
 import React from "react";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import ActivitySummary from "./ActivitySummary";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface ActivityCardProps {
   activeDays: number;
@@ -9,6 +10,12 @@ interface ActivityCardProps {
 }
 
 const ActivityCard: React.FC<ActivityCardProps> = ({ activeDays, activityData }) => {
+  const { user } = useAuth();
+  const username = user?.name || 'User';
+  // We'll default these values, ideally they would come from props
+  const level = 1;
+  const streak = 0;
+  
   return (
     <Card>
       <CardHeader className="pb-2">
@@ -18,7 +25,12 @@ const ActivityCard: React.FC<ActivityCardProps> = ({ activeDays, activityData })
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <ActivitySummary activityData={activityData} />
+        <ActivitySummary 
+          username={username}
+          level={level}
+          streak={streak}
+          activityData={activityData} 
+        />
       </CardContent>
     </Card>
   );

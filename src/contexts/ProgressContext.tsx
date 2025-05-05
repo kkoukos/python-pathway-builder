@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -415,7 +414,7 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
     // Check if final tests are completed and passed (if they exist)
     const moduleTests = module.tests || [];
-    const hasTests = moduleTests.length > 0;
+    const hasTests = moduleTests && moduleTests.length > 0;
     const allTestsPassed = hasTests ? moduleTests.every(test => {
       const testResult = moduleProgress.testsCompleted[test.id];
       return testResult && testResult.passed;

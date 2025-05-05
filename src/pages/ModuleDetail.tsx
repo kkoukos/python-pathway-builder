@@ -1,4 +1,3 @@
-
 import React, { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -40,7 +39,7 @@ const ModuleDetail = () => {
 
   const moduleCompleted = isModuleCompleted(module.id);
   const moduleTests = module.tests || [];
-  const hasTests = moduleTests.length > 0;
+  const hasTests = moduleTests && moduleTests.length > 0;
 
   return (
     <div className="container">

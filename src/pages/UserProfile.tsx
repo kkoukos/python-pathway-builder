@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Award, Trophy, BookOpen, Calendar } from "lucide-react";
@@ -295,7 +294,7 @@ const UserProfile = () => {
   return (
     <div className="container space-y-6 py-6">
       <ProfileHeader 
-        userName={user?.name || 'User'} 
+        username={user?.name || 'User'} 
         level={level} 
         streak={streak} 
       />
