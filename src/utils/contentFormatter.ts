@@ -7,10 +7,11 @@ export const formatContent = (content: string): string => {
   if (!content) return "";
   
   // Replace markdown-style headers with proper HTML
+  // Use lookbehind to ensure there's whitespace after the hashes
   let formatted = content
-    .replace(/##\s*([^#\n]+)/g, "<h2>$1</h2>")
-    .replace(/###\s*([^#\n]+)/g, "<h3>$1</h3>")
-    .replace(/####\s*([^#\n]+)/g, "<h4>$1</h4>");
+    .replace(/##\s+([^#\n]+)/g, "<h2>$1</h2>")
+    .replace(/###\s+([^#\n]+)/g, "<h3>$1</h3>")
+    .replace(/####\s+([^#\n]+)/g, "<h4>$1</h4>");
     
   // Convert line breaks to paragraph tags
   formatted = formatted
