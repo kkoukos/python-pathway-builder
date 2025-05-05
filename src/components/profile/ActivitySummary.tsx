@@ -1,43 +1,45 @@
-
 import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import ActivityBar from "./ActivityBar";
 import ActivityLegend from "./ActivityLegend";
 
-interface ActivityData {
-  day: string;
-  level: number;
-}
-
 interface ActivitySummaryProps {
-  activityData?: ActivityData[];
+  username: string; // Changed from userName to username
+  level: number;
+  streak: number;
 }
 
-const ActivitySummary: React.FC<ActivitySummaryProps> = ({ activityData }) => {
-  // Use provided activityData or fallback to mock data
-  const data = activityData || [
-    { day: "Mon", level: 3 },
+const ActivitySummary: React.FC<ActivitySummaryProps> = ({
+  username,
+  level,
+  streak,
+}) => {
+  const activityData = [
+    { day: "Mon", level: 1 },
     { day: "Tue", level: 2 },
-    { day: "Wed", level: 4 },
-    { day: "Thu", level: 1 },
-    { day: "Fri", level: 3 },
-    { day: "Sat", level: 0 },
-    { day: "Sun", level: 2 },
+    { day: "Wed", level: 3 },
+    { day: "Thu", level: 4 },
+    { day: "Fri", level: 2 },
+    { day: "Sat", level: 1 },
+    { day: "Sun", level: 0 },
   ];
 
   return (
-    <div className="space-y-2">
-      <div className="flex justify-between">
-        {data.map((day, index) => (
-          <ActivityBar 
-            key={`${day.day}-${index}`} 
-            day={day.day} 
-            level={day.level} 
-          />
-        ))}
-      </div>
-      
-      <ActivityLegend />
-    </div>
+    <Card className="bg-background shadow-sm">
+      <CardHeader>
+        <CardTitle>Activity Summary</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="mb-4">
+          <h3 className="text-lg font-semibold">{username}</h3>
+          <p className="text-muted-foreground">
+            Level {level}, Current Streak: {streak} days
+          </p>
+        </div>
+        <ActivityBar activityData={activityData} />
+        <ActivityLegend />
+      </CardContent>
+    </Card>
   );
 };
 

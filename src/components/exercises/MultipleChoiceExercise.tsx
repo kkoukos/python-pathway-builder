@@ -27,12 +27,17 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
   correctOption,
   exerciseId = 0, // Default to 0 if not provided
 }) => {
+  // Create a unique radio group name using the exerciseId
+  // This ensures each exercise has its own radio group
+  const radioGroupName = `exercise-${exerciseId}`;
+
   return (
     <RadioGroup
       className="space-y-3"
       value={selectedOption || ""}
       onValueChange={onSelectOption}
       disabled={isDisabled}
+      name={radioGroupName}
     >
       {options.map((option) => {
         const isCorrect = correctOption === option.id;
@@ -41,9 +46,9 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
         
         return (
           <div
-            key={option.id}
+            key={`${radioGroupName}-${option.id}`}
             className={cn(
-              "flex items-center space-x-3 rounded-md border p-3 transition-colors",
+              "flex items-center space-x-3 rounded-md border p-4 transition-colors",
               isDisabled ? "opacity-70" : "hover:bg-accent/50",
               isCorrect && correctOption ? "border-green-500 bg-green-50 dark:bg-green-950/30" : "",
               showIncorrect ? "border-red-500 bg-red-50 dark:bg-red-950/30" : ""
@@ -51,12 +56,12 @@ const MultipleChoiceExercise: React.FC<MultipleChoiceExerciseProps> = ({
           >
             <RadioGroupItem
               value={option.id}
-              id={`option-${exerciseId}-${option.id}`} // Include exerciseId in the id to ensure uniqueness
+              id={`option-${exerciseId}-${option.id}`}
               className="h-5 w-5"
             />
             <Label
-              htmlFor={`option-${exerciseId}-${option.id}`} // Include exerciseId in the id to ensure uniqueness
-              className="flex-1 cursor-pointer text-sm leading-snug"
+              htmlFor={`option-${exerciseId}-${option.id}`}
+              className="flex-1 cursor-pointer text-base leading-relaxed"
             >
               {option.text}
             </Label>

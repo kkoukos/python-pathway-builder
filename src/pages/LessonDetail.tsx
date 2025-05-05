@@ -6,14 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ArrowLeft, ArrowRight, CheckCircle, BookOpen, Code } from "lucide-react";
-import { getModuleBySlug, getLessonById, ContentBlock, Lesson } from "@/services/mockData";
+import { getModuleBySlug, getLessonById, ContentBlock, Lesson, Module } from "@/services/mockData";
 import { useProgress } from "@/contexts/ProgressContext";
 import ExerciseList from "@/components/exercises/ExerciseList";
 
 const LessonDetail = () => {
   const { slug, lessonId } = useParams<{ slug: string; lessonId: string }>();
   const navigate = useNavigate();
-  const { markLessonComplete } = useProgress();
+  const { markLessonComplete, isLessonCompleted } = useProgress();
   const [activeTab, setActiveTab] = useState<string>("content");
 
   const module = slug ? getModuleBySlug(slug) : null;
@@ -48,35 +48,43 @@ const LessonDetail = () => {
     }
   };
 
-  // Function to render different content types
+  // Function to render different content types with improved styling
   const renderContent = (block: ContentBlock) => {
     switch (block.type) {
       case "text":
-        return <p className="mb-4 whitespace-pre-line">{block.content}</p>;
+        return (
+          <div 
+            className="mb-6 text-base leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: block.content }}
+          />
+        );
       
       case "code":
         return (
-          <div className="code-block mb-6 bg-muted p-4 rounded-md overflow-auto">
-            <pre className="text-sm">{block.content}</pre>
+          <div className="code-block my-6 bg-muted p-4 rounded-md overflow-auto border border-border">
+            <pre className="text-sm font-mono">{block.content}</pre>
           </div>
         );
       
       case "image":
         return (
-          <div className="my-6 flex justify-center">
+          <div className="my-8 flex justify-center">
             <img
               src={block.content}
               alt="Lesson illustration"
-              className="max-w-full rounded-lg"
+              className="max-w-full rounded-lg shadow-md border border-border"
             />
           </div>
         );
       
       case "exercise":
         return (
-          <Card className="p-4 bg-accent mb-6">
-            <h3 className="font-semibold mb-2">Practice Exercise</h3>
-            <p>{block.content}</p>
+          <Card className="p-5 bg-accent/50 my-8 border-primary/20 shadow-sm">
+            <h3 className="font-semibold text-lg mb-3 flex items-center">
+              <Code className="mr-2 h-5 w-5 text-primary" />
+              Practice Exercise
+            </h3>
+            <p className="text-muted-foreground">{block.content}</p>
           </Card>
         );
       
@@ -86,10 +94,11 @@ const LessonDetail = () => {
   };
 
   const hasExercises = lesson.exercises && lesson.exercises.length > 0;
+  const isCompleted = isLessonCompleted(module.id, lesson.id);
 
   return (
     <div className="container max-w-4xl">
-      <div className="mb-6">
+      <div className="mb-8">
         <div className="flex items-center gap-2 mb-2 text-sm text-muted-foreground">
           <Link to="/modules" className="hover:underline">
             Modules
@@ -101,14 +110,20 @@ const LessonDetail = () => {
           <span>/</span>
           <span>Lesson {currentLessonIndex + 1}</span>
         </div>
-        <h1 className="text-3xl font-bold mb-6">{lesson.title}</h1>
+        <h1 className="text-3xl font-bold mb-2">{lesson.title}</h1>
+        {isCompleted && (
+          <div className="inline-flex items-center gap-1.5 text-sm text-primary bg-primary/10 px-3 py-1 rounded-full">
+            <CheckCircle className="h-4 w-4" />
+            <span>Completed</span>
+          </div>
+        )}
       </div>
 
-      {hasExercises && (
+      {hasExercises ? (
         <Tabs 
           value={activeTab} 
           onValueChange={setActiveTab}
-          className="mb-6"
+          className="mb-8"
         >
           <TabsList className="grid w-full max-w-md grid-cols-2">
             <TabsTrigger value="content" className="flex items-center gap-2">
@@ -118,7 +133,7 @@ const LessonDetail = () => {
             <TabsTrigger value="exercises" className="flex items-center gap-2">
               <Code className="w-4 h-4" />
               <span>Exercises</span>
-              {lesson.exercises && <span className="ml-1 text-xs bg-primary/10 px-1.5 py-0.5 rounded-full">{lesson.exercises.length}</span>}
+              {lesson.exercises && <span className="ml-1.5 text-xs bg-primary/10 px-2 py-0.5 rounded-full">{lesson.exercises.length}</span>}
             </TabsTrigger>
           </TabsList>
 
@@ -144,17 +159,15 @@ const LessonDetail = () => {
             )}
           </TabsContent>
         </Tabs>
-      )}
-
-      {!hasExercises && (
-        <div className="prose max-w-none">
+      ) : (
+        <div className="prose max-w-none mb-10">
           {lesson.content.map((block, index) => (
             <div key={index}>{renderContent(block)}</div>
           ))}
         </div>
       )}
 
-      <div className="mt-10 flex justify-between">
+      <div className="mt-12 flex justify-between border-t pt-6">
         {prevLesson ? (
           <Button
             variant="outline"
@@ -168,9 +181,16 @@ const LessonDetail = () => {
           <div></div>
         )}
 
-        <Button onClick={handleCompleteLesson} className="flex items-center">
+        <Button 
+          onClick={handleCompleteLesson}
+          className="flex items-center"
+          variant={isCompleted ? "outline" : "default"}
+        >
           <CheckCircle className="mr-2 h-4 w-4" />
-          {nextLesson ? "Complete & Continue" : "Complete Module"}
+          {isCompleted 
+            ? (nextLesson ? "Continue to Next" : "Back to Module")
+            : (nextLesson ? "Complete & Continue" : "Complete Module")
+          }
         </Button>
       </div>
     </div>

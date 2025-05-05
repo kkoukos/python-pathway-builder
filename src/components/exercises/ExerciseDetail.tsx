@@ -1,9 +1,9 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/sonner";
-import { CheckCircle, AlertCircle, Code, HelpCircle, ChevronRight } from "lucide-react";
+import { CheckCircle, AlertCircle, Code, HelpCircle, ChevronRight, BookOpen } from "lucide-react";
 import { useProgress } from "@/contexts/ProgressContext";
 import MultipleChoiceExercise from "./MultipleChoiceExercise";
 import CodeExercise from "./CodeExercise";
@@ -24,7 +24,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 }) => {
   const { isExerciseCompleted, markExerciseComplete } = useProgress();
   const [userAnswer, setUserAnswer] = useState<string | null>(null);
-  const [userCode, setUserCode] = useState<string>(exercise.content.starterCode || "");
+  const [userCode, setUserCode] = useState<string>("");
   const [showHint, setShowHint] = useState(false);
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
   const [showSolution, setShowSolution] = useState(false);
@@ -32,7 +32,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const isCompleted = isExerciseCompleted(moduleId, lessonId, exercise.id);
 
   // Reset state when exercise changes
-  React.useEffect(() => {
+  useEffect(() => {
     setUserAnswer(null);
     setUserCode(exercise.content.starterCode || "");
     setShowHint(false);
@@ -64,6 +64,14 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
     }
   };
 
+  const handleReset = () => {
+    setUserAnswer(null);
+    setUserCode(exercise.content.starterCode || "");
+    setShowHint(false);
+    setIsCorrect(null);
+    setShowSolution(false);
+  };
+
   const handleShowHint = () => {
     setShowHint(true);
     // In a real app, you might want to track when hints are used
@@ -86,7 +94,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
             onSelectOption={setUserAnswer}
             isDisabled={isCompleted || isCorrect === true}
             correctOption={isCorrect === false && showSolution ? exercise.content.correctOption : undefined}
-            exerciseId={exercise.id} // Pass the exercise ID to ensure uniqueness
+            exerciseId={exercise.id}
           />
         );
       case "code_completion":
@@ -107,21 +115,21 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   };
 
   return (
-    <Card className="w-full">
-      <CardHeader>
+    <Card className="w-full shadow-sm border-border">
+      <CardHeader className="pb-3 border-b">
         <div className="flex items-center justify-between">
-          <CardTitle className="flex items-center gap-2">
+          <CardTitle className="flex items-center gap-2 text-xl">
             {exercise.title}
             {isCompleted && <CheckCircle className="text-primary h-5 w-5" />}
           </CardTitle>
           <div>
             <span
-              className={`text-xs px-2 py-1 rounded-full ${
+              className={`text-xs px-2.5 py-1 rounded-full font-medium ${
                 exercise.difficulty === "easy"
-                  ? "bg-green-100 text-green-700"
+                  ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                   : exercise.difficulty === "medium"
-                  ? "bg-yellow-100 text-yellow-700"
-                  : "bg-red-100 text-red-700"
+                  ? "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400"
+                  : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
               }`}
             >
               {exercise.difficulty}
@@ -129,30 +137,48 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           </div>
         </div>
       </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="whitespace-pre-line">{exercise.description}</p>
+      <CardContent className="space-y-6 pt-6">
+        <div className="bg-muted/50 p-4 rounded-md border border-border">
+          <h3 className="font-semibold flex items-center gap-2 mb-2 text-lg">
+            <BookOpen className="h-5 w-5 text-primary" />
+            Instructions
+          </h3>
+          <p className="whitespace-pre-line text-muted-foreground">{exercise.description}</p>
+        </div>
         
         {showHint && exercise.content.hints && exercise.content.hints.length > 0 && (
-          <div className="bg-accent p-4 rounded-md">
+          <div className="bg-accent/60 p-4 rounded-md border border-primary/20">
             <h3 className="font-semibold flex items-center gap-2 mb-2">
-              <HelpCircle className="h-4 w-4" />
+              <HelpCircle className="h-4 w-4 text-primary" />
               Hint
             </h3>
-            <p>{exercise.content.hints[0]}</p>
+            <p className="text-muted-foreground">{exercise.content.hints[0]}</p>
           </div>
         )}
         
-        {renderExerciseByType()}
+        <div className="my-6">
+          {renderExerciseByType()}
+        </div>
         
         {isCorrect === false && showSolution && (
-          <div className="bg-muted p-4 rounded-md">
+          <div className="bg-muted p-4 rounded-md border border-border">
             <h3 className="font-semibold flex items-center gap-2 mb-2">
-              <Code className="h-4 w-4" />
+              <Code className="h-4 w-4 text-primary" />
               Solution
             </h3>
-            <div className="code-block bg-accent/50 p-3 rounded-md">
-              <pre className="text-sm whitespace-pre-wrap">{exercise.content.solution}</pre>
+            <div className="code-block bg-background p-3 rounded-md border border-border">
+              <pre className="text-sm whitespace-pre-wrap font-mono">{exercise.content.solution}</pre>
             </div>
+          </div>
+        )}
+
+        {isCorrect === true && (
+          <div className="bg-green-100 dark:bg-green-900/20 text-green-800 dark:text-green-300 p-4 rounded-md border border-green-200 dark:border-green-900/50">
+            <h3 className="font-semibold flex items-center gap-2 mb-1">
+              <CheckCircle className="h-5 w-5" />
+              Well done!
+            </h3>
+            <p>You've successfully completed this exercise.</p>
           </div>
         )}
       </CardContent>
@@ -169,6 +195,12 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
             <Button variant="outline" size="sm" onClick={handleShowSolution}>
               <Code className="h-4 w-4 mr-2" />
               Show Solution
+            </Button>
+          )}
+
+          {(isCorrect === false || isCompleted) && (
+            <Button variant="outline" size="sm" onClick={handleReset}>
+              Try Again
             </Button>
           )}
         </div>

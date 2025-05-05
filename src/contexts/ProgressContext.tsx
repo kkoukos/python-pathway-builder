@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { useAuth } from "./AuthContext";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "@/components/ui/sonner";
-import { getModuleBySlug } from "@/services/mockData";
+import { getModuleById } from "@/services/mockData";
 
 type ModuleProgress = {
   moduleId: number;
@@ -388,7 +388,7 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     }
 
     // Get the module
-    const module = getModuleBySlug(moduleId.toString());
+    const module = getModuleById(moduleId);
     if (!module) return false;
 
     // Get current progress
