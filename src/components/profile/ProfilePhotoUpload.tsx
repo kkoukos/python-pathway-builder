@@ -35,7 +35,7 @@ const ProfilePhotoUpload: React.FC = () => {
       const file = event.target.files[0];
       const fileExt = file.name.split('.').pop();
       const fileName = `${user!.id}.${fileExt}`;
-      const filePath = `${fileName}`;
+      const filePath = fileName;
 
       const { error: uploadError } = await supabase.storage
         .from('avatars')
@@ -53,6 +53,7 @@ const ProfilePhotoUpload: React.FC = () => {
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Error uploading avatar';
       toast.error(message);
+      console.error('Error uploading avatar:', error);
     } finally {
       setUploading(false);
     }
@@ -64,22 +65,31 @@ const ProfilePhotoUpload: React.FC = () => {
       
       if (!user) return;
       
-      const fileName = avatarUrl?.split('/').pop();
-      
-      if (fileName) {
-        const { error } = await supabase.storage
-          .from('avatars')
-          .remove([fileName]);
+      // Get file name from URL or use user ID
+      let fileName = user.id;
+      if (avatarUrl) {
+        const urlParts = avatarUrl.split('/');
+        fileName = urlParts[urlParts.length - 1];
         
-        if (error) {
-          throw error;
+        // Handle signed URLs by removing query parameters
+        if (fileName.includes('?')) {
+          fileName = fileName.split('?')[0];
         }
-        
-        setAvatarUrl(null);
-        toast.success('Avatar removed successfully!');
       }
+      
+      const { error } = await supabase.storage
+        .from('avatars')
+        .remove([fileName]);
+      
+      if (error) {
+        throw error;
+      }
+      
+      setAvatarUrl(null);
+      toast.success('Avatar removed successfully!');
     } catch (error: any) {
       toast.error(`Error removing avatar: ${error.message || 'Unknown error'}`);
+      console.error('Error removing avatar:', error);
     } finally {
       setUploading(false);
     }

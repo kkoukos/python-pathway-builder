@@ -12,7 +12,7 @@ interface ActivityCardProps {
 const ActivityCard: React.FC<ActivityCardProps> = ({ activeDays, activityData }) => {
   const { user } = useAuth();
   const username = user?.name || 'User';
-  // We'll default these values, ideally they would come from props
+  // We'll use these values from UserProfile component in the future
   const level = 1;
   const streak = 0;
   
