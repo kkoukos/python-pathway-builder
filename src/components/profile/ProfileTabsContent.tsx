@@ -1,4 +1,3 @@
-
 import React from "react";
 import { TabsContent } from "@/components/ui/tabs";
 import OverallProgressCard from "@/components/profile/OverallProgressCard";
@@ -36,7 +35,7 @@ interface Recommendation {
 
 interface ProfileTabsContentProps {
   modules: Module[];
-  getModuleProgress: (moduleId: string) => any;
+  getModuleProgress: (moduleId: any) => any;
   achievements: Achievement[];
   completedLessons: number;
   totalLessons: number;
@@ -65,35 +64,28 @@ const ProfileTabsContent: React.FC<ProfileTabsContentProps> = ({
     <>
       <TabsContent value="overview" className="space-y-4">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <OverallProgressCard 
+          <OverallProgressCard
             completedLessons={completedLessons}
             totalLessons={totalLessons}
           />
-          
-          <ActivityCard 
-            activeDays={activeDays}
-            activityData={activityData}
-          />
-          
-          <AchievementsCard 
-            achievements={achievements}
-          />
+
+          <ActivityCard activeDays={activeDays} activityData={activityData} />
+
+          <AchievementsCard achievements={achievements} />
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <CalendarCard 
+          <CalendarCard
             selectedDate={selectedDate}
             onDateSelect={onDateSelect}
           />
-          
-          <RecommendationsCard 
-            recommendations={recommendations}
-          />
+
+          <RecommendationsCard recommendations={recommendations} />
         </div>
       </TabsContent>
 
       <TabsContent value="progress" className="space-y-4">
-        <ModuleProgressCard 
+        <ModuleProgressCard
           modules={modules}
           getModuleProgress={getModuleProgress}
         />
@@ -101,10 +93,6 @@ const ProfileTabsContent: React.FC<ProfileTabsContentProps> = ({
 
       <TabsContent value="achievements" className="space-y-4">
         <AchievementList achievements={achievements} />
-      </TabsContent>
-
-      <TabsContent value="concepts" className="space-y-4">
-        <ConceptMasteryCard concepts={concepts} />
       </TabsContent>
     </>
   );
