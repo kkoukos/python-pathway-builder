@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -38,7 +39,7 @@ const ModuleDetail = () => {
   }
 
   const moduleCompleted = isModuleCompleted(module.id);
-  const moduleTests = module.tests || [];
+  const moduleTests = module.tests || []; // Safe access to tests property
   const hasTests = moduleTests && moduleTests.length > 0;
 
   return (

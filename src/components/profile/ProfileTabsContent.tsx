@@ -1,3 +1,4 @@
+
 import React from "react";
 import { TabsContent } from "@/components/ui/tabs";
 import OverallProgressCard from "@/components/profile/OverallProgressCard";
@@ -14,7 +15,7 @@ interface Achievement {
   id: number;
   title: string;
   description: string;
-  icon: React.ReactNode;
+  icon: any;
   earned: boolean;
   earnedAt: string | null;
 }
@@ -35,7 +36,7 @@ interface Recommendation {
 
 interface ProfileTabsContentProps {
   modules: Module[];
-  getModuleProgress: (moduleId: any) => any;
+  getModuleProgress: (moduleId: number) => number; // Fixed type to match ProgressContext
   achievements: Achievement[];
   completedLessons: number;
   totalLessons: number;
@@ -93,6 +94,10 @@ const ProfileTabsContent: React.FC<ProfileTabsContentProps> = ({
 
       <TabsContent value="achievements" className="space-y-4">
         <AchievementList achievements={achievements} />
+      </TabsContent>
+
+      <TabsContent value="concepts" className="space-y-4">
+        <ConceptMasteryCard concepts={concepts} />
       </TabsContent>
     </>
   );

@@ -413,7 +413,7 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     });
 
     // Check if final tests are completed and passed (if they exist)
-    const moduleTests = module.tests || [];
+    const moduleTests = module.tests || []; // Safe access to tests property
     const hasTests = moduleTests && moduleTests.length > 0;
     const allTestsPassed = hasTests ? moduleTests.every(test => {
       const testResult = moduleProgress.testsCompleted[test.id];

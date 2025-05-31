@@ -60,11 +60,9 @@ export interface Test {
   id: number;
   title: string;
   description: string;
-  moduleId: number;
-  isComprehensive: boolean;
-  exercises?: Exercise[];
   timeLimit: number; // in minutes
   passingScore: number; // percentage
+  exercises: Exercise[];
 }
 
 export interface Lesson {
@@ -80,6 +78,7 @@ export interface Module {
   description: string;
   slug: string;
   lessons: Lesson[];
+  tests?: Test[]; // Add tests property as optional
 }
 
 // Mock user data
