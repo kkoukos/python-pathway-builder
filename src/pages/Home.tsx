@@ -2,115 +2,118 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, BookOpen, CheckCircle, User } from "lucide-react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { BookOpen, Users, Trophy, ArrowRight } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
-import { modules } from "@/services/mockData";
 
 const Home = () => {
   const { isAuthenticated } = useAuth();
 
   return (
     <div className="container py-8">
-      <section className="py-12 px-4 md:px-6 text-center bg-gradient-to-b from-white to-slate-50 rounded-lg mb-12">
-        <div className="max-w-3xl mx-auto">
-          <h1 className="text-3xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
-            Master Python Programming
-          </h1>
-          <p className="text-lg mb-8 text-gray-600">
-            Learn Python from scratch with interactive lessons, hands-on exercises,
-            and personalized progress tracking.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            {isAuthenticated ? (
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-4">Welcome to LearnPlatform</h1>
+        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          Master new skills with our comprehensive learning modules, interactive exercises, and knowledge tests.
+        </p>
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-3 mb-12">
+        <Card>
+          <CardHeader>
+            <BookOpen className="h-8 w-8 text-primary mb-2" />
+            <CardTitle>Interactive Lessons</CardTitle>
+            <CardDescription>
+              Learn through engaging content with hands-on exercises and real-world examples.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <Trophy className="h-8 w-8 text-primary mb-2" />
+            <CardTitle>Knowledge Tests</CardTitle>
+            <CardDescription>
+              Test your understanding with comprehensive assessments and get instant feedback.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <Users className="h-8 w-8 text-primary mb-2" />
+            <CardTitle>Progress Tracking</CardTitle>
+            <CardDescription>
+              Monitor your learning journey with detailed progress analytics and achievements.
+            </CardDescription>
+          </CardHeader>
+        </Card>
+      </div>
+
+      <div className="text-center space-y-4">
+        {isAuthenticated ? (
+          <div className="space-x-4">
+            <Link to="/modules">
+              <Button size="lg" className="inline-flex items-center">
+                Browse Modules
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/profile">
+              <Button variant="outline" size="lg">
+                View Profile
+              </Button>
+            </Link>
+          </div>
+        ) : (
+          <div className="space-x-4">
+            <Link to="/register">
+              <Button size="lg" className="inline-flex items-center">
+                Get Started
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="outline" size="lg">
+                Sign In
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
+
+      {isAuthenticated && (
+        <div className="mt-12">
+          <Card>
+            <CardHeader>
+              <CardTitle>Quick Actions</CardTitle>
+              <CardDescription>
+                Jump back into your learning journey
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-wrap gap-4">
               <Link to="/modules">
-                <Button size="lg" className="gap-2">
-                  Continue Learning <ArrowRight className="h-4 w-4" />
+                <Button variant="outline">
+                  <BookOpen className="mr-2 h-4 w-4" />
+                  All Modules
                 </Button>
               </Link>
-            ) : (
-              <>
-                <Link to="/register">
-                  <Button size="lg">Get Started Free</Button>
-                </Link>
-                <Link to="/login">
-                  <Button variant="outline" size="lg">
-                    Sign In
-                  </Button>
-                </Link>
-              </>
-            )}
-          </div>
-        </div>
-      </section>
-
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6 text-center">Why Learn with Us</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
-              <BookOpen className="h-10 w-10 text-primary mb-2" />
-              <CardTitle>Interactive Learning</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Our lessons include interactive code examples and exercises that
-                help you learn by doing.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
-              <CheckCircle className="h-10 w-10 text-primary mb-2" />
-              <CardTitle>Track Your Progress</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Monitor your learning journey with our comprehensive progress
-                tracking system.
-              </p>
-            </CardContent>
-          </Card>
-          <Card className="border-none shadow-lg">
-            <CardHeader className="pb-2">
-              <User className="h-10 w-10 text-primary mb-2" />
-              <CardTitle>Personalized Path</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Learn at your own pace with content tailored to your skill level
-                and learning style.
-              </p>
+              <Link to="/progress">
+                <Button variant="outline">
+                  <Trophy className="mr-2 h-4 w-4" />
+                  My Progress
+                </Button>
+              </Link>
+              <Link to="/modules/intro-programming">
+                <Button variant="outline">
+                  <ArrowRight className="mr-2 h-4 w-4" />
+                  Start Learning
+                </Button>
+              </Link>
             </CardContent>
           </Card>
         </div>
-      </section>
-
-      <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Available Modules</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {modules.map((module) => (
-            <Card key={module.id} className="flex flex-col">
-              <CardHeader>
-                <CardTitle>{module.title}</CardTitle>
-                <CardDescription>
-                  {module.lessons.length} Lessons
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex-1">
-                <p className="text-muted-foreground">{module.description}</p>
-              </CardContent>
-              <CardFooter>
-                <Link to={`/modules/${module.slug}`} className="w-full">
-                  <Button variant="outline" className="w-full">
-                    View Module
-                  </Button>
-                </Link>
-              </CardFooter>
-            </Card>
-          ))}
-        </div>
-      </section>
+      )}
     </div>
   );
 };
