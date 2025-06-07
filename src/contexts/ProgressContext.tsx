@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,8 +14,30 @@ type ModuleProgress = {
   completedAt?: string;
 };
 
+type RevisionModule = {
+  id: string;
+  original_module_id: number;
+  revision_module_id: number;
+  assigned_at: string;
+  completed_at?: string;
+  is_mandatory: boolean;
+  performance_threshold: number;
+};
+
+type UserPerformance = {
+  id: string;
+  module_id: number;
+  average_score: number;
+  failed_attempts: number;
+  needs_revision: boolean;
+  revision_assigned_at?: string;
+  revision_completed_at?: string;
+};
+
 type ProgressContextType = {
   progress: Record<number, ModuleProgress>;
+  revisionModules: RevisionModule[];
+  userPerformance: UserPerformance[];
   markLessonComplete: (moduleId: number, lessonId: number) => void;
   isLessonCompleted: (moduleId: number, lessonId: number) => boolean;
   markExerciseComplete: (moduleId: number, lessonId: number, exerciseId: number) => void;
@@ -27,6 +48,10 @@ type ProgressContextType = {
   getModuleProgress: (moduleId: number) => number;
   isModuleCompleted: (moduleId: number) => boolean;
   checkAndMarkModuleComplete: (moduleId: number) => Promise<boolean>;
+  hasMandatoryRevision: (moduleId: number) => boolean;
+  hasRecommendedRevision: (moduleId: number) => boolean;
+  markRevisionComplete: (revisionId: string) => Promise<void>;
+  checkUserPerformance: (moduleId: number) => Promise<void>;
 };
 
 const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
@@ -42,11 +67,15 @@ export const useProgress = () => {
 export const ProgressProvider = ({ children }: { children: ReactNode }) => {
   const { user, isAuthenticated } = useAuth();
   const [progress, setProgress] = useState<Record<number, ModuleProgress>>({});
+  const [revisionModules, setRevisionModules] = useState<RevisionModule[]>([]);
+  const [userPerformance, setUserPerformance] = useState<UserPerformance[]>([]);
 
   // Load progress from Supabase when component mounts or user changes
   useEffect(() => {
     if (!isAuthenticated || !user) {
       setProgress({});
+      setRevisionModules([]);
+      setUserPerformance([]);
       return;
     }
 
@@ -82,6 +111,26 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
         if (testError) {
           throw testError;
+        }
+
+        // Fetch revision modules
+        const { data: revisionData, error: revisionError } = await supabase
+          .from('revision_modules')
+          .select('*')
+          .eq('user_id', user.id);
+
+        if (revisionError) {
+          throw revisionError;
+        }
+
+        // Fetch user performance data
+        const { data: performanceData, error: performanceError } = await supabase
+          .from('user_performance')
+          .select('*')
+          .eq('user_id', user.id);
+
+        if (performanceError) {
+          throw performanceError;
         }
 
         // Convert the data to our progress structure
@@ -158,6 +207,8 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
         });
 
         setProgress(newProgress);
+        setRevisionModules(revisionData || []);
+        setUserPerformance(performanceData || []);
       } catch (error) {
         console.error("Error fetching progress from Supabase:", error);
         toast.error("Failed to load your progress");
@@ -167,128 +218,68 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     fetchProgress();
   }, [user, isAuthenticated]);
 
-  const markLessonComplete = async (moduleId: number, lessonId: number) => {
-    if (!isAuthenticated || !user) {
-      toast.error("You must be logged in to save progress");
-      return;
-    }
+  const checkUserPerformance = async (moduleId: number) => {
+    if (!isAuthenticated || !user) return;
 
     try {
-      // Update Supabase with the completed lesson
-      const { error } = await supabase
-        .from('user_progress')
-        .upsert({
-          user_id: user.id,
-          module_id: moduleId,
-          lesson_id: lessonId,
-          completed: true,
-          completed_at: new Date().toISOString()
-        }, {
-          onConflict: 'user_id,module_id,lesson_id'
-        });
+      // Get test results for this module
+      const { data: testResults, error } = await supabase
+        .from('test_results')
+        .select('*')
+        .eq('user_id', user.id)
+        .eq('module_id', moduleId);
 
-      if (error) {
-        throw error;
-      }
+      if (error) throw error;
 
-      // Update local state
-      setProgress(prev => {
-        // Get existing module progress or create new
-        const moduleProgress = prev[moduleId] || {
-          moduleId,
-          completed: false,
-          lessonsCompleted: [],
-          exercisesCompleted: {},
-          testsCompleted: {},
-          startedAt: new Date().toISOString()
-        };
+      if (!testResults || testResults.length === 0) return;
 
-        // Add lesson to completed lessons if not already included
-        if (!moduleProgress.lessonsCompleted.includes(lessonId)) {
-          const newLessonsCompleted = [...moduleProgress.lessonsCompleted, lessonId];
-          
-          return {
-            ...prev,
-            [moduleId]: {
-              ...moduleProgress,
-              lessonsCompleted: newLessonsCompleted,
-              completedAt: new Date().toISOString()
+      // Calculate performance metrics
+      const scores = testResults.map(result => result.score);
+      const averageScore = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+      const failedAttempts = testResults.filter(result => !result.passed).length;
+
+      // Performance thresholds
+      const PERFORMANCE_THRESHOLD = 60; // Below 60% average triggers revision
+      const MAX_FAILED_ATTEMPTS = 3; // More than 3 failed attempts triggers revision
+
+      const needsRevision = averageScore < PERFORMANCE_THRESHOLD || failedAttempts >= MAX_FAILED_ATTEMPTS;
+      const isMandatory = averageScore < 40; // Below 40% makes revision mandatory
+
+      if (needsRevision) {
+        // Check if revision is already assigned
+        const existingRevision = revisionModules.find(
+          rev => rev.original_module_id === moduleId && !rev.completed_at
+        );
+
+        if (!existingRevision) {
+          // Assign revision module
+          const { data: newRevision, error: revisionError } = await supabase
+            .from('revision_modules')
+            .insert({
+              user_id: user.id,
+              original_module_id: moduleId,
+              revision_module_id: moduleId, // Same module for revision
+              is_mandatory: isMandatory,
+              performance_threshold: PERFORMANCE_THRESHOLD
+            })
+            .select()
+            .single();
+
+          if (revisionError) throw revisionError;
+
+          if (newRevision) {
+            setRevisionModules(prev => [...prev, newRevision]);
+            
+            if (isMandatory) {
+              toast.warning(`Mandatory revision assigned for module ${moduleId}. You must complete this before proceeding.`);
+            } else {
+              toast.info(`Revision recommended for module ${moduleId} to improve your understanding.`);
             }
-          };
+          }
         }
-        
-        return prev;
-      });
-
-      // Check if the module is complete
-      await checkAndMarkModuleComplete(moduleId);
-    } catch (error) {
-      console.error("Error marking lesson as complete:", error);
-      toast.error("Failed to save your progress");
-    }
-  };
-
-  const markExerciseComplete = async (moduleId: number, lessonId: number, exerciseId: number) => {
-    if (!isAuthenticated || !user) {
-      toast.error("You must be logged in to save progress");
-      return;
-    }
-
-    try {
-      // Record the exercise attempt in Supabase
-      const { error } = await supabase
-        .from('exercise_attempts')
-        .insert({
-          user_id: user.id,
-          module_id: moduleId,
-          lesson_id: lessonId,
-          exercise_id: exerciseId,
-          correct: true
-        });
-
-      if (error) {
-        throw error;
       }
-
-      // Update local state
-      setProgress(prev => {
-        // Get existing module progress or create new
-        const moduleProgress = prev[moduleId] || {
-          moduleId,
-          completed: false,
-          lessonsCompleted: [],
-          exercisesCompleted: {},
-          testsCompleted: {},
-          startedAt: new Date().toISOString()
-        };
-
-        // Get existing exercises for this lesson or create new array
-        const lessonExercises = moduleProgress.exercisesCompleted[lessonId] || [];
-        
-        // Add exercise to completed exercises if not already included
-        if (!lessonExercises.includes(exerciseId)) {
-          const newExercisesCompleted = {
-            ...moduleProgress.exercisesCompleted,
-            [lessonId]: [...lessonExercises, exerciseId]
-          };
-          
-          return {
-            ...prev,
-            [moduleId]: {
-              ...moduleProgress,
-              exercisesCompleted: newExercisesCompleted
-            }
-          };
-        }
-        
-        return prev;
-      });
-
-      // Check if the module is complete
-      await checkAndMarkModuleComplete(moduleId);
     } catch (error) {
-      console.error("Error marking exercise as complete:", error);
-      toast.error("Failed to save your progress");
+      console.error("Error checking user performance:", error);
     }
   };
 
@@ -317,7 +308,6 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
       // Update local state
       setProgress(prev => {
-        // Get existing module progress or create new
         const moduleProgress = prev[moduleId] || {
           moduleId,
           completed: false,
@@ -345,11 +335,167 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
         };
       });
 
+      // Check performance after test completion
+      await checkUserPerformance(moduleId);
+
       // Check if the module is complete
       await checkAndMarkModuleComplete(moduleId);
     } catch (error) {
       console.error("Error recording test result:", error);
       toast.error("Failed to save your test results");
+    }
+  };
+
+  const hasMandatoryRevision = (moduleId: number): boolean => {
+    return revisionModules.some(
+      rev => rev.original_module_id === moduleId && rev.is_mandatory && !rev.completed_at
+    );
+  };
+
+  const hasRecommendedRevision = (moduleId: number): boolean => {
+    return revisionModules.some(
+      rev => rev.original_module_id === moduleId && !rev.is_mandatory && !rev.completed_at
+    );
+  };
+
+  const markRevisionComplete = async (revisionId: string) => {
+    if (!isAuthenticated || !user) return;
+
+    try {
+      const { error } = await supabase
+        .from('revision_modules')
+        .update({ completed_at: new Date().toISOString() })
+        .eq('id', revisionId)
+        .eq('user_id', user.id);
+
+      if (error) throw error;
+
+      setRevisionModules(prev => 
+        prev.map(rev => 
+          rev.id === revisionId 
+            ? { ...rev, completed_at: new Date().toISOString() }
+            : rev
+        )
+      );
+
+      toast.success("Revision module completed!");
+    } catch (error) {
+      console.error("Error marking revision complete:", error);
+      toast.error("Failed to mark revision as complete");
+    }
+  };
+
+  const markLessonComplete = async (moduleId: number, lessonId: number) => {
+    if (!isAuthenticated || !user) {
+      toast.error("You must be logged in to save progress");
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('user_progress')
+        .upsert({
+          user_id: user.id,
+          module_id: moduleId,
+          lesson_id: lessonId,
+          completed: true,
+          completed_at: new Date().toISOString()
+        }, {
+          onConflict: 'user_id,module_id,lesson_id'
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      setProgress(prev => {
+        const moduleProgress = prev[moduleId] || {
+          moduleId,
+          completed: false,
+          lessonsCompleted: [],
+          exercisesCompleted: {},
+          testsCompleted: {},
+          startedAt: new Date().toISOString()
+        };
+
+        if (!moduleProgress.lessonsCompleted.includes(lessonId)) {
+          const newLessonsCompleted = [...moduleProgress.lessonsCompleted, lessonId];
+          
+          return {
+            ...prev,
+            [moduleId]: {
+              ...moduleProgress,
+              lessonsCompleted: newLessonsCompleted,
+              completedAt: new Date().toISOString()
+            }
+          };
+        }
+        
+        return prev;
+      });
+
+      await checkAndMarkModuleComplete(moduleId);
+    } catch (error) {
+      console.error("Error marking lesson as complete:", error);
+      toast.error("Failed to save your progress");
+    }
+  };
+
+  const markExerciseComplete = async (moduleId: number, lessonId: number, exerciseId: number) => {
+    if (!isAuthenticated || !user) {
+      toast.error("You must be logged in to save progress");
+      return;
+    }
+
+    try {
+      const { error } = await supabase
+        .from('exercise_attempts')
+        .insert({
+          user_id: user.id,
+          module_id: moduleId,
+          lesson_id: lessonId,
+          exercise_id: exerciseId,
+          correct: true
+        });
+
+      if (error) {
+        throw error;
+      }
+
+      setProgress(prev => {
+        const moduleProgress = prev[moduleId] || {
+          moduleId,
+          completed: false,
+          lessonsCompleted: [],
+          exercisesCompleted: {},
+          testsCompleted: {},
+          startedAt: new Date().toISOString()
+        };
+
+        const lessonExercises = moduleProgress.exercisesCompleted[lessonId] || [];
+        
+        if (!lessonExercises.includes(exerciseId)) {
+          const newExercisesCompleted = {
+            ...moduleProgress.exercisesCompleted,
+            [lessonId]: [...lessonExercises, exerciseId]
+          };
+          
+          return {
+            ...prev,
+            [moduleId]: {
+              ...moduleProgress,
+              exercisesCompleted: newExercisesCompleted
+            }
+          };
+        }
+        
+        return prev;
+      });
+
+      await checkAndMarkModuleComplete(moduleId);
+    } catch (error) {
+      console.error("Error marking exercise as complete:", error);
+      toast.error("Failed to save your progress");
     }
   };
 
@@ -373,8 +519,6 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     const moduleProgress = progress[moduleId];
     if (!moduleProgress) return 0;
     
-    // This is simplified logic; in a real app you'd calculate against total lessons
-    // For now, just return the number of completed lessons as a proxy
     return moduleProgress.lessonsCompleted.length;
   };
 
@@ -387,23 +531,18 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
       return false;
     }
 
-    // Get the module
     const module = getModuleById(moduleId);
     if (!module) return false;
 
-    // Get current progress
     const moduleProgress = progress[moduleId];
     if (!moduleProgress) return false;
 
-    // If already completed, return true
     if (moduleProgress.completed) return true;
 
-    // Check if all lessons are completed
     const allLessonsCompleted = module.lessons.every(lesson => 
       moduleProgress.lessonsCompleted.includes(lesson.id)
     );
 
-    // Check if all exercises in all lessons are completed
     const allExercisesCompleted = module.lessons.every(lesson => {
       if (!lesson.exercises || lesson.exercises.length === 0) return true;
       
@@ -413,23 +552,17 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
       );
     });
 
-    // Check if final tests are completed and passed (if they exist)
-    const moduleTests = module.tests || []; // Safe access to tests property
+    const moduleTests = module.tests || [];
     const hasTests = moduleTests && moduleTests.length > 0;
     const allTestsPassed = hasTests ? moduleTests.every(test => {
       const testResult = moduleProgress.testsCompleted[test.id];
       return testResult && testResult.passed;
     }) : true;
 
-    // For module to be completed:
-    // 1. All lessons must be completed
-    // 2. All exercises must be completed
-    // 3. If there are tests, all tests must be passed
     const isComplete = allLessonsCompleted && allExercisesCompleted && allTestsPassed;
 
     if (isComplete && !moduleProgress.completed) {
       try {
-        // Update local state first
         setProgress(prev => ({
           ...prev,
           [moduleId]: {
@@ -439,9 +572,6 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
           }
         }));
 
-        // We don't have a specific table for module completion,
-        // but we could record it in a future implementation
-        
         toast.success(`${module.title} module completed!`);
         return true;
       } catch (error) {
@@ -455,6 +585,8 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
   const value = {
     progress,
+    revisionModules,
+    userPerformance,
     markLessonComplete,
     isLessonCompleted,
     markExerciseComplete,
@@ -464,7 +596,11 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     getTestResult,
     getModuleProgress,
     isModuleCompleted,
-    checkAndMarkModuleComplete
+    checkAndMarkModuleComplete,
+    hasMandatoryRevision,
+    hasRecommendedRevision,
+    markRevisionComplete,
+    checkUserPerformance
   };
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;

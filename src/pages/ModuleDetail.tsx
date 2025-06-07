@@ -4,7 +4,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { CheckCircle, ChevronRight, BookOpen, Code, Trophy } from "lucide-react";
+import { CheckCircle, ChevronRight, BookOpen, Code, Trophy, AlertTriangle } from "lucide-react";
 import { getModuleBySlug, Module } from "@/services/mockData";
 import { useProgress } from "@/contexts/ProgressContext";
 
@@ -16,7 +16,10 @@ const ModuleDetail = () => {
     isExerciseCompleted, 
     isTestCompleted, 
     isModuleCompleted, 
-    checkAndMarkModuleComplete 
+    checkAndMarkModuleComplete,
+    hasMandatoryRevision,
+    hasRecommendedRevision,
+    revisionModules
   } = useProgress();
 
   const module = slug ? getModuleBySlug(slug) : null;
@@ -39,8 +42,15 @@ const ModuleDetail = () => {
   }
 
   const moduleCompleted = isModuleCompleted(module.id);
-  const moduleTests = module.tests || []; // Safe access to tests property
+  const moduleTests = module.tests || [];
   const hasTests = moduleTests && moduleTests.length > 0;
+  const hasMandatoryRevisionForModule = hasMandatoryRevision(module.id);
+  const hasRecommendedRevisionForModule = hasRecommendedRevision(module.id);
+
+  // Check if there are any mandatory revisions for other modules that would block this one
+  const hasPendingMandatoryRevisions = revisionModules.some(
+    rev => rev.is_mandatory && !rev.completed_at && rev.original_module_id !== module.id
+  );
 
   return (
     <div className="container">
@@ -64,6 +74,53 @@ const ModuleDetail = () => {
           </div>
           <p className="text-muted-foreground max-w-3xl">{module.description}</p>
         </div>
+
+        {/* Mandatory revision alert for this module */}
+        {hasMandatoryRevisionForModule && (
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>
+              <strong>Mandatory Revision Required</strong>
+              <p className="mt-1">
+                Your performance in this module requires a revision. Please review the content and retake the tests to improve your understanding.
+              </p>
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {/* Recommended revision alert for this module */}
+        {hasRecommendedRevisionForModule && !hasMandatoryRevisionForModule && (
+          <Alert>
+            <BookOpen className="h-4 w-4" />
+            <AlertDescription>
+              <strong>Revision Recommended</strong>
+              <p className="mt-1">
+                Based on your performance, we recommend reviewing this module to strengthen your understanding.
+              </p>
+            </AlertDescription>
+          </Alert>
+        )}
+
+        {/* Block access if there are pending mandatory revisions for other modules */}
+        {hasPendingMandatoryRevisions && !hasMandatoryRevisionForModule && (
+          <Alert variant="destructive">
+            <AlertTriangle className="h-4 w-4" />
+            <AlertDescription>
+              <strong>Access Restricted</strong>
+              <p className="mt-1">
+                You have mandatory revisions pending for other modules. Please complete those revisions before continuing with new content.
+              </p>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="mt-2"
+                onClick={() => navigate('/profile')}
+              >
+                View Required Revisions
+              </Button>
+            </AlertDescription>
+          </Alert>
+        )}
 
         <div className="grid gap-6">
           <div className="flex justify-between items-center">
@@ -90,6 +147,9 @@ const ModuleDetail = () => {
             
             // A lesson is fully completed if the lesson itself is marked complete AND all exercises are completed
             const isFullyCompleted = isCompleted && allExercisesCompleted;
+
+            // Disable lesson if there are pending mandatory revisions for other modules
+            const isDisabled = hasPendingMandatoryRevisions && !hasMandatoryRevisionForModule;
 
             return (
               <Card key={lesson.id} className={isFullyCompleted ? "border-primary/50 bg-primary/5" : ""}>
@@ -125,6 +185,7 @@ const ModuleDetail = () => {
                     variant={isFullyCompleted ? "default" : "ghost"}
                     size="sm"
                     className="flex items-center gap-1"
+                    disabled={isDisabled}
                     onClick={() => navigate(`/modules/${slug}/lessons/${lesson.id}`)}
                   >
                     {isFullyCompleted ? "Review" : "Start"}
@@ -142,6 +203,7 @@ const ModuleDetail = () => {
             <div className="grid gap-4">
               {moduleTests.map((test) => {
                 const isCompleted = isTestCompleted(module.id, test.id);
+                const isDisabled = hasPendingMandatoryRevisions && !hasMandatoryRevisionForModule;
                 
                 return (
                   <Card key={test.id} className={isCompleted ? "border-primary/50 bg-primary/5" : ""}>
@@ -172,6 +234,7 @@ const ModuleDetail = () => {
                         variant={isCompleted ? "default" : "ghost"}
                         size="sm"
                         className="flex items-center gap-1"
+                        disabled={isDisabled}
                         onClick={() => navigate(`/modules/${slug}/tests/${test.id}`)}
                       >
                         {isCompleted ? "Review" : "Start"}
