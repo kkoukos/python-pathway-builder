@@ -1,3 +1,4 @@
+
 // This file contains mock data for the application
 // In a real application, this would come from an API
 
@@ -458,8 +459,6 @@ export const tests: Test[] = [
     title: "Introduction to Python - Assessment",
     description:
       "Test your understanding of Python basics, including syntax, variables, and basic I/O operations.",
-    moduleId: 1,
-    isComprehensive: false,
     exercises: [
       exercises[0], // Python Version
       exercises[1], // Python Characteristics
@@ -1000,7 +999,9 @@ export function getExerciseById(id: number): Exercise | undefined {
 }
 
 export function getModuleTests(moduleId: number): Test[] {
-  return tests.filter((test) => test.moduleId === moduleId);
+  // Find tests that belong to a specific module by checking which module contains them
+  const module = modules.find(m => m.id === moduleId);
+  return module?.tests || [];
 }
 
 export function getTestById(id: number): Test | undefined {
