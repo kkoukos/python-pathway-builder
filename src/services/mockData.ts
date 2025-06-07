@@ -1,7 +1,34 @@
-import { Exercise } from "@/components/exercises/ExerciseDetail";
+
+export interface Exercise {
+  id: number;
+  type: "multiple-choice" | "code" | "multiple_choice" | "code_completion" | "code_writing" | "debugging";
+  question?: string;
+  title: string;
+  description: string;
+  difficulty: "easy" | "medium" | "hard";
+  content: {
+    question?: string;
+    options?: string[];
+    correctOption?: string;
+    correctAnswer?: number;
+    explanation?: string;
+    starterCode?: string;
+    solution?: string;
+    hints?: string[];
+    testCases?: Array<{
+      input: string;
+      expectedOutput: string;
+    }>;
+  };
+  options?: string[];
+  correctAnswer?: number;
+  explanation?: string;
+  initialCode?: string;
+  solution?: string;
+}
 
 export interface ContentBlock {
-  type: "text" | "code";
+  type: "text" | "code" | "image" | "exercise";
   content: string;
 }
 
@@ -55,6 +82,20 @@ console.log("Hello, World!");`
           {
             id: 1,
             type: "multiple-choice",
+            title: "Console.log Function",
+            description: "What does the console.log() function do?",
+            difficulty: "easy",
+            content: {
+              question: "What does the console.log() function do?",
+              options: [
+                "Prints text to the console",
+                "Creates a new variable",
+                "Deletes a file",
+                "Connects to the internet"
+              ],
+              correctOption: "Prints text to the console",
+              explanation: "console.log() prints the specified message to the console."
+            },
             question: "What does the console.log() function do?",
             options: [
               "Prints text to the console",
@@ -79,6 +120,15 @@ console.log("Hello, World!");`
           {
             id: 101,
             type: "multiple-choice",
+            title: "Programming Language Question",
+            description: "Which of the following is a programming language?",
+            difficulty: "easy",
+            content: {
+              question: "Which of the following is a programming language?",
+              options: ["JavaScript", "HTML", "CSS", "All of the above"],
+              correctOption: "JavaScript",
+              explanation: "JavaScript is a programming language, while HTML and CSS are markup and styling languages."
+            },
             question: "Which of the following is a programming language?",
             options: ["JavaScript", "HTML", "CSS", "All of the above"],
             correctAnswer: 0,
@@ -87,6 +137,20 @@ console.log("Hello, World!");`
           {
             id: 102,
             type: "multiple-choice",
+            title: "Variable Definition",
+            description: "What is a variable in programming?",
+            difficulty: "easy",
+            content: {
+              question: "What is a variable in programming?",
+              options: [
+                "A container for storing data",
+                "A type of loop",
+                "A function",
+                "An error message"
+              ],
+              correctOption: "A container for storing data",
+              explanation: "A variable is a container for storing data values."
+            },
             question: "What is a variable in programming?",
             options: [
               "A container for storing data",
@@ -100,6 +164,15 @@ console.log("Hello, World!");`
           {
             id: 103,
             type: "code",
+            title: "Hello Programming Exercise",
+            description: "Write a program that prints 'Hello, Programming!' to the console.",
+            difficulty: "easy",
+            content: {
+              question: "Write a program that prints 'Hello, Programming!' to the console.",
+              starterCode: "// Write your code here\n",
+              solution: "console.log('Hello, Programming!');",
+              explanation: "Use console.log() to print text to the console."
+            },
             question: "Write a program that prints 'Hello, Programming!' to the console.",
             initialCode: "// Write your code here\n",
             solution: "console.log('Hello, Programming!');",
@@ -128,6 +201,15 @@ console.log("Hello, World!");`
           {
             id: 2,
             type: "code",
+            title: "Async Function Exercise",
+            description: "Create a simple async function that returns 'Hello World' after 1 second.",
+            difficulty: "medium",
+            content: {
+              question: "Create a simple async function that returns 'Hello World' after 1 second.",
+              starterCode: "async function greet() {\n  // Your code here\n}",
+              solution: "async function greet() {\n  await new Promise(resolve => setTimeout(resolve, 1000));\n  return 'Hello World';\n}",
+              explanation: "Use setTimeout with Promise to create a delay, then return the string."
+            },
             question: "Create a simple async function that returns 'Hello World' after 1 second.",
             initialCode: "async function greet() {\n  // Your code here\n}",
             solution: "async function greet() {\n  await new Promise(resolve => setTimeout(resolve, 1000));\n  return 'Hello World';\n}",
@@ -147,6 +229,20 @@ console.log("Hello, World!");`
           {
             id: 201,
             type: "multiple-choice",
+            title: "Await Keyword",
+            description: "What does 'await' do in JavaScript?",
+            difficulty: "medium",
+            content: {
+              question: "What does 'await' do in JavaScript?",
+              options: [
+                "Pauses execution until a Promise resolves",
+                "Creates a new Promise",
+                "Throws an error",
+                "Loops through an array"
+              ],
+              correctOption: "Pauses execution until a Promise resolves",
+              explanation: "The 'await' keyword pauses the execution of an async function until the Promise resolves."
+            },
             question: "What does 'await' do in JavaScript?",
             options: [
               "Pauses execution until a Promise resolves",
@@ -160,6 +256,15 @@ console.log("Hello, World!");`
           {
             id: 202,
             type: "code",
+            title: "Fetch API Exercise",
+            description: "Write an async function that fetches data from an API.",
+            difficulty: "hard",
+            content: {
+              question: "Write an async function that fetches data from an API.",
+              starterCode: "async function fetchData(url) {\n  // Your code here\n}",
+              solution: "async function fetchData(url) {\n  const response = await fetch(url);\n  const data = await response.json();\n  return data;\n}",
+              explanation: "Use fetch() with await to get the response, then convert it to JSON."
+            },
             question: "Write an async function that fetches data from an API.",
             initialCode: "async function fetchData(url) {\n  // Your code here\n}",
             solution: "async function fetchData(url) {\n  const response = await fetch(url);\n  const data = await response.json();\n  return data;\n}",
@@ -177,6 +282,16 @@ export const getModuleBySlug = (slug: string): Module | undefined => {
 
 export const getModuleById = (id: number): Module | undefined => {
   return modules.find((module) => module.id === id);
+};
+
+export const getLessonById = (lessonId: number): Lesson | undefined => {
+  for (const module of modules) {
+    const lesson = module.lessons.find((lesson) => lesson.id === lessonId);
+    if (lesson) {
+      return lesson;
+    }
+  }
+  return undefined;
 };
 
 export const getTestById = (testId: number): Test | undefined => {
