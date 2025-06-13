@@ -1,3 +1,4 @@
+
 import { faker } from "@faker-js/faker";
 
 export interface Test {
@@ -7,6 +8,21 @@ export interface Test {
   timeLimit: number; // in minutes
   passingScore: number; // percentage
   exercises: Exercise[];
+  revisionContent?: RevisionContent;
+}
+
+export interface RevisionContent {
+  title: string;
+  description: string;
+  steps: RevisionStep[];
+}
+
+export interface RevisionStep {
+  id: number;
+  title: string;
+  content: string;
+  type: "concept" | "practice" | "example" | "summary";
+  duration: number; // estimated minutes
 }
 
 export interface Module {
@@ -154,7 +170,41 @@ export const modules: Module[] = [
               hints: ["Python supports multiple built-in data types."]
             }
           }
-        ]
+        ],
+        revisionContent: {
+          title: "Python Basics Revision",
+          description: "Review the fundamental concepts of Python programming including variables, data types, and basic syntax.",
+          steps: [
+            {
+              id: 1,
+              title: "Understanding Python Variables",
+              content: "In Python, variables are created when you assign a value to them. Unlike other languages, you don't need to declare the variable type. For example: x = 5 creates an integer variable, while name = 'John' creates a string variable. Python automatically determines the data type based on the value assigned.",
+              type: "concept",
+              duration: 5
+            },
+            {
+              id: 2,
+              title: "Python Data Types Review",
+              content: "Python has several built-in data types: int (integers like 5, 10), float (decimal numbers like 3.14), str (strings like 'hello'), bool (True/False), list (collections like [1, 2, 3]), and dict (key-value pairs like {'name': 'John'}). Understanding these is crucial for effective Python programming.",
+              type: "concept",
+              duration: 7
+            },
+            {
+              id: 3,
+              title: "Practice: Variable Assignment",
+              content: "Try these exercises:\n1. Create a variable 'age' and assign your age to it\n2. Create a variable 'name' and assign your name as a string\n3. Create a variable 'height' and assign your height as a float\n4. Print all three variables using the print() function",
+              type: "practice",
+              duration: 10
+            },
+            {
+              id: 4,
+              title: "Common Mistakes to Avoid",
+              content: "Remember: Python is case-sensitive (Name and name are different), use quotes for strings, and the assignment operator is = (single equals). Don't confuse it with == which is for comparison. Variable names should start with a letter or underscore, not a number.",
+              type: "summary",
+              duration: 3
+            }
+          ]
+        }
       }
     ]
   },
@@ -233,7 +283,48 @@ export const modules: Module[] = [
               ]
             }
           }
-        ]
+        ],
+        revisionContent: {
+          title: "Control Structures Revision",
+          description: "Master Python's control flow statements including if/elif/else, for loops, and while loops.",
+          steps: [
+            {
+              id: 1,
+              title: "Conditional Statements Deep Dive",
+              content: "Python's if statements allow you to execute code based on conditions. The basic syntax is:\nif condition:\n    # code to execute\nelif another_condition:\n    # alternative code\nelse:\n    # default code\n\nRemember proper indentation (4 spaces) is crucial in Python!",
+              type: "concept",
+              duration: 8
+            },
+            {
+              id: 2,
+              title: "Comparison Operators Review",
+              content: "Master these comparison operators: == (equal), != (not equal), > (greater than), < (less than), >= (greater than or equal), <= (less than or equal). You can also use 'and', 'or', and 'not' to combine conditions.",
+              type: "concept",
+              duration: 6
+            },
+            {
+              id: 3,
+              title: "Loop Structures Explained",
+              content: "For loops iterate over sequences: for item in sequence:\nWhile loops continue until a condition is false: while condition:\nUse range() for numeric sequences: range(start, stop, step). Remember to avoid infinite loops in while statements!",
+              type: "concept",
+              duration: 10
+            },
+            {
+              id: 4,
+              title: "Practice: Control Flow Exercises",
+              content: "Try these exercises:\n1. Write an if statement that checks if a number is even or odd\n2. Create a for loop that prints the first 5 even numbers\n3. Write a while loop that counts down from 10 to 1\n4. Use nested if statements to check multiple conditions",
+              type: "practice",
+              duration: 15
+            },
+            {
+              id: 5,
+              title: "Control Flow Best Practices",
+              content: "Key takeaways: Always use proper indentation, avoid deep nesting when possible, use elif instead of multiple if statements for related conditions, and be careful with while loops to prevent infinite loops. Test your conditions thoroughly!",
+              type: "summary",
+              duration: 4
+            }
+          ]
+        }
       }
     ]
   },
@@ -308,7 +399,55 @@ export const modules: Module[] = [
               hints: ["Python uses a short keyword for function definitions."]
             }
           }
-        ]
+        ],
+        revisionContent: {
+          title: "Functions and Scope Revision",
+          description: "Comprehensive review of Python functions, parameters, return values, and variable scope concepts.",
+          steps: [
+            {
+              id: 1,
+              title: "Function Fundamentals",
+              content: "Functions are reusable blocks of code defined with the 'def' keyword. Basic syntax:\ndef function_name(parameters):\n    # function body\n    return value  # optional\n\nFunctions help organize code, avoid repetition, and make programs more modular and maintainable.",
+              type: "concept",
+              duration: 8
+            },
+            {
+              id: 2,
+              title: "Parameters and Arguments",
+              content: "Parameters are variables in function definitions, arguments are actual values passed to functions. Types include:\n- Positional arguments: def func(a, b)\n- Keyword arguments: func(a=1, b=2)\n- Default parameters: def func(a, b=10)\n- *args for variable positional arguments\n- **kwargs for variable keyword arguments",
+              type: "concept",
+              duration: 10
+            },
+            {
+              id: 3,
+              title: "Variable Scope Deep Dive",
+              content: "Scope determines where variables can be accessed:\n- Local scope: inside functions\n- Global scope: outside all functions\n- Built-in scope: Python's built-in names\n\nPython follows LEGB rule: Local → Enclosing → Global → Built-in. Use 'global' keyword to modify global variables inside functions.",
+              type: "concept",
+              duration: 12
+            },
+            {
+              id: 4,
+              title: "Return Values and Function Design",
+              content: "Functions can return values using the 'return' statement. Without return, functions return None. Good practices:\n- Single responsibility principle\n- Clear, descriptive names\n- Proper documentation\n- Handle edge cases\n- Return consistent data types",
+              type: "concept",
+              duration: 8
+            },
+            {
+              id: 5,
+              title: "Hands-on Function Practice",
+              content: "Practice exercises:\n1. Create a function that calculates the area of a rectangle\n2. Write a function with default parameters\n3. Create a function that returns multiple values\n4. Practice with local vs global variables\n5. Write a function that calls another function",
+              type: "practice",
+              duration: 18
+            },
+            {
+              id: 6,
+              title: "Functions and Scope Summary",
+              content: "Key concepts to remember:\n- Use 'def' to define functions\n- Parameters vs arguments distinction\n- Local variables are created inside functions\n- Global variables are accessible but not modifiable without 'global' keyword\n- Functions should have single, clear purposes\n- Always test your functions with different inputs",
+              type: "summary",
+              duration: 5
+            }
+          ]
+        }
       }
     ]
   }
@@ -317,7 +456,6 @@ export const modules: Module[] = [
 // Tests data - now redundant since tests are embedded in modules
 export const tests: Test[] = [];
 
-// Module-to-tests mapping - now uses the embedded tests
 const moduleTestsMap: Record<number, number[]> = {};
 
 export const getModuleTests = (moduleId: number): Test[] => {
