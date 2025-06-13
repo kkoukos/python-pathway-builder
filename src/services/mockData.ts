@@ -1,4 +1,3 @@
-
 import { faker } from "@faker-js/faker";
 
 export interface Test {
@@ -122,6 +121,41 @@ export const modules: Module[] = [
           }
         ]
       }
+    ],
+    tests: [
+      {
+        id: 1,
+        title: "Python Basics Assessment",
+        description: "Test your understanding of Python fundamentals including variables, data types, and basic operations.",
+        timeLimit: 30,
+        passingScore: 70,
+        exercises: [
+          {
+            id: 101,
+            title: "Variable Assignment",
+            description: "What is the correct way to assign a value to a variable in Python?",
+            type: "multiple_choice",
+            difficulty: "easy",
+            content: {
+              options: ["x = 5", "var x = 5", "let x = 5", "int x = 5"],
+              correctOption: "x = 5",
+              hints: ["Python doesn't require variable declarations like other languages."]
+            }
+          },
+          {
+            id: 102,
+            title: "Data Types",
+            description: "Which of these is a valid Python data type?",
+            type: "multiple_choice",
+            difficulty: "easy",
+            content: {
+              options: ["string", "integer", "list", "all of the above"],
+              correctOption: "all of the above",
+              hints: ["Python supports multiple built-in data types."]
+            }
+          }
+        ]
+      }
     ]
   },
   {
@@ -170,6 +204,33 @@ export const modules: Module[] = [
               starterCode: "",
               solution: "for i in range(1, 11):\n  print(i)",
               hints: ["Use the range() function to generate a sequence of numbers."]
+            }
+          }
+        ]
+      }
+    ],
+    tests: [
+      {
+        id: 2,
+        title: "Control Structures Test",
+        description: "Evaluate your knowledge of Python control structures including loops and conditionals.",
+        timeLimit: 45,
+        passingScore: 75,
+        exercises: [
+          {
+            id: 201,
+            title: "If Statement",
+            description: "Complete the if statement to check if a number is positive:",
+            type: "code_completion",
+            difficulty: "medium",
+            content: {
+              starterCode: "x = 10\nif ___:\n    print('Positive')",
+              solution: "x > 0",
+              hints: ["Use a comparison operator to check if x is greater than 0."],
+              testCases: [
+                { input: "x = 10", expected: "Positive" },
+                { input: "x = -5", expected: "" }
+              ]
             }
           }
         ]
@@ -226,107 +287,52 @@ export const modules: Module[] = [
           }
         ]
       }
-    ]
-  }
-];
-
-// Tests data - completely rewritten to fix the issues
-export const tests: Test[] = [
-  {
-    id: 1,
-    title: "Python Basics Assessment",
-    description: "Test your understanding of Python fundamentals including variables, data types, and basic operations.",
-    timeLimit: 30,
-    passingScore: 70,
-    exercises: [
+    ],
+    tests: [
       {
-        id: 101,
-        title: "Variable Assignment",
-        description: "What is the correct way to assign a value to a variable in Python?",
-        type: "multiple_choice",
-        difficulty: "easy",
-        content: {
-          options: ["x = 5", "var x = 5", "let x = 5", "int x = 5"],
-          correctOption: "x = 5",
-          hints: ["Python doesn't require variable declarations like other languages."]
-        }
-      },
-      {
-        id: 102,
-        title: "Data Types",
-        description: "Which of these is a valid Python data type?",
-        type: "multiple_choice",
-        difficulty: "easy",
-        content: {
-          options: ["string", "integer", "list", "all of the above"],
-          correctOption: "all of the above",
-          hints: ["Python supports multiple built-in data types."]
-        }
-      }
-    ]
-  },
-  {
-    id: 2,
-    title: "Control Structures Test",
-    description: "Evaluate your knowledge of Python control structures including loops and conditionals.",
-    timeLimit: 45,
-    passingScore: 75,
-    exercises: [
-      {
-        id: 201,
-        title: "If Statement",
-        description: "Complete the if statement to check if a number is positive:",
-        type: "code_completion",
-        difficulty: "medium",
-        content: {
-          starterCode: "x = 10\nif ___:\n    print('Positive')",
-          solution: "x > 0",
-          hints: ["Use a comparison operator to check if x is greater than 0."],
-          testCases: [
-            { input: "x = 10", expected: "Positive" },
-            { input: "x = -5", expected: "" }
-          ]
-        }
-      }
-    ]
-  },
-  {
-    id: 3,
-    title: "Functions and Scope Assessment",
-    description: "Test your understanding of Python functions, parameters, and variable scope.",
-    timeLimit: 40,
-    passingScore: 80,
-    exercises: [
-      {
-        id: 301,
-        title: "Function Definition",
-        description: "Which keyword is used to define a function in Python?",
-        type: "multiple_choice",
-        difficulty: "easy",
-        content: {
-          options: ["function", "def", "func", "define"],
-          correctOption: "def",
-          hints: ["Python uses a short keyword for function definitions."]
-        }
+        id: 3,
+        title: "Functions and Scope Assessment",
+        description: "Test your understanding of Python functions, parameters, and variable scope.",
+        timeLimit: 40,
+        passingScore: 80,
+        exercises: [
+          {
+            id: 301,
+            title: "Function Definition",
+            description: "Which keyword is used to define a function in Python?",
+            type: "multiple_choice",
+            difficulty: "easy",
+            content: {
+              options: ["function", "def", "func", "define"],
+              correctOption: "def",
+              hints: ["Python uses a short keyword for function definitions."]
+            }
+          }
+        ]
       }
     ]
   }
 ];
 
-// Module-to-tests mapping
-const moduleTestsMap: Record<number, number[]> = {
-  1: [1], // Python Basics module gets test 1
-  2: [2], // Control Structures module gets test 2  
-  3: [3], // Functions module gets test 3
-};
+// Tests data - now redundant since tests are embedded in modules
+export const tests: Test[] = [];
+
+// Module-to-tests mapping - now uses the embedded tests
+const moduleTestsMap: Record<number, number[]> = {};
 
 export const getModuleTests = (moduleId: number): Test[] => {
-  const testIds = moduleTestsMap[moduleId] || [];
-  return testIds.map(testId => tests.find(test => test.id === testId)).filter(Boolean) as Test[];
+  const module = modules.find(m => m.id === moduleId);
+  return module?.tests || [];
 };
 
 export const getTestById = (testId: number): Test | undefined => {
-  return tests.find(test => test.id === testId);
+  for (const module of modules) {
+    if (module.tests) {
+      const test = module.tests.find(test => test.id === testId);
+      if (test) return test;
+    }
+  }
+  return undefined;
 };
 
 export const getModuleBySlug = (slug: string): Module | null => {
