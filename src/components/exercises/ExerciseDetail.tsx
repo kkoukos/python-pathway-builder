@@ -87,39 +87,26 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const renderExerciseByType = () => {
     switch (exercise.type) {
       case "multiple_choice":
-        // Convert string array to Option array
-        const options = exercise.content.options?.map((option, index) => ({
-          id: index.toString(),
-          text: option
-        })) || [];
-        
         return (
           <MultipleChoiceExercise
-            options={options}
+            options={exercise.content.options}
             selectedOption={userAnswer}
             onSelectOption={setUserAnswer}
             isDisabled={isCompleted || isCorrect === true}
-            correctOption={isCorrect === false && showSolution ? 
-              options.find(opt => opt.text === exercise.content.correctOption)?.id : undefined}
+            correctOption={isCorrect === false && showSolution ? exercise.content.correctOption : undefined}
             exerciseId={exercise.id}
           />
         );
       case "code_completion":
       case "code_writing":
       case "debugging":
-        // Convert testCases format from {input, expectedOutput} to {input, expected}
-        const testCases = exercise.content.testCases?.map(testCase => ({
-          input: testCase.input,
-          expected: testCase.expectedOutput
-        })) || [];
-        
         return (
           <CodeExercise
             code={userCode}
             onCodeChange={setUserCode}
             isDisabled={isCompleted || isCorrect === true}
             solution={showSolution ? exercise.content.solution : undefined}
-            testCases={testCases}
+            testCases={exercise.content.testCases}
           />
         );
       default:

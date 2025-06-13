@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useAuth } from "@/contexts/AuthContext";
@@ -11,7 +10,6 @@ import { supabase } from "@/integrations/supabase/client";
 // Profile Components
 import ProfileHeader from "@/components/profile/ProfileHeader";
 import ProfileTabsContent from "@/components/profile/ProfileTabsContent";
-import RevisionAlert from "@/components/revision/RevisionAlert";
 import {
   calculateStreakFromDates,
   generateWeekActivity,
@@ -167,8 +165,6 @@ const UserProfile = () => {
         level={level}
         streak={streak}
       />
-
-      <RevisionAlert />
 
       <Tabs defaultValue="overview" className="w-full">
         <TabsList className="mb-4">
