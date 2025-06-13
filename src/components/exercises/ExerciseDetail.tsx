@@ -7,7 +7,7 @@ import { CheckCircle, AlertCircle, Code, HelpCircle, ChevronRight, BookOpen } fr
 import { useProgress } from "@/contexts/ProgressContext";
 import MultipleChoiceExercise from "./MultipleChoiceExercise";
 import CodeExercise from "./CodeExercise";
-import { Exercise } from "@/services/mockData";
+import { Exercise, MultipleChoiceContent, CodeExerciseContent } from "@/services/mockData";
 
 interface ExerciseDetailProps {
   exercise: Exercise;
@@ -31,21 +31,30 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const isCompleted = isExerciseCompleted(moduleId, lessonId, exercise.id);
 
+  // Type guards
+  const isMultipleChoice = (content: MultipleChoiceContent | CodeExerciseContent): content is MultipleChoiceContent => {
+    return 'options' in content;
+  };
+
+  const isCodeExercise = (content: MultipleChoiceContent | CodeExerciseContent): content is CodeExerciseContent => {
+    return 'starterCode' in content;
+  };
+
   // Reset state when exercise changes
   useEffect(() => {
     setUserAnswer(null);
-    setUserCode(exercise.content.starterCode || "");
+    setUserCode(isCodeExercise(exercise.content) ? exercise.content.starterCode || "" : "");
     setShowHint(false);
     setIsCorrect(null);
     setShowSolution(false);
-  }, [exercise.id, exercise.content.starterCode]);
+  }, [exercise.id, exercise.content]);
 
   const handleSubmit = () => {
     let result = false;
     
-    if (exercise.type === "multiple_choice") {
+    if (exercise.type === "multiple_choice" && isMultipleChoice(exercise.content)) {
       result = userAnswer === exercise.content.correctOption;
-    } else if (["code_completion", "code_writing", "debugging"].includes(exercise.type)) {
+    } else if (["code_completion", "code_writing", "debugging"].includes(exercise.type) && isCodeExercise(exercise.content)) {
       // In a real app, this would send the code to the backend for validation
       // Here we'll simulate validation for demonstration purposes
       if (userCode.includes(exercise.content.solution)) {
@@ -66,7 +75,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
 
   const handleReset = () => {
     setUserAnswer(null);
-    setUserCode(exercise.content.starterCode || "");
+    setUserCode(isCodeExercise(exercise.content) ? exercise.content.starterCode || "" : "");
     setShowHint(false);
     setIsCorrect(null);
     setShowSolution(false);
@@ -87,28 +96,34 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
   const renderExerciseByType = () => {
     switch (exercise.type) {
       case "multiple_choice":
-        return (
-          <MultipleChoiceExercise
-            options={exercise.content.options}
-            selectedOption={userAnswer}
-            onSelectOption={setUserAnswer}
-            isDisabled={isCompleted || isCorrect === true}
-            correctOption={isCorrect === false && showSolution ? exercise.content.correctOption : undefined}
-            exerciseId={exercise.id}
-          />
-        );
+        if (isMultipleChoice(exercise.content)) {
+          return (
+            <MultipleChoiceExercise
+              options={exercise.content.options.map(option => ({ id: option, text: option }))}
+              selectedOption={userAnswer}
+              onSelectOption={setUserAnswer}
+              isDisabled={isCompleted || isCorrect === true}
+              correctOption={isCorrect === false && showSolution ? exercise.content.correctOption : undefined}
+              exerciseId={exercise.id}
+            />
+          );
+        }
+        break;
       case "code_completion":
       case "code_writing":
       case "debugging":
-        return (
-          <CodeExercise
-            code={userCode}
-            onCodeChange={setUserCode}
-            isDisabled={isCompleted || isCorrect === true}
-            solution={showSolution ? exercise.content.solution : undefined}
-            testCases={exercise.content.testCases}
-          />
-        );
+        if (isCodeExercise(exercise.content)) {
+          return (
+            <CodeExercise
+              code={userCode}
+              onCodeChange={setUserCode}
+              isDisabled={isCompleted || isCorrect === true}
+              solution={showSolution ? exercise.content.solution : undefined}
+              testCases={exercise.content.testCases?.map(tc => ({ input: tc.input, expected: tc.expected }))}
+            />
+          );
+        }
+        break;
       default:
         return <p className="text-muted-foreground">Exercise type not supported.</p>;
     }
@@ -160,7 +175,7 @@ const ExerciseDetail: React.FC<ExerciseDetailProps> = ({
           {renderExerciseByType()}
         </div>
         
-        {isCorrect === false && showSolution && (
+        {isCorrect === false && showSolution && isCodeExercise(exercise.content) && (
           <div className="bg-muted p-4 rounded-md border border-border">
             <h3 className="font-semibold flex items-center gap-2 mb-2">
               <Code className="h-4 w-4 text-primary" />

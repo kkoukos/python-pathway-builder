@@ -1,3 +1,4 @@
+
 import { faker } from "@faker-js/faker";
 
 export interface Test {
@@ -22,12 +23,14 @@ export interface Module {
 export interface Lesson {
   id: number;
   title: string;
-  content: {
-    type: "text" | "code";
-    body: string;
-  }[];
+  content: ContentBlock[];
   exercises?: Exercise[];
   completed?: boolean;
+}
+
+export interface ContentBlock {
+  type: "text" | "code" | "image" | "exercise";
+  content: string;
 }
 
 export interface Exercise {
@@ -39,13 +42,13 @@ export interface Exercise {
   content: MultipleChoiceContent | CodeExerciseContent;
 }
 
-interface MultipleChoiceContent {
+export interface MultipleChoiceContent {
   options: string[];
   correctOption: string;
   hints?: string[];
 }
 
-interface CodeExerciseContent {
+export interface CodeExerciseContent {
   starterCode: string;
   solution: string;
   hints?: string[];
@@ -67,8 +70,8 @@ export const modules: Module[] = [
         id: 1,
         title: "Introduction to Python",
         content: [
-          { type: "text", body: "Welcome to Python! This is a basic introduction." },
-          { type: "code", body: 'print("Hello, World!")' }
+          { type: "text", content: "Welcome to Python! This is a basic introduction." },
+          { type: "code", content: 'print("Hello, World!")' }
         ],
         exercises: [
           {
@@ -89,8 +92,8 @@ export const modules: Module[] = [
         id: 2,
         title: "Variables and Data Types",
         content: [
-          { type: "text", body: "Learn about variables and basic data types in Python." },
-          { type: "code", body: "x = 5\nname = 'Python'" }
+          { type: "text", content: "Learn about variables and basic data types in Python." },
+          { type: "code", content: "x = 5\nname = 'Python'" }
         ],
         exercises: [
           {
@@ -131,8 +134,8 @@ export const modules: Module[] = [
         id: 3,
         title: "If Statements",
         content: [
-          { type: "text", body: "Learn how to use if, elif, and else statements." },
-          { type: "code", body: "if x > 0:\n  print('Positive')" }
+          { type: "text", content: "Learn how to use if, elif, and else statements." },
+          { type: "code", content: "if x > 0:\n  print('Positive')" }
         ],
         exercises: [
           {
@@ -153,8 +156,8 @@ export const modules: Module[] = [
         id: 4,
         title: "For and While Loops",
         content: [
-          { type: "text", body: "Explore for and while loops for iteration." },
-          { type: "code", body: "for i in range(5):\n  print(i)" }
+          { type: "text", content: "Explore for and while loops for iteration." },
+          { type: "code", content: "for i in range(5):\n  print(i)" }
         ],
         exercises: [
           {
@@ -183,8 +186,8 @@ export const modules: Module[] = [
         id: 5,
         title: "Defining Functions",
         content: [
-          { type: "text", body: "Learn how to define and call functions in Python." },
-          { type: "code", body: "def greet(name):\n  print(f'Hello, {name}!')" }
+          { type: "text", content: "Learn how to define and call functions in Python." },
+          { type: "code", content: "def greet(name):\n  print(f'Hello, {name}!')" }
         ],
         exercises: [
           {
@@ -205,8 +208,8 @@ export const modules: Module[] = [
         id: 6,
         title: "Variable Scope",
         content: [
-          { type: "text", body: "Understand the difference between global and local scope." },
-          { type: "code", body: "global_var = 10\ndef my_func():\n  local_var = 5" }
+          { type: "text", content: "Understand the difference between global and local scope." },
+          { type: "code", content: "global_var = 10\ndef my_func():\n  local_var = 5" }
         ],
         exercises: [
           {
@@ -329,6 +332,18 @@ export const getTestById = (testId: number): Test | undefined => {
 export const getModuleBySlug = (slug: string): Module | null => {
   const module = modules.find((module) => module.slug === slug);
   return module || null;
+};
+
+export const getModuleById = (moduleId: number): Module | undefined => {
+  return modules.find(module => module.id === moduleId);
+};
+
+export const getLessonById = (lessonId: number): Lesson | undefined => {
+  for (const module of modules) {
+    const lesson = module.lessons.find(lesson => lesson.id === lessonId);
+    if (lesson) return lesson;
+  }
+  return undefined;
 };
 
 export const generateMockProgress = () => {
