@@ -105,6 +105,45 @@ export type Database = {
         }
         Relationships: []
       }
+      revision_requirements: {
+        Row: {
+          created_at: string
+          failed_score: number
+          id: string
+          module_id: number
+          required_passing_score: number
+          revision_completed: boolean | null
+          revision_completed_at: string | null
+          test_id: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          failed_score: number
+          id?: string
+          module_id: number
+          required_passing_score: number
+          revision_completed?: boolean | null
+          revision_completed_at?: string | null
+          test_id: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          failed_score?: number
+          id?: string
+          module_id?: number
+          required_passing_score?: number
+          revision_completed?: boolean | null
+          revision_completed_at?: string | null
+          test_id?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       test_results: {
         Row: {
           completed_at: string

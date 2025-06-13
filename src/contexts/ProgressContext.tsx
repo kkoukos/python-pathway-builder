@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import { supabase } from "@/integrations/supabase/client";
@@ -15,8 +14,20 @@ type ModuleProgress = {
   completedAt?: string;
 };
 
+type RevisionRequirement = {
+  id: string;
+  moduleId: number;
+  testId: number;
+  failedScore: number;
+  requiredPassingScore: number;
+  revisionCompleted: boolean;
+  revisionCompletedAt?: string;
+  createdAt: string;
+};
+
 type ProgressContextType = {
   progress: Record<number, ModuleProgress>;
+  revisionRequirements: RevisionRequirement[];
   markLessonComplete: (moduleId: number, lessonId: number) => void;
   isLessonCompleted: (moduleId: number, lessonId: number) => boolean;
   markExerciseComplete: (moduleId: number, lessonId: number, exerciseId: number) => void;
@@ -27,6 +38,9 @@ type ProgressContextType = {
   getModuleProgress: (moduleId: number) => number;
   isModuleCompleted: (moduleId: number) => boolean;
   checkAndMarkModuleComplete: (moduleId: number) => Promise<boolean>;
+  hasRevisionRequirement: (moduleId: number, testId: number) => boolean;
+  markRevisionCompleted: (moduleId: number, testId: number) => Promise<void>;
+  getRevisionRequirement: (moduleId: number, testId: number) => RevisionRequirement | null;
 };
 
 const ProgressContext = createContext<ProgressContextType | undefined>(undefined);
@@ -42,11 +56,13 @@ export const useProgress = () => {
 export const ProgressProvider = ({ children }: { children: ReactNode }) => {
   const { user, isAuthenticated } = useAuth();
   const [progress, setProgress] = useState<Record<number, ModuleProgress>>({});
+  const [revisionRequirements, setRevisionRequirements] = useState<RevisionRequirement[]>([]);
 
   // Load progress from Supabase when component mounts or user changes
   useEffect(() => {
     if (!isAuthenticated || !user) {
       setProgress({});
+      setRevisionRequirements([]);
       return;
     }
 
@@ -83,6 +99,30 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
         if (testError) {
           throw testError;
         }
+
+        // Fetch revision requirements
+        const { data: revisionData, error: revisionError } = await supabase
+          .from('revision_requirements')
+          .select('*')
+          .eq('user_id', user.id);
+
+        if (revisionError) {
+          throw revisionError;
+        }
+
+        // Convert revision data to our format
+        const revisions: RevisionRequirement[] = revisionData?.map(revision => ({
+          id: revision.id,
+          moduleId: revision.module_id,
+          testId: revision.test_id,
+          failedScore: Number(revision.failed_score),
+          requiredPassingScore: Number(revision.required_passing_score),
+          revisionCompleted: revision.revision_completed || false,
+          revisionCompletedAt: revision.revision_completed_at || undefined,
+          createdAt: revision.created_at
+        })) || [];
+
+        setRevisionRequirements(revisions);
 
         // Convert the data to our progress structure
         const newProgress: Record<number, ModuleProgress> = {};
@@ -345,11 +385,57 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
         };
       });
 
+      // Show appropriate message based on test result
+      if (!passed) {
+        toast.error(`Test failed with ${Math.round(score)}%. You need to complete a revision course before proceeding.`);
+      } else {
+        toast.success(`Test passed with ${Math.round(score)}%!`);
+      }
+
       // Check if the module is complete
       await checkAndMarkModuleComplete(moduleId);
     } catch (error) {
       console.error("Error recording test result:", error);
       toast.error("Failed to save your test results");
+    }
+  };
+
+  const markRevisionCompleted = async (moduleId: number, testId: number) => {
+    if (!isAuthenticated || !user) {
+      toast.error("You must be logged in to mark revision as completed");
+      return;
+    }
+
+    try {
+      // Update the revision requirement in Supabase
+      const { error } = await supabase
+        .from('revision_requirements')
+        .update({
+          revision_completed: true,
+          revision_completed_at: new Date().toISOString(),
+          updated_at: new Date().toISOString()
+        })
+        .eq('user_id', user.id)
+        .eq('module_id', moduleId)
+        .eq('test_id', testId);
+
+      if (error) {
+        throw error;
+      }
+
+      // Update local state
+      setRevisionRequirements(prev => 
+        prev.map(req => 
+          req.moduleId === moduleId && req.testId === testId
+            ? { ...req, revisionCompleted: true, revisionCompletedAt: new Date().toISOString() }
+            : req
+        )
+      );
+
+      toast.success("Revision completed! You can now retake the test.");
+    } catch (error) {
+      console.error("Error marking revision as completed:", error);
+      toast.error("Failed to mark revision as completed");
     }
   };
 
@@ -380,6 +466,20 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
   const isModuleCompleted = (moduleId: number): boolean => {
     return !!progress[moduleId]?.completed;
+  };
+
+  const hasRevisionRequirement = (moduleId: number, testId: number): boolean => {
+    return revisionRequirements.some(req => 
+      req.moduleId === moduleId && 
+      req.testId === testId && 
+      !req.revisionCompleted
+    );
+  };
+
+  const getRevisionRequirement = (moduleId: number, testId: number): RevisionRequirement | null => {
+    return revisionRequirements.find(req => 
+      req.moduleId === moduleId && req.testId === testId
+    ) || null;
   };
 
   const checkAndMarkModuleComplete = async (moduleId: number): Promise<boolean> => {
@@ -425,7 +525,12 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     // 1. All lessons must be completed
     // 2. All exercises must be completed
     // 3. If there are tests, all tests must be passed
-    const isComplete = allLessonsCompleted && allExercisesCompleted && allTestsPassed;
+    // 4. No pending revision requirements
+    const noPendingRevisions = !moduleTests.some(test => 
+      hasRevisionRequirement(moduleId, test.id)
+    );
+
+    const isComplete = allLessonsCompleted && allExercisesCompleted && allTestsPassed && noPendingRevisions;
 
     if (isComplete && !moduleProgress.completed) {
       try {
@@ -455,6 +560,7 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
   const value = {
     progress,
+    revisionRequirements,
     markLessonComplete,
     isLessonCompleted,
     markExerciseComplete,
@@ -464,7 +570,10 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
     getTestResult,
     getModuleProgress,
     isModuleCompleted,
-    checkAndMarkModuleComplete
+    checkAndMarkModuleComplete,
+    hasRevisionRequirement,
+    markRevisionCompleted,
+    getRevisionRequirement
   };
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>;

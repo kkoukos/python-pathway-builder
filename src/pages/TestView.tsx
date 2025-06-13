@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -16,12 +15,12 @@ import {
 import { getModuleBySlug, getTestById } from "@/services/mockData";
 import { useProgress } from "@/contexts/ProgressContext";
 import ExerciseDetail from "@/components/exercises/ExerciseDetail";
-import { Clock, AlertTriangle, CheckCircle, X } from "lucide-react";
+import { Clock, AlertTriangle, CheckCircle, X, BookOpen } from "lucide-react";
 
 const TestView = () => {
   const { slug, testId } = useParams<{ slug: string; testId: string }>();
   const navigate = useNavigate();
-  const { markTestComplete, isTestCompleted, getTestResult } = useProgress();
+  const { markTestComplete, isTestCompleted, getTestResult, hasRevisionRequirement } = useProgress();
   
   const module = slug ? getModuleBySlug(slug) : null;
   const test = testId ? getTestById(parseInt(testId)) : null;
@@ -39,8 +38,9 @@ const TestView = () => {
   } | null>(null);
   const [retaking, setRetaking] = useState(false);
 
-  // Check if the test is already completed
+  // Check if the test is already completed and if revision is required
   const previousResult = module && test ? getTestResult(module.id, test.id) : null;
+  const needsRevision = module && test ? hasRevisionRequirement(module.id, test.id) : false;
   
   useEffect(() => {
     if (previousResult && !retaking) {
@@ -76,6 +76,51 @@ const TestView = () => {
           Test not found. Please go back and select another test.
         </AlertDescription>
       </Alert>
+    );
+  }
+
+  // Show revision required message if user needs to complete revision
+  if (needsRevision) {
+    return (
+      <div className="container max-w-4xl">
+        <div className="mb-6">
+          <div className="flex items-center gap-2 mb-2 text-sm text-muted-foreground">
+            <Link to="/modules" className="hover:underline">
+              Modules
+            </Link>
+            <span>/</span>
+            <Link to={`/modules/${slug}`} className="hover:underline">
+              {module.title}
+            </Link>
+            <span>/</span>
+            <Link to={`/modules/${slug}/tests`} className="hover:underline">
+              Tests
+            </Link>
+            <span>/</span>
+            <span>{test.title}</span>
+          </div>
+          <h1 className="text-3xl font-bold mb-6">Revision Required</h1>
+        </div>
+        
+        <Alert variant="destructive" className="mb-6">
+          <AlertTriangle className="h-4 w-4" />
+          <AlertDescription className="mt-2">
+            <p className="mb-4">
+              You must complete a revision course before retaking this test. 
+              Please return to the tests page to start your revision.
+            </p>
+            <div className="flex gap-2">
+              <Button onClick={() => navigate(`/modules/${slug}/tests`)}>
+                <BookOpen className="mr-2 h-4 w-4" />
+                Go to Revision Course
+              </Button>
+              <Button variant="outline" onClick={() => navigate(`/modules/${slug}`)}>
+                Back to Module
+              </Button>
+            </div>
+          </AlertDescription>
+        </Alert>
+      </div>
     );
   }
 
@@ -192,15 +237,27 @@ const TestView = () => {
                 <div className="text-lg">{test.passingScore}%</div>
               </div>
             </div>
+
+            {!testResult?.passed && (
+              <Alert variant="destructive">
+                <AlertTriangle className="h-4 w-4" />
+                <AlertDescription>
+                  You need to complete a revision course before retaking this test. 
+                  Please return to the tests page to start your revision.
+                </AlertDescription>
+              </Alert>
+            )}
           </CardContent>
           <CardFooter className="border-t flex justify-between p-4">
             <Button variant="outline" onClick={() => navigate(`/modules/${slug}/tests`)}>
               Back to Tests
             </Button>
             <div className="space-x-2">
-              <Button onClick={handleStartTest}>
-                Retake Test
-              </Button>
+              {testResult?.passed && (
+                <Button onClick={handleStartTest}>
+                  Retake Test
+                </Button>
+              )}
               <Button variant="outline" onClick={() => navigate(`/modules/${slug}`)}>
                 Continue Learning
               </Button>
@@ -336,15 +393,27 @@ const TestView = () => {
                 <div className="text-lg">{test.passingScore}%</div>
               </div>
             </div>
+
+            {!testResult?.passed && (
+              <Alert variant="destructive">
+                <AlertTriangle className="h-4 w-4" />
+                <AlertDescription>
+                  You need to complete a revision course before retaking this test again. 
+                  Please return to the tests page to start your revision.
+                </AlertDescription>
+              </Alert>
+            )}
           </CardContent>
           <CardFooter className="border-t flex justify-between p-4">
             <Button variant="outline" onClick={() => navigate(`/modules/${slug}/tests`)}>
               Back to Tests
             </Button>
             <div className="space-x-2">
-              <Button onClick={handleStartTest}>
-                Retake Test
-              </Button>
+              {testResult?.passed && (
+                <Button onClick={handleStartTest}>
+                  Retake Test
+                </Button>
+              )}
               <Button variant="outline" onClick={() => navigate(`/modules/${slug}`)}>
                 Continue Learning
               </Button>
