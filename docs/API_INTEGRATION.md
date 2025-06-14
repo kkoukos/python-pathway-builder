@@ -1,12 +1,13 @@
-# API Integration Documentation
 
-## Overview
+# Τεκμηρίωση Ενσωμάτωσης API
 
-The learning platform integrates with Supabase as the primary backend service, providing authentication, database access, real-time updates, and file storage. This document details the integration patterns and usage.
+## Επισκόπηση
 
-## Supabase Client Configuration
+Η πλατφόρμα μάθησης ενσωματώνεται με το Supabase ως κύρια υπηρεσία backend, παρέχοντας πιστοποίηση, πρόσβαση σε βάση δεδομένων, real-time ενημερώσεις και αποθήκευση αρχείων. Αυτό το έγγραφο λεπτομερεί τα μοτίβα ενσωμάτωσης και χρήσης.
 
-### Client Setup
+## Διαμόρφωση Supabase Client
+
+### Εγκατάσταση Client
 ```typescript
 // src/integrations/supabase/client.ts
 import { createClient } from '@supabase/supabase-js'
@@ -18,7 +19,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 ```
 
 ### Type Safety
-Supabase generates TypeScript types automatically based on the database schema:
+Το Supabase δημιουργεί αυτόματα τύπους TypeScript βάσει του σχήματος βάσης δεδομένων:
 
 ```typescript
 // src/integrations/supabase/types.ts
@@ -30,25 +31,25 @@ export interface Database {
         Insert: ProfileInsert
         Update: ProfileUpdate
       }
-      // ... other tables
+      // ... άλλοι πίνακες
     }
   }
 }
 ```
 
-## Authentication Integration
+## Ενσωμάτωση Πιστοποίησης
 
-### AuthContext Implementation
-The `AuthContext` provides a React interface to Supabase authentication:
+### Υλοποίηση AuthContext
+Το `AuthContext` παρέχει React interface στην πιστοποίηση Supabase:
 
 ```typescript
-// Key authentication methods
+// Βασικές μέθοδοι πιστοποίησης
 const login = async (email: string, password: string) => {
   const { data, error } = await supabase.auth.signInWithPassword({
     email,
     password
   });
-  // Handle response...
+  // Χειρισμός απόκρισης...
 };
 
 const register = async (username: string, email: string, password: string) => {
@@ -59,13 +60,13 @@ const register = async (username: string, email: string, password: string) => {
       data: { username, name: username }
     }
   });
-  // Handle response...
+  // Χειρισμός απόκρισης...
 };
 ```
 
-### Session Management
+### Διαχείριση Συνεδρίας
 ```typescript
-// Listen for auth state changes
+// Ακρόαση για αλλαγές κατάστασης auth
 useEffect(() => {
   const { data: { subscription } } = supabase.auth.onAuthStateChange(
     (event, session) => {
@@ -80,22 +81,22 @@ useEffect(() => {
 }, []);
 ```
 
-### Row Level Security Integration
-Authentication automatically enforces RLS policies:
+### Ενσωμάτωση Row Level Security
+Η πιστοποίηση επιβάλλει αυτόματα πολιτικές RLS:
 
 ```typescript
-// This query automatically filters by auth.uid()
+// Αυτό το ερώτημα φιλτράρει αυτόματα βάσει auth.uid()
 const { data: progress } = await supabase
   .from('user_progress')
   .select('*')
   .eq('module_id', moduleId);
 ```
 
-## Database Operations
+## Λειτουργίες Βάσης Δεδομένων
 
-### Progress Tracking
+### Παρακολούθηση Προόδου
 ```typescript
-// Mark lesson as complete
+// Σήμανση μαθήματος ως ολοκληρωμένου
 const markLessonComplete = async (moduleId: number, lessonId: number) => {
   const { error } = await supabase
     .from('user_progress')
@@ -113,9 +114,9 @@ const markLessonComplete = async (moduleId: number, lessonId: number) => {
 };
 ```
 
-### Exercise Attempts
+### Προσπάθειες Ασκήσεων
 ```typescript
-// Record exercise attempt
+// Καταγραφή προσπάθειας άσκησης
 const recordExerciseAttempt = async (
   moduleId: number, 
   lessonId: number, 
@@ -138,9 +139,9 @@ const recordExerciseAttempt = async (
 };
 ```
 
-### Test Results
+### Αποτελέσματα Τεστ
 ```typescript
-// Submit test results
+// Υποβολή αποτελεσμάτων τεστ
 const submitTestResults = async (
   moduleId: number,
   testId: number,
@@ -160,15 +161,15 @@ const submitTestResults = async (
     
   if (error) throw error;
   
-  // Database trigger will handle revision requirement creation
+  // Ο trigger βάσης δεδομένων θα χειριστεί τη δημιουργία απαίτησης επανάληψης
 };
 ```
 
-## Real-time Updates
+## Real-time Ενημερώσεις
 
-### Subscription Setup
+### Εγκατάσταση Subscription
 ```typescript
-// Listen for progress updates
+// Ακρόαση για ενημερώσεις προόδου
 useEffect(() => {
   const channel = supabase
     .channel('progress-updates')
@@ -181,7 +182,7 @@ useEffect(() => {
         filter: `user_id=eq.${user.id}`
       },
       (payload) => {
-        // Update local state
+        // Ενημέρωση τοπικής κατάστασης
         updateLocalProgress(payload.new);
       }
     )
@@ -193,9 +194,9 @@ useEffect(() => {
 }, [user.id]);
 ```
 
-### Real-time Revision Requirements
+### Real-time Απαιτήσεις Επανάληψης
 ```typescript
-// Listen for new revision requirements
+// Ακρόαση για νέες απαιτήσεις επανάληψης
 const subscribeToRevisionRequirements = () => {
   return supabase
     .channel('revision-updates')
@@ -213,57 +214,57 @@ const subscribeToRevisionRequirements = () => {
 };
 ```
 
-## Error Handling
+## Χειρισμός Σφαλμάτων
 
-### Structured Error Handling
+### Δομημένος Χειρισμός Σφαλμάτων
 ```typescript
-// Centralized error handling utility
+// Κεντρικό utility χειρισμού σφαλμάτων
 export const handleSupabaseError = (error: any, context: string) => {
   console.error(`Supabase error in ${context}:`, error);
   
   if (error.code === 'PGRST116') {
-    // No rows returned
+    // Καμία γραμμή δεν επιστράφηκε
     return null;
   }
   
   if (error.code === '23505') {
-    // Unique constraint violation
-    throw new Error('This record already exists');
+    // Παραβίαση unique constraint
+    throw new Error('Αυτή η εγγραφή υπάρχει ήδη');
   }
   
   if (error.code === '42501') {
-    // Insufficient privileges (RLS)
-    throw new Error('Access denied');
+    // Ανεπαρκή δικαιώματα (RLS)
+    throw new Error('Δεν επιτρέπεται η πρόσβαση');
   }
   
-  throw new Error(error.message || 'An unexpected error occurred');
+  throw new Error(error.message || 'Παρουσιάστηκε απροσδόκητο σφάλμα');
 };
 ```
 
-### Context-Aware Error Handling
+### Context-Aware Χειρισμός Σφαλμάτων
 ```typescript
-// In ProgressContext
+// Στο ProgressContext
 const markLessonComplete = async (moduleId: number, lessonId: number) => {
   try {
     const { error } = await supabase.from('user_progress').upsert(/* ... */);
     if (error) throw error;
     
-    // Update local state on success
+    // Ενημέρωση τοπικής κατάστασης σε επιτυχία
     setProgress(/* ... */);
-    toast.success("Lesson completed!");
+    toast.success("Μάθημα ολοκληρώθηκε!");
     
   } catch (error) {
     handleSupabaseError(error, 'markLessonComplete');
-    toast.error("Failed to save progress");
+    toast.error("Αποτυχία αποθήκευσης προόδου");
   }
 };
 ```
 
-## Performance Optimization
+## Βελτιστοποίηση Απόδοσης
 
-### Query Optimization
+### Βελτιστοποίηση Ερωτημάτων
 ```typescript
-// Efficient progress loading with joins
+// Αποδοτική φόρτωση προόδου με joins
 const loadUserProgress = async (userId: string) => {
   const { data, error } = await supabase
     .from('user_progress')
@@ -278,9 +279,9 @@ const loadUserProgress = async (userId: string) => {
 };
 ```
 
-### Caching with React Query
+### Caching με React Query
 ```typescript
-// Cache Supabase queries with React Query
+// Cache ερωτημάτων Supabase με React Query
 export const useUserProgress = (moduleId: number) => {
   const { user } = useAuth();
   
@@ -299,14 +300,14 @@ export const useUserProgress = (moduleId: number) => {
       return data;
     },
     enabled: !!user,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 5 * 60 * 1000, // 5 λεπτά
   });
 };
 ```
 
 ### Batch Operations
 ```typescript
-// Batch insert exercise attempts
+// Batch insert προσπαθειών ασκήσεων
 const batchInsertAttempts = async (attempts: ExerciseAttempt[]) => {
   const { error } = await supabase
     .from('exercise_attempts')
@@ -316,11 +317,11 @@ const batchInsertAttempts = async (attempts: ExerciseAttempt[]) => {
 };
 ```
 
-## Data Transformation
+## Μετασχηματισμός Δεδομένων
 
-### API Response Mapping
+### Mapping Αποκρίσεων API
 ```typescript
-// Transform Supabase data to application models
+// Μετασχηματισμός δεδομένων Supabase σε μοντέλα εφαρμογής
 export const mapProgressData = (rawData: any[]): ModuleProgress => {
   return rawData.reduce((acc, item) => {
     const moduleId = item.module_id;
@@ -342,9 +343,9 @@ export const mapProgressData = (rawData: any[]): ModuleProgress => {
 };
 ```
 
-### Type-Safe API Calls
+### Type-Safe Κλήσεις API
 ```typescript
-// Strongly typed API calls
+// Έντονα τυποποιημένες κλήσεις API
 export const getTestResults = async (
   userId: string, 
   moduleId: number
@@ -361,9 +362,9 @@ export const getTestResults = async (
 };
 ```
 
-## File Storage Integration
+## Ενσωμάτωση Αποθήκευσης Αρχείων
 
-### Avatar Upload
+### Upload Avatar
 ```typescript
 const uploadAvatar = async (file: File, userId: string) => {
   const fileExt = file.name.split('.').pop();
@@ -378,7 +379,7 @@ const uploadAvatar = async (file: File, userId: string) => {
     
   if (error) throw error;
   
-  // Get public URL
+  // Λήψη public URL
   const { data } = supabase.storage
     .from('avatars')
     .getPublicUrl(fileName);
@@ -387,11 +388,11 @@ const uploadAvatar = async (file: File, userId: string) => {
 };
 ```
 
-## Environment Configuration
+## Διαμόρφωση Περιβάλλοντος
 
 ### Development vs Production
 ```typescript
-// Environment-specific configuration
+// Διαμόρφωση συγκεκριμένη περιβάλλοντος
 const isDevelopment = import.meta.env.DEV;
 
 const supabaseConfig = {
@@ -412,23 +413,23 @@ const supabaseConfig = {
 };
 ```
 
-## Rate Limiting and Quotas
+## Rate Limiting και Quotas
 
-### Understanding Supabase Limits
-- **Database**: Row-level security adds query overhead
-- **Auth**: Rate limited by Supabase plan
-- **Storage**: File size and bandwidth limits
-- **Real-time**: Connection limits per plan
+### Κατανόηση Ορίων Supabase
+- **Βάση Δεδομένων**: Το row-level security προσθέτει overhead ερωτημάτων
+- **Auth**: Rate limited από πλάνο Supabase
+- **Storage**: Όρια μεγέθους αρχείου και εύρους ζώνης
+- **Real-time**: Όρια συνδέσεων ανά πλάνο
 
-### Optimization Strategies
+### Στρατηγικές Βελτιστοποίησης
 ```typescript
-// Debounced progress updates
+// Debounced ενημερώσεις προόδου
 const debouncedProgressUpdate = useMemo(
   () => debounce(markLessonComplete, 1000),
   [markLessonComplete]
 );
 
-// Batched operations
+// Batched λειτουργίες
 const flushPendingUpdates = async () => {
   if (pendingUpdates.length > 0) {
     await batchUpdateProgress(pendingUpdates);
@@ -437,7 +438,7 @@ const flushPendingUpdates = async () => {
 };
 ```
 
-## Testing Integration
+## Testing Ενσωμάτωσης
 
 ### Mock Supabase Client
 ```typescript
@@ -461,7 +462,7 @@ export const createMockSupabaseClient = () => ({
 
 ### Integration Testing
 ```typescript
-// Integration test example
+// Παράδειγμα integration test
 describe('Progress Integration', () => {
   it('should mark lesson as complete', async () => {
     const mockUser = { id: 'user-123' };
@@ -477,35 +478,35 @@ describe('Progress Integration', () => {
       await markLessonComplete(1, 1);
     });
     
-    // Verify database call was made
+    // Επιβεβαίωση ότι έγινε κλήση βάσης δεδομένων
     expect(supabase.from).toHaveBeenCalledWith('user_progress');
   });
 });
 ```
 
-## Best Practices
+## Βέλτιστες Πρακτικές
 
-### 1. Always Handle Errors
+### 1. Πάντα να Χειρίζεστε Σφάλματα
 ```typescript
-// Good: Explicit error handling
+// Καλό: Ρητός χειρισμός σφαλμάτων
 const { data, error } = await supabase.from('table').select('*');
 if (error) throw error;
 
-// Bad: Ignoring potential errors
+// Κακό: Αγνόηση πιθανών σφαλμάτων
 const { data } = await supabase.from('table').select('*');
 ```
 
-### 2. Use TypeScript Types
+### 2. Χρήση TypeScript Types
 ```typescript
-// Good: Type-safe operations
+// Καλό: Type-safe λειτουργίες
 const insertProfile = async (profile: Database['public']['Tables']['profiles']['Insert']) => {
   return supabase.from('profiles').insert(profile);
 };
 ```
 
-### 3. Implement Proper Loading States
+### 3. Υλοποίηση Κατάλληλων Loading States
 ```typescript
-// Good: Comprehensive state management
+// Καλό: Περιεκτική διαχείριση κατάστασης
 const [isLoading, setIsLoading] = useState(false);
 const [error, setError] = useState<string | null>(null);
 
@@ -523,9 +524,9 @@ const performOperation = async () => {
 };
 ```
 
-### 4. Use Transactions for Complex Operations
+### 4. Χρήση Transactions για Πολύπλοκες Λειτουργίες
 ```typescript
-// Good: Atomic operations
+// Καλό: Ατομικές λειτουργίες
 const completeModuleWithTest = async (moduleId: number, testScore: number) => {
   const { error } = await supabase.rpc('complete_module_transaction', {
     p_module_id: moduleId,

@@ -1,545 +1,545 @@
 
-# Troubleshooting Guide
+# Οδηγός Αντιμετώπισης Προβλημάτων
 
-## Table of Contents
+## Πίνακας Περιεχομένων
 
-1. [Common Issues](#common-issues)
-2. [Authentication Problems](#authentication-problems)
-3. [Learning Content Issues](#learning-content-issues)
-4. [Progress Tracking Problems](#progress-tracking-problems)
-5. [Performance Issues](#performance-issues)
-6. [Browser-Specific Issues](#browser-specific-issues)
-7. [Error Messages](#error-messages)
-8. [Getting Additional Help](#getting-additional-help)
-
----
-
-## Common Issues
-
-### Cannot Access Platform
-
-#### Symptoms
-- Page won't load
-- White screen or error message
-- Connection timeout
-
-#### Solutions
-1. **Check Internet Connection**
-   - Verify you're connected to the internet
-   - Try accessing other websites
-   - Restart your router/modem if needed
-
-2. **Clear Browser Data**
-   - Clear cache and cookies
-   - Restart your browser
-   - Try incognito/private mode
-
-3. **Check Platform Status**
-   - Visit our status page for any known outages
-   - Check social media for announcements
-   - Try again after a few minutes
-
-### Slow Performance
-
-#### Symptoms
-- Pages load slowly
-- Exercises take long to respond
-- Video content buffers frequently
-
-#### Solutions
-1. **Browser Optimization**
-   - Close unnecessary tabs and applications
-   - Disable browser extensions temporarily
-   - Update to the latest browser version
-
-2. **Connection Optimization**
-   - Use a wired connection instead of Wi-Fi
-   - Move closer to your Wi-Fi router
-   - Contact your ISP if problems persist
-
-3. **Device Performance**
-   - Restart your computer/device
-   - Free up disk space
-   - Close resource-heavy applications
+1. [Συνήθη Προβλήματα](#συνήθη-προβλήματα)
+2. [Προβλήματα Πιστοποίησης](#προβλήματα-πιστοποίησης)
+3. [Προβλήματα Εκπαιδευτικού Περιεχομένου](#προβλήματα-εκπαιδευτικού-περιεχομένου)
+4. [Προβλήματα Παρακολούθησης Προόδου](#προβλήματα-παρακολούθησης-προόδου)
+5. [Προβλήματα Απόδοσης](#προβλήματα-απόδοσης)
+6. [Προβλήματα Συγκεκριμένων Φυλλομετρητών](#προβλήματα-συγκεκριμένων-φυλλομετρητών)
+7. [Μηνύματα Σφάλματος](#μηνύματα-σφάλματος)
+8. [Λήψη Πρόσθετης Βοήθειας](#λήψη-πρόσθετης-βοήθειας)
 
 ---
 
-## Authentication Problems
+## Συνήθη Προβλήματα
 
-### Cannot Log In
+### Αδυναμία Πρόσβασης στην Πλατφόρμα
 
-#### Symptoms
-- "Invalid credentials" error
-- Account locked message
-- Login form not responding
+#### Συμπτώματα
+- Η σελίδα δεν φορτώνει
+- Λευκή οθόνη ή μήνυμα σφάλματος
+- Λήξη χρονικού ορίου σύνδεσης
 
-#### Solutions
-1. **Password Issues**
-   ```
-   Steps to Reset Password:
-   1. Click "Forgot Password" on login page
-   2. Enter your email address
-   3. Check email for reset link
-   4. Follow instructions to create new password
-   5. Try logging in with new password
-   ```
+#### Λύσεις
+1. **Έλεγχος Σύνδεσης Διαδικτύου**
+   - Επιβεβαιώστε ότι είστε συνδεδεμένοι στο διαδίκτυο
+   - Δοκιμάστε να προσπελάσετε άλλες ιστοσελίδες
+   - Επανεκκινήστε το router/modem αν χρειάζεται
 
-2. **Account Status**
-   - Verify your email address is confirmed
-   - Check if account was suspended (contact support)
-   - Ensure you're using the correct email address
+2. **Καθαρισμός Δεδομένων Φυλλομετρητή**
+   - Καθαρίστε την προσωρινή μνήμη και τα cookies
+   - Επανεκκινήστε τον φυλλομετρητή σας
+   - Δοκιμάστε σε λειτουργία ανώνυμης/ιδιωτικής περιήγησης
 
-3. **Browser Issues**
-   - Enable cookies and JavaScript
-   - Disable ad blockers temporarily
-   - Try a different browser
+3. **Έλεγχος Κατάστασης Πλατφόρμας**
+   - Επισκεφθείτε τη σελίδα κατάστασης για γνωστές διακοπές
+   - Ελέγξτε τα μέσα κοινωνικής δικτύωσης για ανακοινώσεις
+   - Δοκιμάστε ξανά μετά από λίγα λεπτά
 
-### Email Verification Problems
+### Αργή Απόδοση
 
-#### Symptoms
-- Verification email not received
-- Verification link expired
-- Cannot complete email verification
+#### Συμπτώματα
+- Οι σελίδες φορτώνουν αργά
+- Οι ασκήσεις αντιδρούν αργά
+- Το περιεχόμενο βίντεο κολλάει συχνά
 
-#### Solutions
-1. **Email Delivery**
-   - Check spam/junk folder
-   - Add our domain to safe senders list
-   - Wait up to 15 minutes for email delivery
-   - Request new verification email
+#### Λύσεις
+1. **Βελτιστοποίηση Φυλλομετρητή**
+   - Κλείστε περιττές καρτέλες και εφαρμογές
+   - Απενεργοποιήστε προσωρινά τις επεκτάσεις φυλλομετρητή
+   - Ενημερώστε στην τελευταία έκδοση φυλλομετρητή
 
-2. **Link Issues**
-   - Copy and paste link directly into browser
-   - Ensure link hasn't been modified by email client
-   - Request new verification if link expired
+2. **Βελτιστοποίηση Σύνδεσης**
+   - Χρησιμοποιήστε ενσύρματη σύνδεση αντί για Wi-Fi
+   - Πλησιάστε τον router Wi-Fi
+   - Επικοινωνήστε με τον πάροχο διαδικτύου αν τα προβλήματα συνεχίζονται
 
-### Two-Factor Authentication Issues
-
-#### Symptoms
-- Authentication codes not working
-- Cannot access authenticator app
-- Backup codes not accepted
-
-#### Solutions
-1. **Time Synchronization**
-   - Ensure device clock is accurate
-   - Sync time with internet time servers
-   - Try code again after sync
-
-2. **App Issues**
-   - Update authenticator app
-   - Re-scan QR code if available
-   - Use backup codes if available
-
-3. **Recovery Options**
-   - Contact support with account verification
-   - Provide alternative authentication methods
-   - Account recovery may take 24-48 hours
+3. **Απόδοση Συσκευής**
+   - Επανεκκινήστε τον υπολογιστή/συσκευή σας
+   - Ελευθερώστε χώρο στο δίσκο
+   - Κλείστε εφαρμογές που καταναλώνουν πόρους
 
 ---
 
-## Learning Content Issues
+## Προβλήματα Πιστοποίησης
 
-### Content Not Loading
+### Αδυναμία Σύνδεσης
 
-#### Symptoms
-- Blank lesson pages
-- Images not displaying
-- Videos not playing
+#### Συμπτώματα
+- Σφάλμα "Μη έγκυρα διαπιστευτήρια"
+- Μήνυμα κλειδωμένου λογαριασμού
+- Η φόρμα σύνδεσης δεν αντιδρά
 
-#### Solutions
-1. **Browser Settings**
-   - Ensure JavaScript is enabled
-   - Allow cookies for our domain
-   - Disable ad blockers for our site
-   - Update browser to latest version
-
-2. **Content Delivery**
-   - Refresh the page (Ctrl+F5 or Cmd+Shift+R)
-   - Clear browser cache
-   - Try incognito/private browsing mode
-   - Check if content loads on different device
-
-3. **Network Issues**
-   - Verify stable internet connection
-   - Try different network if available
-   - Contact IT support if on corporate network
-
-### Exercise Problems
-
-#### Symptoms
-- Code editor not responding
-- Submissions not working
-- Incorrect feedback/grading
-
-#### Solutions
-1. **Editor Issues**
+#### Λύσεις
+1. **Προβλήματα Κωδικού Πρόσβασης**
    ```
-   Troubleshooting Steps:
-   1. Refresh the page
-   2. Copy your code to clipboard first
-   3. Try submitting again
-   4. Check browser console for errors
-   5. Contact support if problem persists
+   Βήματα για Επαναφορά Κωδικού:
+   1. Κάντε κλικ στο "Ξέχασα τον Κωδικό" στη σελίδα σύνδεσης
+   2. Εισάγετε τη διεύθυνση email σας
+   3. Ελέγξτε το email για σύνδεσμο επαναφοράς
+   4. Ακολουθήστε τις οδηγίες για δημιουργία νέου κωδικού
+   5. Δοκιμάστε να συνδεθείτε με τον νέο κωδικό
    ```
 
-2. **Submission Problems**
-   - Ensure all required fields are completed
-   - Check for syntax errors in code
-   - Try submitting from different browser
-   - Save your work before troubleshooting
+2. **Κατάσταση Λογαριασμού**
+   - Επιβεβαιώστε ότι η διεύθυνση email σας έχει επιβεβαιωθεί
+   - Ελέγξτε αν ο λογαριασμός έχει ανασταλεί (επικοινωνήστε με την υποστήριξη)
+   - Βεβαιωθείτε ότι χρησιμοποιείτε τη σωστή διεύθυνση email
 
-3. **Grading Issues**
-   - Review exercise requirements carefully
-   - Check for edge cases in your solution
-   - Verify output format matches expected
-   - Report potential grading errors to support
+3. **Προβλήματα Φυλλομετρητή**
+   - Ενεργοποιήστε τα cookies και το JavaScript
+   - Απενεργοποιήστε προσωρινά τους αποκλειστές διαφημίσεων
+   - Δοκιμάστε διαφορετικό φυλλομετρητή
 
-### Video/Media Issues
+### Προβλήματα Επιβεβαίωσης Email
 
-#### Symptoms
-- Videos won't play
-- Audio not working
-- Poor video quality
+#### Συμπτώματα
+- Δεν έχει ληφθεί email επιβεβαίωσης
+- Ο σύνδεσμος επιβεβαίωσης έχει λήξει
+- Αδυναμία ολοκλήρωσης επιβεβαίωσης email
 
-#### Solutions
-1. **Playback Issues**
-   - Update browser or try different browser
-   - Enable autoplay if prompted
-   - Check volume and mute settings
-   - Disable browser extensions
+#### Λύσεις
+1. **Παράδοση Email**
+   - Ελέγξτε τον φάκελο spam/ανεπιθύμητα
+   - Προσθέστε τον τομέα μας στη λίστα ασφαλών αποστολέων
+   - Περιμένετε μέχρι 15 λεπτά για παράδοση email
+   - Ζητήστε νέο email επιβεβαίωσης
 
-2. **Quality Issues**
-   - Adjust video quality settings
-   - Check internet connection speed
-   - Close other bandwidth-heavy applications
-   - Try again during off-peak hours
+2. **Προβλήματα Συνδέσμου**
+   - Αντιγράψτε και επικολλήστε τον σύνδεσμο απευθείας στον φυλλομετρητή
+   - Βεβαιωθείτε ότι ο σύνδεσμος δεν έχει τροποποιηθεί από το πρόγραμμα email
+   - Ζητήστε νέα επιβεβαίωση αν ο σύνδεσμος έχει λήξει
 
----
+### Προβλήματα Πιστοποίησης Δύο Παραγόντων
 
-## Progress Tracking Problems
+#### Συμπτώματα
+- Οι κωδικοί πιστοποίησης δεν λειτουργούν
+- Αδυναμία πρόσβασης στην εφαρμογή πιστοποίησης
+- Οι εφεδρικοί κωδικοί δεν γίνονται αποδεκτοί
 
-### Progress Not Saving
+#### Λύσεις
+1. **Συγχρονισμός Ώρας**
+   - Βεβαιωθείτε ότι το ρολόι της συσκευής είναι ακριβές
+   - Συγχρονίστε την ώρα με τους διακομιστές ώρας διαδικτύου
+   - Δοκιμάστε τον κωδικό ξανά μετά τον συγχρονισμό
 
-#### Symptoms
-- Completed lessons showing as incomplete
-- Exercise progress lost
-- Test scores not recorded
+2. **Προβλήματα Εφαρμογής**
+   - Ενημερώστε την εφαρμογή πιστοποίησης
+   - Σαρώστε ξανά τον κωδικό QR αν είναι διαθέσιμος
+   - Χρησιμοποιήστε εφεδρικούς κωδικούς αν είναι διαθέσιμοι
 
-#### Solutions
-1. **Browser Storage**
-   - Enable cookies and local storage
-   - Don't use incognito/private mode for learning
-   - Clear cache if data seems corrupted
-   - Log out and log back in
-
-2. **Session Issues**
-   - Don't close browser during exercises/tests
-   - Ensure stable internet connection
-   - Complete sections in single sessions when possible
-   - Save work frequently if option available
-
-3. **Account Sync**
-   - Verify you're logged into correct account
-   - Check if using multiple devices
-   - Allow time for sync across devices
-   - Contact support if data loss occurs
-
-### Incorrect Progress Display
-
-#### Symptoms
-- Wrong completion percentages
-- Missing achievements
-- Incorrect module status
-
-#### Solutions
-1. **Data Refresh**
-   - Log out and log back in
-   - Clear browser cache
-   - Wait 24 hours for system updates
-   - Check progress on different device
-
-2. **Cache Issues**
-   - Hard refresh page (Ctrl+Shift+R)
-   - Clear all site data
-   - Restart browser completely
-   - Try different browser
+3. **Επιλογές Ανάκτησης**
+   - Επικοινωνήστε με την υποστήριξη με επιβεβαίωση λογαριασμού
+   - Παρέχετε εναλλακτικές μεθόδους πιστοποίησης
+   - Η ανάκτηση λογαριασμού μπορεί να διαρκέσει 24-48 ώρες
 
 ---
 
-## Performance Issues
+## Προβλήματα Εκπαιδευτικού Περιεχομένου
 
-### Platform Running Slowly
+### Το Περιεχόμενο δεν Φορτώνει
 
-#### System Requirements Check
+#### Συμπτώματα
+- Κενές σελίδες μαθημάτων
+- Οι εικόνες δεν εμφανίζονται
+- Τα βίντεο δεν παίζουν
+
+#### Λύσεις
+1. **Ρυθμίσεις Φυλλομετρητή**
+   - Βεβαιωθείτε ότι το JavaScript είναι ενεργοποιημένο
+   - Επιτρέψτε cookies για τον τομέα μας
+   - Απενεργοποιήστε τους αποκλειστές διαφημίσεων για την ιστοσελίδα μας
+   - Ενημερώστε τον φυλλομετρητή στην τελευταία έκδοση
+
+2. **Παράδοση Περιεχομένου**
+   - Ανανεώστε τη σελίδα (Ctrl+F5 ή Cmd+Shift+R)
+   - Καθαρίστε την προσωρινή μνήμη του φυλλομετρητή
+   - Δοκιμάστε λειτουργία ανώνυμης/ιδιωτικής περιήγησης
+   - Ελέγξτε αν το περιεχόμενο φορτώνει σε διαφορετική συσκευή
+
+3. **Προβλήματα Δικτύου**
+   - Επιβεβαιώστε σταθερή σύνδεση διαδικτύου
+   - Δοκιμάστε διαφορετικό δίκτυο αν είναι διαθέσιμο
+   - Επικοινωνήστε με την υποστήριξη IT αν είστε σε εταιρικό δίκτυο
+
+### Προβλήματα Ασκήσεων
+
+#### Συμπτώματα
+- Ο επεξεργαστής κώδικα δεν αντιδρά
+- Οι υποβολές δεν λειτουργούν
+- Λανθασμένη ανατροφοδότηση/βαθμολόγηση
+
+#### Λύσεις
+1. **Προβλήματα Επεξεργαστή**
+   ```
+   Βήματα Αντιμετώπισης Προβλημάτων:
+   1. Ανανεώστε τη σελίδα
+   2. Αντιγράψτε πρώτα τον κώδικά σας στο πρόχειρο
+   3. Δοκιμάστε να υποβάλετε ξανά
+   4. Ελέγξτε την κονσόλα του φυλλομετρητή για σφάλματα
+   5. Επικοινωνήστε με την υποστήριξη αν το πρόβλημα συνεχίζεται
+   ```
+
+2. **Προβλήματα Υποβολής**
+   - Βεβαιωθείτε ότι όλα τα απαιτούμενα πεδία έχουν συμπληρωθεί
+   - Ελέγξτε για συντακτικά σφάλματα στον κώδικα
+   - Δοκιμάστε να υποβάλετε από διαφορετικό φυλλομετρητή
+   - Αποθηκεύστε τη δουλειά σας πριν την αντιμετώπιση προβλημάτων
+
+3. **Προβλήματα Βαθμολόγησης**
+   - Επανεξετάστε προσεκτικά τις απαιτήσεις της άσκησης
+   - Ελέγξτε για περιπτώσεις ακραίων τιμών στη λύση σας
+   - Επιβεβαιώστε ότι η μορφή εξόδου ταιριάζει με την αναμενόμενη
+   - Αναφέρετε πιθανά σφάλματα βαθμολόγησης στην υποστήριξη
+
+### Προβλήματα Βίντεο/Πολυμέσων
+
+#### Συμπτώματα
+- Τα βίντεο δεν παίζουν
+- Ο ήχος δεν λειτουργεί
+- Κακή ποιότητα βίντεο
+
+#### Λύσεις
+1. **Προβλήματα Αναπαραγωγής**
+   - Ενημερώστε τον φυλλομετρητή ή δοκιμάστε διαφορετικό φυλλομετρητή
+   - Ενεργοποιήστε την αυτόματη αναπαραγωγή αν ζητηθεί
+   - Ελέγξτε τις ρυθμίσεις έντασης και σίγασης
+   - Απενεργοποιήστε τις επεκτάσεις φυλλομετρητή
+
+2. **Προβλήματα Ποιότητας**
+   - Προσαρμόστε τις ρυθμίσεις ποιότητας βίντεο
+   - Ελέγξτε την ταχύτητα σύνδεσης διαδικτύου
+   - Κλείστε άλλες εφαρμογές που καταναλώνουν εύρος ζώνης
+   - Δοκιμάστε ξανά σε ώρες χαμηλής κίνησης
+
+---
+
+## Προβλήματα Παρακολούθησης Προόδου
+
+### Η Πρόοδος δεν Αποθηκεύεται
+
+#### Συμπτώματα
+- Τα ολοκληρωμένα μαθήματα εμφανίζονται ως μη ολοκληρωμένα
+- Η πρόοδος των ασκήσεων χάνεται
+- Οι βαθμοί των τεστ δεν καταγράφονται
+
+#### Λύσεις
+1. **Αποθήκευση Φυλλομετρητή**
+   - Ενεργοποιήστε τα cookies και την τοπική αποθήκευση
+   - Μην χρησιμοποιείτε λειτουργία ανώνυμης/ιδιωτικής περιήγησης για μάθηση
+   - Καθαρίστε την προσωρινή μνήμη αν τα δεδομένα φαίνονται κατεστραμμένα
+   - Αποσυνδεθείτε και συνδεθείτε ξανά
+
+2. **Προβλήματα Συνεδρίας**
+   - Μην κλείνετε τον φυλλομετρητή κατά τη διάρκεια ασκήσεων/τεστ
+   - Βεβαιωθείτε για σταθερή σύνδεση διαδικτύου
+   - Ολοκληρώστε τμήματα σε μία συνεδρία όταν είναι δυνατό
+   - Αποθηκεύστε τη δουλειά συχνά αν η επιλογή είναι διαθέσιμη
+
+3. **Συγχρονισμός Λογαριασμού**
+   - Επιβεβαιώστε ότι είστε συνδεδεμένοι στο σωστό λογαριασμό
+   - Ελέγξτε αν χρησιμοποιείτε πολλές συσκευές
+   - Δώστε χρόνο για συγχρονισμό μεταξύ συσκευών
+   - Επικοινωνήστε με την υποστήριξη αν προκύψει απώλεια δεδομένων
+
+### Λανθασμένη Εμφάνιση Προόδου
+
+#### Συμπτώματα
+- Λάθος ποσοστά ολοκλήρωσης
+- Επιτεύγματα που λείπουν
+- Λανθασμένη κατάσταση ενότητας
+
+#### Λύσεις
+1. **Ανανέωση Δεδομένων**
+   - Αποσυνδεθείτε και συνδεθείτε ξανά
+   - Καθαρίστε την προσωρινή μνήμη του φυλλομετρητή
+   - Περιμένετε 24 ώρες για ενημερώσεις συστήματος
+   - Ελέγξτε την πρόοδο σε διαφορετική συσκευή
+
+2. **Προβλήματα Προσωρινής Μνήμης**
+   - Σκληρή ανανέωση σελίδας (Ctrl+Shift+R)
+   - Καθαρίστε όλα τα δεδομένα ιστοσελίδας
+   - Επανεκκινήστε τον φυλλομετρητή εντελώς
+   - Δοκιμάστε διαφορετικό φυλλομετρητή
+
+---
+
+## Προβλήματα Απόδοσης
+
+### Η Πλατφόρμα Τρέχει Αργά
+
+#### Έλεγχος Απαιτήσεων Συστήματος
 ```
-Minimum Requirements:
-- Browser: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+
-- RAM: 4GB minimum, 8GB recommended
-- Internet: 2 Mbps download speed
-- JavaScript: Must be enabled
-- Cookies: Must be enabled
+Ελάχιστες Απαιτήσεις:
+- Φυλλομετρητής: Chrome 80+, Firefox 75+, Safari 13+, Edge 80+
+- RAM: 4GB ελάχιστο, 8GB συνιστώμενο
+- Διαδίκτυο: 2 Mbps ταχύτητα λήψης
+- JavaScript: Πρέπει να είναι ενεργοποιημένο
+- Cookies: Πρέπει να είναι ενεργοποιημένα
 ```
 
-#### Performance Optimization
-1. **Browser Optimization**
-   - Close unnecessary tabs
-   - Disable unused extensions
-   - Clear browsing data regularly
-   - Update browser to latest version
+#### Βελτιστοποίηση Απόδοσης
+1. **Βελτιστοποίηση Φυλλομετρητή**
+   - Κλείστε περιττές καρτέλες
+   - Απενεργοποιήστε αχρησιμοποίητες επεκτάσεις
+   - Καθαρίστε τακτικά τα δεδομένα περιήγησης
+   - Ενημερώστε τον φυλλομετρητή στην τελευταία έκδοση
 
-2. **System Optimization**
-   - Close other applications
-   - Restart computer if needed
-   - Check for system updates
-   - Free up disk space
+2. **Βελτιστοποίηση Συστήματος**
+   - Κλείστε άλλες εφαρμογές
+   - Επανεκκινήστε τον υπολογιστή αν χρειάζεται
+   - Ελέγξτε για ενημερώσεις συστήματος
+   - Ελευθερώστε χώρο στο δίσκο
 
-3. **Network Optimization**
-   - Use wired connection if possible
-   - Move closer to Wi-Fi router
-   - Limit other network usage
-   - Contact ISP for speed issues
+3. **Βελτιστοποίηση Δικτύου**
+   - Χρησιμοποιήστε ενσύρματη σύνδεση αν είναι δυνατό
+   - Πλησιάστε τον router Wi-Fi
+   - Περιορίστε άλλη χρήση δικτύου
+   - Επικοινωνήστε με τον πάροχο για προβλήματα ταχύτητας
 
-### Memory Issues
+### Προβλήματα Μνήμης
 
-#### Symptoms
-- Browser crashes or freezes
-- "Out of memory" errors
-- Very slow response times
+#### Συμπτώματα
+- Ο φυλλομετρητής κολλάει ή παγώνει
+- Σφάλματα "Εξαντλήθηκε η μνήμη"
+- Πολύ αργοί χρόνοι απόκρισης
 
-#### Solutions
-1. **Immediate Actions**
-   - Save current work
-   - Close other browser tabs
-   - Restart browser
-   - Free up system memory
+#### Λύσεις
+1. **Άμεσες Ενέργειες**
+   - Αποθηκεύστε την τρέχουσα δουλειά
+   - Κλείστε άλλες καρτέλες φυλλομετρητή
+   - Επανεκκινήστε τον φυλλομετρητή
+   - Ελευθερώστε μνήμη συστήματος
 
-2. **Prevention**
-   - Use one tab for learning platform
-   - Take breaks every hour
-   - Close unused applications
-   - Upgrade system RAM if possible
+2. **Πρόληψη**
+   - Χρησιμοποιήστε μία καρτέλα για την πλατφόρμα μάθησης
+   - Κάντε διαλείμματα κάθε ώρα
+   - Κλείστε αχρησιμοποίητες εφαρμογές
+   - Αναβαθμίστε τη RAM του συστήματος αν είναι δυνατό
 
 ---
 
-## Browser-Specific Issues
+## Προβλήματα Συγκεκριμένων Φυλλομετρητών
 
 ### Google Chrome
 
-#### Common Issues
-- Extensions interfering with platform
-- Memory usage too high
-- Sync conflicts
+#### Συνήθη Προβλήματα
+- Επεκτάσεις που παρεμβάλλουν στην πλατφόρμα
+- Πολύ υψηλή χρήση μνήμης
+- Συγκρούσεις συγχρονισμού
 
-#### Solutions
+#### Λύσεις
 ```
-Chrome Troubleshooting:
-1. Type chrome://settings/reset in address bar
-2. Click "Reset settings to default"
-3. Restart Chrome
-4. Try platform again
+Αντιμετώπιση Προβλημάτων Chrome:
+1. Πληκτρολογήστε chrome://settings/reset στη γραμμή διευθύνσεων
+2. Κάντε κλικ στο "Επαναφορά ρυθμίσεων στις προεπιλογές"
+3. Επανεκκινήστε το Chrome
+4. Δοκιμάστε την πλατφόρμα ξανά
 ```
 
 ### Mozilla Firefox
 
-#### Common Issues
-- Tracking protection blocking content
-- Add-ons causing conflicts
-- Cache corruption
+#### Συνήθη Προβλήματα
+- Προστασία παρακολούθησης που αποκλείει περιεχόμενο
+- Πρόσθετα που δημιουργούν συγκρούσεις
+- Διαφθορά προσωρινής μνήμης
 
-#### Solutions
-1. **Safe Mode**
-   - Start Firefox in Safe Mode
-   - Test platform functionality
-   - Disable problematic add-ons
-   - Reset Firefox if needed
+#### Λύσεις
+1. **Ασφαλής Λειτουργία**
+   - Εκκινήστε το Firefox σε Ασφαλή Λειτουργία
+   - Δοκιμάστε τη λειτουργικότητα της πλατφόρμας
+   - Απενεργοποιήστε προβληματικά πρόσθετα
+   - Επαναφέρετε το Firefox αν χρειάζεται
 
 ### Safari
 
-#### Common Issues
-- Strict privacy settings
-- Content blockers active
-- Outdated version
+#### Συνήθη Προβλήματα
+- Αυστηρές ρυθμίσεις απορρήτου
+- Ενεργοί αποκλειστές περιεχομένου
+- Παλιά έκδοση
 
-#### Solutions
-1. **Privacy Settings**
-   - Allow cookies for our domain
-   - Disable "Prevent cross-site tracking" temporarily
-   - Add site to trusted list
-   - Update to latest Safari version
+#### Λύσεις
+1. **Ρυθμίσεις Απορρήτου**
+   - Επιτρέψτε cookies για τον τομέα μας
+   - Απενεργοποιήστε προσωρινά το "Αποτροπή παρακολούθησης μεταξύ ιστοσελίδων"
+   - Προσθέστε την ιστοσελίδα στη λίστα εμπιστοσύνης
+   - Ενημερώστε στην τελευταία έκδοση Safari
 
 ### Microsoft Edge
 
-#### Common Issues
-- SmartScreen blocking content
-- Internet Explorer mode issues
-- Security settings too strict
+#### Συνήθη Προβλήματα
+- SmartScreen που αποκλείει περιεχόμενο
+- Προβλήματα λειτουργίας Internet Explorer
+- Πολύ αυστηρές ρυθμίσεις ασφαλείας
 
-#### Solutions
-1. **Security Settings**
-   - Add site to trusted sites
-   - Disable SmartScreen for our domain
-   - Ensure using Edge mode, not IE mode
-   - Clear browsing data
-
----
-
-## Error Messages
-
-### "Session Expired"
-
-#### Cause
-User session has timed out due to inactivity
-
-#### Solution
-1. Save any current work
-2. Log out completely
-3. Log back in with credentials
-4. Resume from where you left off
-
-### "Network Error"
-
-#### Cause
-Connection issues between browser and platform
-
-#### Solution
-1. Check internet connection
-2. Refresh the page
-3. Try again in a few minutes
-4. Contact support if persistent
-
-### "Access Denied"
-
-#### Cause
-- Account permissions issue
-- Trying to access restricted content
-- Account suspended
-
-#### Solution
-1. Verify you're logged into correct account
-2. Check if content requires prerequisites
-3. Contact support for account status
-4. Try accessing different content
-
-### "Service Unavailable"
-
-#### Cause
-Platform maintenance or server issues
-
-#### Solution
-1. Check platform status page
-2. Wait and try again later
-3. Follow social media for updates
-4. Contact support if extended downtime
-
-### "Invalid Request"
-
-#### Cause
-Browser sent malformed data to server
-
-#### Solution
-1. Refresh the page
-2. Clear browser cache
-3. Disable browser extensions
-4. Try different browser
+#### Λύσεις
+1. **Ρυθμίσεις Ασφαλείας**
+   - Προσθέστε την ιστοσελίδα στις αξιόπιστες ιστοσελίδες
+   - Απενεργοποιήστε το SmartScreen για τον τομέα μας
+   - Βεβαιωθείτε ότι χρησιμοποιείτε λειτουργία Edge, όχι IE
+   - Καθαρίστε τα δεδομένα περιήγησης
 
 ---
 
-## Getting Additional Help
+## Μηνύματα Σφάλματος
 
-### Self-Help Resources
+### "Η Συνεδρία Έληξε"
 
-#### Platform Documentation
-- User Guide: Complete platform usage instructions
-- FAQ: Frequently asked questions
-- Video Tutorials: Step-by-step visual guides
-- Community Forums: Peer support and discussions
+#### Αιτία
+Η συνεδρία χρήστη έχει λήξει λόγω αδράνειας
 
-#### Technical Resources
-- Browser Help: Links to browser support pages
-- System Requirements: Detailed compatibility information
-- Performance Tips: Optimization recommendations
-- Accessibility Guide: Features for users with disabilities
+#### Λύση
+1. Αποθηκεύστε οποιαδήποτε τρέχουσα δουλειά
+2. Αποσυνδεθείτε εντελώς
+3. Συνδεθείτε ξανά με τα διαπιστευτήριά σας
+4. Συνεχίστε από εκεί που σταματήσατε
 
-### Contact Support
+### "Σφάλμα Δικτύου"
 
-#### Before Contacting Support
-Please gather this information:
-- Your username/email
-- Browser name and version
-- Operating system
-- Description of the problem
-- Steps you've already tried
-- Screenshots if applicable
+#### Αιτία
+Προβλήματα σύνδεσης μεταξύ φυλλομετρητή και πλατφόρμας
 
-#### Support Channels
+#### Λύση
+1. Ελέγξτε τη σύνδεση διαδικτύου
+2. Ανανεώστε τη σελίδα
+3. Δοκιμάστε ξανά σε λίγα λεπτά
+4. Επικοινωνήστε με την υποστήριξη αν το πρόβλημα παραμένει
 
-1. **Email Support**
-   - Address: support@pythonlearning.com
-   - Response time: 24-48 hours
-   - Best for: Detailed technical issues
+### "Δεν Επιτρέπεται η Πρόσβαση"
 
-2. **Live Chat**
-   - Available: Monday-Friday, 9 AM - 5 PM EST
-   - Response time: Usually immediate
-   - Best for: Quick questions and urgent issues
+#### Αιτία
+- Πρόβλημα δικαιωμάτων λογαριασμού
+- Προσπάθεια πρόσβασης σε περιορισμένο περιεχόμενο
+- Αναστολή λογαριασμού
 
-3. **Phone Support**
-   - Available for premium users
-   - Hours: Monday-Friday, 9 AM - 5 PM EST
-   - Best for: Complex technical issues
+#### Λύση
+1. Επιβεβαιώστε ότι είστε συνδεδεμένοι στο σωστό λογαριασμό
+2. Ελέγξτε αν το περιεχόμενο απαιτεί προαπαιτούμενα
+3. Επικοινωνήστε με την υποστήριξη για κατάσταση λογαριασμού
+4. Δοκιμάστε να προσπελάσετε διαφορετικό περιεχόμενο
 
-4. **Community Forums**
-   - Available 24/7
-   - Response time: Varies
-   - Best for: General questions and peer help
+### "Υπηρεσία μη Διαθέσιμη"
 
-#### Emergency Contact
-For critical issues affecting many users:
+#### Αιτία
+Συντήρηση πλατφόρμας ή προβλήματα διακομιστή
+
+#### Λύση
+1. Ελέγξτε τη σελίδα κατάστασης πλατφόρμας
+2. Περιμένετε και δοκιμάστε ξανά αργότερα
+3. Ακολουθήστε τα μέσα κοινωνικής δικτύωσης για ενημερώσεις
+4. Επικοινωνήστε με την υποστήριξη αν η διακοπή παρατείνεται
+
+### "Μη Έγκυρο Αίτημα"
+
+#### Αιτία
+Ο φυλλομετρητής έστειλε κακοσχηματισμένα δεδομένα στον διακομιστή
+
+#### Λύση
+1. Ανανεώστε τη σελίδα
+2. Καθαρίστε την προσωρινή μνήμη του φυλλομετρητή
+3. Απενεργοποιήστε τις επεκτάσεις φυλλομετρητή
+4. Δοκιμάστε διαφορετικό φυλλομετρητή
+
+---
+
+## Λήψη Πρόσθετης Βοήθειας
+
+### Πόροι Αυτοεξυπηρέτησης
+
+#### Τεκμηρίωση Πλατφόρμας
+- Οδηγός Χρήστη: Πλήρεις οδηγίες χρήσης πλατφόρμας
+- Συχνές Ερωτήσεις: Συχνά γινόμενες ερωτήσεις
+- Εκπαιδευτικά Βίντεο: Οπτικοί οδηγοί βήμα προς βήμα
+- Φόρουμ Κοινότητας: Υποστήριξη από συνομηλίκους και συζητήσεις
+
+#### Τεχνικοί Πόροι
+- Βοήθεια Φυλλομετρητή: Σύνδεσμοι σε σελίδες υποστήριξης φυλλομετρητή
+- Απαιτήσεις Συστήματος: Λεπτομερείς πληροφορίες συμβατότητας
+- Συμβουλές Απόδοσης: Συστάσεις βελτιστοποίησης
+- Οδηγός Προσβασιμότητας: Χαρακτηριστικά για χρήστες με αναπηρίες
+
+### Επικοινωνία με την Υποστήριξη
+
+#### Πριν Επικοινωνήσετε με την Υποστήριξη
+Παρακαλώ συλλέξτε αυτές τις πληροφορίες:
+- Το όνομα χρήστη/email σας
+- Όνομα και έκδοση φυλλομετρητή
+- Λειτουργικό σύστημα
+- Περιγραφή του προβλήματος
+- Βήματα που έχετε ήδη δοκιμάσει
+- Στιγμιότυπα οθόνης αν ισχύουν
+
+#### Κανάλια Υποστήριξης
+
+1. **Υποστήριξη Email**
+   - Διεύθυνση: support@pythonlearning.com
+   - Χρόνος απόκρισης: 24-48 ώρες
+   - Καλύτερο για: Λεπτομερή τεχνικά προβλήματα
+
+2. **Ζωντανή Συνομιλία**
+   - Διαθέσιμη: Δευτέρα-Παρασκευή, 9 ΠΜ - 5 ΜΜ EST
+   - Χρόνος απόκρισης: Συνήθως άμεσος
+   - Καλύτερο για: Γρήγορες ερωτήσεις και επείγοντα θέματα
+
+3. **Τηλεφωνική Υποστήριξη**
+   - Διαθέσιμη για premium χρήστες
+   - Ώρες: Δευτέρα-Παρασκευή, 9 ΠΜ - 5 ΜΜ EST
+   - Καλύτερο για: Πολύπλοκα τεχνικά προβλήματα
+
+4. **Φόρουμ Κοινότητας**
+   - Διαθέσιμα 24/7
+   - Χρόνος απόκρισης: Ποικίλλει
+   - Καλύτερο για: Γενικές ερωτήσεις και βοήθεια από συνομηλίκους
+
+#### Επείγουσα Επικοινωνία
+Για κρίσιμα θέματα που επηρεάζουν πολλούς χρήστες:
 - Email: emergency@pythonlearning.com
-- Include "URGENT" in subject line
-- Provide detailed impact description
+- Συμπεριλάβετε "ΕΠΕΙΓΟΝ" στο θέμα
+- Παρέχετε λεπτομερή περιγραφή επίδρασης
 
-### Reporting Bugs
+### Αναφορά Σφαλμάτων
 
-#### Bug Report Template
+#### Πρότυπο Αναφοράς Σφάλματος
 ```
-Subject: [BUG] Brief description of issue
+Θέμα: [ΣΦΑΛΜΑ] Σύντομη περιγραφή θέματος
 
-User Information:
-- Username: [your username]
-- Email: [your email]
-- Account type: [free/premium]
+Πληροφορίες Χρήστη:
+- Όνομα χρήστη: [το όνομα χρήστη σας]
+- Email: [το email σας]
+- Τύπος λογαριασμού: [δωρεάν/premium]
 
-Environment:
-- Browser: [name and version]
-- Operating System: [OS and version]
-- Screen Resolution: [width x height]
+Περιβάλλον:
+- Φυλλομετρητής: [όνομα και έκδοση]
+- Λειτουργικό Σύστημα: [OS και έκδοση]
+- Ανάλυση Οθόνης: [πλάτος x ύψος]
 
-Issue Description:
-- What were you trying to do?
-- What happened instead?
-- How often does this occur?
+Περιγραφή Θέματος:
+- Τι προσπαθούσατε να κάνετε;
+- Τι συνέβη αντί για αυτό;
+- Πόσο συχνά συμβαίνει αυτό;
 
-Steps to Reproduce:
-1. [First step]
-2. [Second step]
-3. [Third step]
-4. [Problem occurs]
+Βήματα για Αναπαραγωγή:
+1. [Πρώτο βήμα]
+2. [Δεύτερο βήμα]
+3. [Τρίτο βήμα]
+4. [Το πρόβλημα εμφανίζεται]
 
-Expected Behavior:
-[What should have happened]
+Αναμενόμενη Συμπεριφορά:
+[Τι έπρεπε να είχε συμβεί]
 
-Actual Behavior:
-[What actually happened]
+Πραγματική Συμπεριφορά:
+[Τι συνέβη πραγματικά]
 
-Additional Information:
-- Screenshots/videos: [attach if helpful]
-- Console errors: [if technical user]
-- Time of occurrence: [when did it happen]
+Πρόσθετες Πληροφορίες:
+- Στιγμιότυπα οθόνης/βίντεα: [επισυνάψτε αν βοηθούν]
+- Σφάλματα κονσόλας: [αν είστε τεχνικός χρήστης]
+- Χρόνος εμφάνισης: [πότε συνέβη]
 ```
 
 ---
 
-*This troubleshooting guide is updated regularly based on user feedback and common support requests.*
-*Last updated: [Current Date]*
+*Αυτός ο οδηγός αντιμετώπισης προβλημάτων ενημερώνεται τακτικά βάσει των σχολίων χρηστών και των συνηθισμένων αιτημάτων υποστήριξης.*
+*Τελευταία ενημέρωση: [Τρέχουσα Ημερομηνία]*

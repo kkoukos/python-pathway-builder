@@ -1,555 +1,555 @@
 
-# Python Learning Platform - User Guide
+# Πλατφόρμα Εκμάθησης Python - Οδηγός Χρήστη
 
-## Table of Contents
+## Πίνακας Περιεχομένων
 
-1. [Getting Started](#getting-started)
-2. [Account Management](#account-management)
-3. [Learning Journey](#learning-journey)
-4. [Modules and Lessons](#modules-and-lessons)
-5. [Exercises](#exercises)
-6. [Tests and Assessments](#tests-and-assessments)
-7. [Revision System](#revision-system)
-8. [Progress Tracking](#progress-tracking)
-9. [Profile Management](#profile-management)
-10. [Tips for Success](#tips-for-success)
-11. [Troubleshooting](#troubleshooting)
-
----
-
-## Getting Started
-
-### Creating Your Account
-
-1. **Visit the Platform**: Navigate to the Python Learning Platform homepage
-2. **Sign Up**: Click the "Sign Up" button in the top-right corner
-3. **Enter Your Details**:
-   - Choose a unique username
-   - Provide a valid email address
-   - Create a secure password (minimum 8 characters)
-4. **Verify Your Email**: Check your inbox for a verification email and click the confirmation link
-5. **Complete Your Profile**: Add your name and select your learning style preference
-
-### First Login
-
-1. **Sign In**: Use your email and password to log in
-2. **Dashboard Overview**: You'll be taken to your dashboard where you can see:
-   - Available learning modules
-   - Your progress overview
-   - Recommended next steps
-
-### Platform Navigation
-
-- **Header Navigation**: Quick access to modules, progress tracking, and your profile
-- **Module Cards**: Visual representation of each learning module with progress indicators
-- **Breadcrumb Navigation**: Shows your current location within the platform
+1. [Ξεκινώντας](#ξεκινώντας)
+2. [Διαχείριση Λογαριασμού](#διαχείριση-λογαριασμού)
+3. [Ταξίδι Μάθησης](#ταξίδι-μάθησης)
+4. [Ενότητες και Μαθήματα](#ενότητες-και-μαθήματα)
+5. [Ασκήσεις](#ασκήσεις)
+6. [Τεστ και Αξιολογήσεις](#τεστ-και-αξιολογήσεις)
+7. [Σύστημα Επανάληψης](#σύστημα-επανάληψης)
+8. [Παρακολούθηση Προόδου](#παρακολούθηση-προόδου)
+9. [Διαχείριση Προφίλ](#διαχείριση-προφίλ)
+10. [Συμβουλές για Επιτυχία](#συμβουλές-για-επιτυχία)
+11. [Αντιμετώπιση Προβλημάτων](#αντιμετώπιση-προβλημάτων)
 
 ---
 
-## Account Management
+## Ξεκινώντας
 
-### Profile Settings
+### Δημιουργία του Λογαριασμού σας
 
-Access your profile by clicking your avatar in the top-right corner:
+1. **Επίσκεψη στην Πλατφόρμα**: Πλοηγηθείτε στην αρχική σελίδα της Πλατφόρμας Εκμάθησης Python
+2. **Εγγραφή**: Κάντε κλικ στο κουμπί "Εγγραφή" στην επάνω δεξιά γωνία
+3. **Εισάγετε τα Στοιχεία σας**:
+   - Επιλέξτε ένα μοναδικό όνομα χρήστη
+   - Παράσχετε μια έγκυρη διεύθυνση email
+   - Δημιουργήστε έναν ασφαλή κωδικό πρόσβασης (ελάχιστο 8 χαρακτήρες)
+4. **Επιβεβαιώστε το Email σας**: Ελέγξτε τα εισερχόμενά σας για email επιβεβαίωσης και κάντε κλικ στον σύνδεσμο επιβεβαίωσης
+5. **Ολοκληρώστε το Προφίλ σας**: Προσθέστε το όνομά σας και επιλέξτε την προτίμηση στυλ μάθησης
 
-- **Personal Information**: Update your name, username, and email
-- **Learning Preferences**: Choose your preferred learning style:
-  - **Visual**: Learn better with diagrams and visual examples
-  - **Hands-on**: Prefer interactive exercises and practical coding
-  - **Balanced**: Mix of visual content and hands-on practice
-- **Avatar**: Upload a profile picture (optional)
+### Πρώτη Σύνδεση
 
-### Security
+1. **Συνδεθείτε**: Χρησιμοποιήστε το email και τον κωδικό πρόσβασής σας για να συνδεθείτε
+2. **Επισκόπηση Dashboard**: Θα μεταφερθείτε στο dashboard σας όπου μπορείτε να δείτε:
+   - Διαθέσιμες ενότητες μάθησης
+   - Επισκόπηση της προόδου σας
+   - Συνιστώμενα επόμενα βήματα
 
-- **Password Management**: Change your password in profile settings
-- **Email Updates**: Update your email address (requires verification)
-- **Account Deletion**: Contact support if you need to delete your account
+### Πλοήγηση Πλατφόρμας
+
+- **Πλοήγηση Header**: Γρήγορη πρόσβαση σε ενότητες, παρακολούθηση προόδου και το προφίλ σας
+- **Κάρτες Ενοτήτων**: Οπτική αναπαράσταση κάθε ενότητας μάθησης με δείκτες προόδου
+- **Πλοήγηση Breadcrumb**: Δείχνει την τρέχουσα τοποθεσία σας μέσα στην πλατφόρμα
 
 ---
 
-## Learning Journey
+## Διαχείριση Λογαριασμού
 
-### Learning Path Structure
+### Ρυθμίσεις Προφίλ
 
-The platform is organized in a hierarchical structure:
+Προσπελάστε το προφίλ σας κάνοντας κλικ στο avatar σας στην επάνω δεξιά γωνία:
+
+- **Προσωπικές Πληροφορίες**: Ενημερώστε το όνομα, όνομα χρήστη και email σας
+- **Προτιμήσεις Μάθησης**: Επιλέξτε το προτιμώμενο στυλ μάθησης:
+  - **Οπτικό**: Μαθαίνετε καλύτερα με διαγράμματα και οπτικά παραδείγματα
+  - **Πρακτικό**: Προτιμάτε διαδραστικές ασκήσεις και πρακτικό κώδικα
+  - **Ισορροπημένο**: Μίγμα οπτικού περιεχομένου και πρακτικής εξάσκησης
+- **Avatar**: Ανεβάστε φωτογραφία προφίλ (προαιρετικό)
+
+### Ασφάλεια
+
+- **Διαχείριση Κωδικού**: Αλλάξτε τον κωδικό πρόσβασής σας στις ρυθμίσεις προφίλ
+- **Ενημερώσεις Email**: Ενημερώστε τη διεύθυνση email σας (απαιτεί επιβεβαίωση)
+- **Διαγραφή Λογαριασμού**: Επικοινωνήστε με την υποστήριξη αν χρειάζεται να διαγράψετε τον λογαριασμό σας
+
+---
+
+## Ταξίδι Μάθησης
+
+### Δομή Διαδρομής Μάθησης
+
+Η πλατφόρμα είναι οργανωμένη σε ιεραρχική δομή:
 
 ```
-Modules → Lessons → Content Blocks + Exercises → Tests
+Ενότητες → Μαθήματα → Μπλοκ Περιεχομένου + Ασκήσεις → Τεστ
 ```
 
-### Module Progression
+### Πρόοδος Ενοτήτων
 
-1. **Sequential Learning**: Complete lessons in order for the best learning experience
-2. **Flexible Pacing**: Learn at your own speed with no time constraints
-3. **Prerequisites**: Some advanced modules may require completion of prerequisite modules
-4. **Module Completion**: Finish all lessons and pass the module test to complete a module
+1. **Διαδοχική Μάθηση**: Ολοκληρώστε μαθήματα με σειρά για την καλύτερη εκπαιδευτική εμπειρία
+2. **Ευέλικτο Ρυθμό**: Μάθετε με τον δικό σας ρυθμό χωρίς χρονικούς περιορισμούς
+3. **Προαπαιτούμενα**: Μερικές προχωρημένες ενότητες μπορεί να απαιτούν ολοκλήρωση προαπαιτούμενων ενοτήτων
+4. **Ολοκλήρωση Ενότητας**: Ολοκληρώστε όλα τα μαθήματα και περάστε το τεστ ενότητας για να ολοκληρώσετε μια ενότητα
 
-### Available Modules
+### Διαθέσιμες Ενότητες
 
 #### 1. Python Basics
-- **Duration**: 2-3 weeks
-- **Content**: Variables, data types, basic operations
-- **Prerequisites**: None
-- **Skills Learned**: Fundamental Python syntax and concepts
+- **Διάρκεια**: 2-3 εβδομάδες
+- **Περιεχόμενο**: Μεταβλητές, τύποι δεδομένων, βασικές λειτουργίες
+- **Προαπαιτούμενα**: Κανένα
+- **Δεξιότητες που Μαθαίνονται**: Θεμελιώδης σύνταξη και έννοιες Python
 
-#### 2. Control Structures
-- **Duration**: 2-3 weeks  
-- **Content**: If statements, loops, conditional logic
-- **Prerequisites**: Python Basics
-- **Skills Learned**: Program flow control and decision making
+#### 2. Δομές Ελέγχου
+- **Διάρκεια**: 2-3 εβδομάδες  
+- **Περιεχόμενο**: Δηλώσεις if, βρόχοι, λογική όρων
+- **Προαπαιτούμενα**: Python Basics
+- **Δεξιότητες που Μαθαίνονται**: Έλεγχος ροής προγράμματος και λήψη αποφάσεων
 
-#### 3. Functions and Modules
-- **Duration**: 3-4 weeks
-- **Content**: Function definition, parameters, scope, importing modules
-- **Prerequisites**: Control Structures
-- **Skills Learned**: Code organization and reusability
-
----
-
-## Modules and Lessons
-
-### Accessing Modules
-
-1. **Module List**: Click "Modules" in the main navigation
-2. **Module Selection**: Choose a module by clicking its card
-3. **Progress Indicators**: 
-   - Green checkmark: Completed
-   - Progress bar: Partially completed
-   - Empty: Not started
-
-### Lesson Structure
-
-Each lesson contains:
-
-#### Content Types
-- **Text Content**: Explanations, concepts, and theory
-- **Code Examples**: Syntax demonstrations with proper highlighting
-- **Images and Diagrams**: Visual aids to support learning
-- **Practice Exercises**: Embedded interactive coding challenges
-
-#### Navigation
-- **Lesson Tabs**: Switch between "Lesson Content" and "Exercises"
-- **Progress Tracking**: Automatic saving of your progress
-- **Previous/Next Buttons**: Move between lessons sequentially
-
-### Lesson Completion
-
-- **Auto-Save**: Your progress is automatically saved as you read
-- **Completion Criteria**: Read all content and complete required exercises
-- **Completion Indicator**: Green checkmark appears when lesson is finished
+#### 3. Συναρτήσεις και Ενότητες
+- **Διάρκεια**: 3-4 εβδομάδες
+- **Περιεχόμενο**: Ορισμός συναρτήσεων, παράμετροι, εμβέλεια, εισαγωγή ενοτήτων
+- **Προαπαιτούμενα**: Δομές Ελέγχου
+- **Δεξιότητες που Μαθαίνονται**: Οργάνωση κώδικα και επαναχρησιμοποίηση
 
 ---
 
-## Exercises
+## Ενότητες και Μαθήματα
 
-### Exercise Types
+### Πρόσβαση σε Ενότητες
 
-#### Multiple Choice Questions
-- **Format**: Question with 2-4 answer options
-- **Feedback**: Immediate results with explanations
-- **Hints**: Available for challenging questions
-- **Retries**: Unlimited attempts to get the correct answer
+1. **Λίστα Ενοτήτων**: Κάντε κλικ στο "Ενότητες" στην κύρια πλοήγηση
+2. **Επιλογή Ενότητας**: Επιλέξτε μια ενότητα κάνοντας κλικ στην κάρτα της
+3. **Δείκτες Προόδου**: 
+   - Πράσινο checkmark: Ολοκληρωμένη
+   - Γραμμή προόδου: Μερικώς ολοκληρωμένη
+   - Κενή: Δεν ξεκίνησε
 
-#### Coding Exercises
-- **Code Editor**: Built-in editor with syntax highlighting
-- **Test Cases**: Your code is automatically tested against predefined cases
-- **Debugging**: Error messages help you identify and fix issues
-- **Solutions**: Hints and sample solutions available after attempts
+### Δομή Μαθήματος
 
-#### Fill-in-the-Blank
-- **Interactive**: Complete code snippets by filling missing parts
-- **Context Clues**: Surrounding code provides hints
-- **Validation**: Real-time checking of your answers
+Κάθε μάθημα περιέχει:
 
-### Exercise Workflow
+#### Τύποι Περιεχομένου
+- **Περιεχόμενο Κειμένου**: Εξηγήσεις, έννοιες και θεωρία
+- **Παραδείγματα Κώδικα**: Επιδείξεις σύνταξης με κατάλληλη επισήμανση
+- **Εικόνες και Διαγράμματα**: Οπτικά βοηθήματα για υποστήριξη μάθησης
+- **Ασκήσεις Πρακτικής**: Ενσωματωμένες διαδραστικές προκλήσεις κώδικα
 
-1. **Read Instructions**: Carefully review what's being asked
-2. **Attempt Solution**: Write your code or select your answer
-3. **Submit**: Click submit to check your work
-4. **Review Feedback**: Read explanations for both correct and incorrect attempts
-5. **Retry if Needed**: Make corrections and resubmit
-6. **Move Forward**: Proceed to the next exercise once completed
+#### Πλοήγηση
+- **Καρτέλες Μαθήματος**: Εναλλαγή μεταξύ "Περιεχόμενο Μαθήματος" και "Ασκήσεις"
+- **Παρακολούθηση Προόδου**: Αυτόματη αποθήκευση της προόδου σας
+- **Κουμπιά Προηγούμενο/Επόμενο**: Μετακίνηση μεταξύ μαθημάτων διαδοχικά
 
-### Exercise Best Practices
+### Ολοκλήρωση Μαθήματος
 
-- **Take Your Time**: There's no time limit on exercises
-- **Read Error Messages**: They provide valuable debugging information
-- **Use Hints Sparingly**: Try to solve problems independently first
-- **Practice Regularly**: Consistent practice improves retention
+- **Αυτόματη Αποθήκευση**: Η πρόοδός σας αποθηκεύεται αυτόματα καθώς διαβάζετε
+- **Κριτήρια Ολοκλήρωσης**: Διαβάστε όλο το περιεχόμενο και ολοκληρώστε τις απαιτούμενες ασκήσεις
+- **Δείκτης Ολοκλήρωσης**: Πράσινο checkmark εμφανίζεται όταν το μάθημα τελειώνει
 
 ---
 
-## Tests and Assessments
+## Ασκήσεις
 
-### Test Types
+### Τύποι Ασκήσεων
 
-#### Module Tests
-- **Purpose**: Assess your understanding of the entire module
-- **Format**: Mixed question types (multiple choice, coding, fill-in-blank)
-- **Time Limit**: Usually 30-60 minutes depending on the module
-- **Passing Score**: Typically 70% or higher
+#### Ερωτήσεις Πολλαπλής Επιλογής
+- **Μορφή**: Ερώτηση με 2-4 επιλογές απάντησης
+- **Ανατροφοδότηση**: Άμεσα αποτελέσματα με επεξηγήσεις
+- **Υποδείξεις**: Διαθέσιμες για προκλητικές ερωτήσεις
+- **Επαναλήψεις**: Απεριόριστες προσπάθειες για τη σωστή απάντηση
 
-#### Progress Checks
-- **Purpose**: Quick assessments during lessons
-- **Format**: Usually multiple choice or short coding exercises
-- **Time Limit**: 5-10 minutes
-- **Passing Score**: 60% or higher
+#### Ασκήσεις Κώδικα
+- **Επεξεργαστής Κώδικα**: Ενσωματωμένος επεξεργαστής με επισήμανση σύνταξης
+- **Test Cases**: Ο κώδικάς σας ελέγχεται αυτόματα έναντι προκαθορισμένων περιπτώσεων
+- **Αποσφαλμάτωση**: Μηνύματα σφάλματος σας βοηθούν να εντοπίσετε και να διορθώσετε προβλήματα
+- **Λύσεις**: Υποδείξεις και δείγματα λύσεων διαθέσιμα μετά τις προσπάθειες
 
-### Taking a Test
+#### Συμπλήρωση Κενών
+- **Διαδραστικό**: Ολοκληρώστε αποσπάσματα κώδικα συμπληρώνοντας μέρη που λείπουν
+- **Ενδείξεις Πλαισίου**: Ο περιβάλλον κώδικας παρέχει υποδείξεις
+- **Επικύρωση**: Έλεγχος των απαντήσεών σας σε πραγματικό χρόνο
 
-#### Before Starting
-1. **Review Prerequisites**: Ensure you've completed all required lessons
-2. **Check Requirements**: Note the time limit and passing score
-3. **Prepare Environment**: Find a quiet space with stable internet
+### Ροή Εργασίας Ασκήσεων
 
-#### During the Test
-1. **Read Instructions**: Understand the format and requirements
-2. **Manage Time**: Keep track of remaining time
-3. **Answer All Questions**: Attempt every question
-4. **Review Answers**: Use any remaining time to double-check your work
-5. **Submit**: Click "Finish Test" when ready
+1. **Διαβάστε τις Οδηγίες**: Εξετάστε προσεκτικά τι ζητείται
+2. **Δοκιμάστε τη Λύση**: Γράψτε τον κώδικά σας ή επιλέξτε την απάντησή σας
+3. **Υποβάλετε**: Κάντε κλικ στο υποβολή για να ελέγξετε τη δουλειά σας
+4. **Αναθεωρήστε την Ανατροφοδότηση**: Διαβάστε επεξηγήσεις τόσο για σωστές όσο και για λανθασμένες προσπάθειες
+5. **Επαναλάβετε αν Χρειάζεται**: Κάντε διορθώσεις και υποβάλετε ξανά
+6. **Προχωρήστε**: Συνεχίστε στην επόμενη άσκηση μόλις ολοκληρωθεί
 
-#### Navigation
-- **Question List**: See all questions and your progress
-- **Previous/Next**: Move between questions freely
-- **Flag Questions**: Mark questions for review
-- **Time Warning**: Alerts when time is running low
+### Βέλτιστες Πρακτικές Ασκήσεων
 
-### Test Results
-
-#### Immediate Feedback
-- **Score**: Percentage score and pass/fail status
-- **Breakdown**: Performance by question type or topic
-- **Time Spent**: How long you took to complete the test
-- **Correct Answers**: Review of questions you got right/wrong
-
-#### After Passing
-- **Module Completion**: Module marked as complete
-- **Certificate**: Achievement unlocked for module completion
-- **Next Steps**: Recommendations for continued learning
-
-#### After Failing
-- **Revision Required**: Must complete revision course before retaking
-- **Detailed Feedback**: Specific areas that need improvement
-- **Study Resources**: Recommended lessons and exercises to review
+- **Αφιερώστε Χρόνο**: Δεν υπάρχει χρονικό όριο στις ασκήσεις
+- **Διαβάστε Μηνύματα Σφάλματος**: Παρέχουν πολύτιμες πληροφορίες αποσφαλμάτωσης
+- **Χρησιμοποιήστε Υποδείξεις Λιτά**: Δοκιμάστε να λύσετε προβλήματα ανεξάρτητα πρώτα
+- **Εξασκηθείτε Τακτικά**: Η συνεπής πρακτική βελτιώνει τη διατήρηση
 
 ---
 
-## Revision System
+## Τεστ και Αξιολογήσεις
 
-### When Revision is Required
+### Τύποι Τεστ
 
-The platform automatically determines when revision is needed based on:
-- **Test Score**: Scoring below 70% on a module test
-- **Performance Patterns**: Multiple failed attempts or weak areas
-- **Learning Analytics**: System assessment of your understanding
+#### Τεστ Ενοτήτων
+- **Σκοπός**: Αξιολόγηση της κατανόησής σας για ολόκληρη την ενότητα
+- **Μορφή**: Μικτοί τύποι ερωτήσεων (πολλαπλή επιλογή, κώδικας, συμπλήρωση κενών)
+- **Χρονικό Όριο**: Συνήθως 30-60 λεπτά ανάλογα με την ενότητα
+- **Βαθμός Επιτυχίας**: Τυπικά 70% ή περισσότερο
 
-### Revision Process
+#### Έλεγχοι Προόδου
+- **Σκοπός**: Γρήγορες αξιολογήσεις κατά τη διάρκεια μαθημάτων
+- **Μορφή**: Συνήθως πολλαπλή επιλογή ή σύντομες ασκήσεις κώδικα
+- **Χρονικό Όριο**: 5-10 λεπτά
+- **Βαθμός Επιτυχίας**: 60% ή περισσότερο
 
-#### Step 1: Revision Alert
-- **Notification**: Clear message explaining why revision is required
-- **Requirements**: What you need to do before retaking the test
-- **Start Button**: Begin the revision course immediately
+### Δίνοντας Τεστ
 
-#### Step 2: Revision Course
-- **Targeted Content**: Focuses on areas where you struggled
-- **Structured Learning**: Step-by-step progression through concepts
-- **Practice Exercises**: Additional hands-on practice opportunities
-- **Progress Tracking**: Monitor your improvement
+#### Πριν Ξεκινήσετε
+1. **Αναθεωρήστε Προαπαιτούμενα**: Βεβαιωθείτε ότι έχετε ολοκληρώσει όλα τα απαιτούμενα μαθήματα
+2. **Ελέγξτε Απαιτήσεις**: Σημειώστε το χρονικό όριο και τον βαθμό επιτυχίας
+3. **Προετοιμάστε το Περιβάλλον**: Βρείτε έναν ήσυχο χώρο με σταθερό διαδίκτυο
 
-#### Step 3: Revision Completion
-- **Assessment**: Short quiz to verify understanding
-- **Completion Certificate**: Confirmation you're ready to retake the test
-- **Test Unlock**: Access restored to the original test
+#### Κατά τη Διάρκεια του Τεστ
+1. **Διαβάστε τις Οδηγίες**: Κατανοήστε τη μορφή και τις απαιτήσεις
+2. **Διαχειριστείτε τον Χρόνο**: Παρακολουθήστε τον υπολειπόμενο χρόνο
+3. **Απαντήστε σε Όλες τις Ερωτήσεις**: Δοκιμάστε κάθε ερώτηση
+4. **Αναθεωρήστε τις Απαντήσεις**: Χρησιμοποιήστε τυχόν υπολειπόμενο χρόνο για διπλό έλεγχο της δουλειάς σας
+5. **Υποβάλετε**: Κάντε κλικ στο "Τέλος Τεστ" όταν είστε έτοιμοι
 
-### Revision Course Structure
+#### Πλοήγηση
+- **Λίστα Ερωτήσεων**: Δείτε όλες τις ερωτήσεις και την πρόοδό σας
+- **Προηγούμενο/Επόμενο**: Μετακινηθείτε μεταξύ ερωτήσεων ελεύθερα
+- **Σημαία Ερωτήσεων**: Σημειώστε ερωτήσεις για αναθεώρηση
+- **Προειδοποίηση Χρόνου**: Ειδοποιήσεις όταν ο χρόνος τελειώνει
 
-#### Content Types
-- **Concept Review**: Simplified explanations of challenging topics
-- **Worked Examples**: Step-by-step problem solutions
-- **Practice Problems**: Additional exercises with detailed feedback
-- **Summary Points**: Key takeaways and important reminders
+### Αποτελέσματα Τεστ
 
-#### Progress Indicators
-- **Step Counter**: Current step out of total steps
-- **Time Estimates**: Expected duration for each section
-- **Completion Status**: Visual progress through the revision course
+#### Άμεση Ανατροφοδότηση
+- **Βαθμολογία**: Ποσοστιαία βαθμολογία και κατάσταση επιτυχίας/αποτυχίας
+- **Ανάλυση**: Απόδοση ανά τύπο ερώτησης ή θέμα
+- **Χρόνος που Αφιερώθηκε**: Πόσο χρόνο πήρατε για να ολοκληρώσετε το τεστ
+- **Σωστές Απαντήσεις**: Αναθεώρηση ερωτήσεων που απαντήσατε σωστά/λάθος
 
-### Making the Most of Revision
+#### Μετά την Επιτυχία
+- **Ολοκλήρωση Ενότητας**: Η ενότητα σημειώνεται ως ολοκληρωμένη
+- **Πιστοποιητικό**: Ξεκλειδωμένο επίτευγμα για ολοκλήρωση ενότητας
+- **Επόμενα Βήματα**: Συστάσεις για συνέχιση μάθησης
 
-- **Identify Weak Areas**: Focus on topics you found challenging
-- **Take Notes**: Write down key concepts and examples
-- **Practice Actively**: Don't just read - try the exercises
-- **Ask for Help**: Use discussion forums or contact instructors
-- **Be Patient**: Learning takes time, especially for difficult concepts
-
----
-
-## Progress Tracking
-
-### Dashboard Overview
-
-Your main dashboard provides:
-
-#### Overall Progress
-- **Completion Percentage**: How much of the entire curriculum you've finished
-- **Active Days**: How many days you've been learning
-- **Current Streak**: Consecutive days of learning activity
-- **Total Time**: Cumulative time spent on the platform
-
-#### Module Progress
-- **Module Cards**: Visual progress for each learning module
-- **Lesson Completion**: How many lessons you've finished in each module
-- **Test Results**: Scores and status for module assessments
-- **Recommendations**: Suggested next modules based on your progress
-
-### Detailed Progress View
-
-#### Lesson-Level Tracking
-- **Completion Status**: Finished, in progress, or not started
-- **Time Spent**: How long you spent on each lesson
-- **Exercise Performance**: Success rate on embedded exercises
-- **Review Needed**: Lessons flagged for additional review
-
-#### Exercise Analytics
-- **Attempt History**: Record of all your exercise attempts
-- **Success Rates**: Percentage of correct answers by exercise type
-- **Common Mistakes**: Patterns in incorrect answers
-- **Improvement Trends**: How your performance changes over time
-
-#### Test Performance
-- **Score History**: All your test attempts and scores
-- **Topic Breakdown**: Performance by subject area
-- **Time Management**: How efficiently you completed tests
-- **Retake Analysis**: Improvement between test attempts
-
-### Progress Insights
-
-#### Learning Patterns
-- **Peak Performance Times**: When you learn most effectively
-- **Preferred Content Types**: Which lesson formats work best for you
-- **Difficulty Areas**: Topics that consistently challenge you
-- **Learning Velocity**: How quickly you progress through material
-
-#### Recommendations
-- **Study Schedule**: Suggested times and durations for learning
-- **Focus Areas**: Topics that need additional attention
-- **Review Timing**: When to revisit previously learned material
-- **Next Modules**: Recommended progression path
+#### Μετά την Αποτυχία
+- **Απαιτείται Επανάληψη**: Πρέπει να ολοκληρώσετε μάθημα επανάληψης πριν την επανάληψη
+- **Λεπτομερής Ανατροφοδότηση**: Συγκεκριμένες περιοχές που χρειάζονται βελτίωση
+- **Πόροι Μελέτης**: Συνιστώμενα μαθήματα και ασκήσεις για αναθεώρηση
 
 ---
 
-## Profile Management
+## Σύστημα Επανάληψης
 
-### Personal Information
+### Πότε Απαιτείται Επανάληψη
 
-#### Basic Details
-- **Display Name**: How your name appears to others
-- **Username**: Unique identifier for your account
-- **Email**: Contact email and login credential
-- **Bio**: Optional personal description
+Η πλατφόρμα καθορίζει αυτόματα πότε χρειάζεται επανάληψη βάσει:
+- **Βαθμολογία Τεστ**: Βαθμολογία κάτω από 70% σε τεστ ενότητας
+- **Μοτίβα Απόδοσης**: Πολλαπλές αποτυχημένες προσπάθειες ή αδύναμες περιοχές
+- **Αναλυτικά Μάθησης**: Αξιολόγηση συστήματος της κατανόησής σας
 
-#### Learning Preferences
-- **Learning Style**: Visual, hands-on, or balanced approach
-- **Pace Preference**: Slow and steady vs. intensive learning
-- **Notification Settings**: Email and in-app notification preferences
-- **Accessibility**: Options for users with different needs
+### Διαδικασία Επανάληψης
 
-### Achievement System
+#### Βήμα 1: Ειδοποίηση Επανάληψης
+- **Ειδοποίηση**: Σαφές μήνυμα που εξηγεί γιατί απαιτείται επανάληψη
+- **Απαιτήσεις**: Τι πρέπει να κάνετε πριν την επανάληψη του τεστ
+- **Κουμπί Έναρξης**: Ξεκινήστε το μάθημα επανάληψης αμέσως
 
-#### Types of Achievements
-- **Module Completion**: Badges for finishing each module
-- **Perfect Scores**: Recognition for 100% test performance
-- **Streak Milestones**: Rewards for consistent daily learning
-- **Speed Achievements**: Completing modules within target timeframes
-- **Helper Badges**: Contributing to community discussions
+#### Βήμα 2: Μάθημα Επανάληψης
+- **Στοχευμένο Περιεχόμενο**: Εστιάζει σε περιοχές όπου δυσκολευτήκατε
+- **Δομημένη Μάθηση**: Προοδευτική πρόοδος μέσω εννοιών
+- **Ευκαιρίες Πρακτικής**: Επιπλέον πρακτική εξάσκηση
+- **Παρακολούθηση Προόδου**: Παρακολουθήστε τη βελτίωσή σας
 
-#### Achievement Display
-- **Profile Showcase**: Display your top achievements on your profile
-- **Progress Tracking**: See progress toward upcoming achievements
-- **Social Sharing**: Share accomplishments with friends (optional)
+#### Βήμα 3: Ολοκλήρωση Επανάληψης
+- **Αξιολόγηση**: Σύντομο κουίζ για επιβεβαίωση κατανόησης
+- **Πιστοποιητικό Ολοκλήρωσης**: Επιβεβαίωση ότι είστε έτοιμοι να επαναλάβετε το τεστ
+- **Ξεκλείδωμα Τεστ**: Αποκαθίσταται η πρόσβαση στο αρχικό τεστ
 
-### Privacy Settings
+### Δομή Μαθήματος Επανάληψης
 
-#### Data Control
-- **Profile Visibility**: Choose who can see your profile information
-- **Progress Sharing**: Control whether your progress is visible to others
-- **Activity Status**: Show or hide when you're active on the platform
-- **Communication**: Manage who can contact you through the platform
+#### Τύποι Περιεχομένου
+- **Αναθεώρηση Εννοιών**: Απλοποιημένες εξηγήσεις προκλητικών θεμάτων
+- **Επεξεργασμένα Παραδείγματα**: Βήμα-προς-βήμα λύσεις προβλημάτων
+- **Προβλήματα Πρακτικής**: Επιπλέον ασκήσεις με λεπτομερή ανατροφοδότηση
+- **Σημεία Περίληψης**: Βασικά συμπεράσματα και σημαντικές υπενθυμίσεις
 
-#### Data Export
-- **Progress Report**: Download detailed learning analytics
-- **Achievement Records**: Export certificates and badges
-- **Exercise History**: Complete record of your practice sessions
+#### Δείκτες Προόδου
+- **Μετρητής Βημάτων**: Τρέχον βήμα από συνολικά βήματα
+- **Εκτιμήσεις Χρόνου**: Αναμενόμενη διάρκεια για κάθε τμήμα
+- **Κατάσταση Ολοκλήρωσης**: Οπτική πρόοδος μέσω του μαθήματος επανάληψης
 
----
+### Αξιοποίηση της Επανάληψης
 
-## Tips for Success
-
-### Effective Learning Strategies
-
-#### Before You Start
-- **Set Clear Goals**: Define what you want to achieve
-- **Create a Schedule**: Consistent daily practice is better than marathon sessions
-- **Prepare Your Environment**: Find a quiet, comfortable space for learning
-- **Gather Resources**: Have notebook, pen, and water nearby
-
-#### During Learning Sessions
-- **Focus on Understanding**: Don't just memorize syntax
-- **Take Breaks**: Use the Pomodoro technique (25 minutes study, 5 minute break)
-- **Practice Actively**: Try to code examples yourself
-- **Take Notes**: Write down important concepts and examples
-
-#### After Learning Sessions
-- **Review**: Quickly go over what you learned
-- **Practice**: Try additional exercises or create your own programs
-- **Reflect**: Think about how new concepts connect to previous learning
-- **Plan**: Decide what to focus on in your next session
-
-### Common Challenges and Solutions
-
-#### Feeling Overwhelmed
-- **Problem**: Too much information at once
-- **Solution**: Break learning into smaller chunks, focus on one concept at a time
-
-#### Forgetting Previous Lessons
-- **Problem**: Can't remember earlier material
-- **Solution**: Regular review sessions, spaced repetition, note-taking
-
-#### Stuck on Exercises
-- **Problem**: Can't solve coding problems
-- **Solution**: Break problems into smaller steps, use pseudocode, ask for help
-
-#### Inconsistent Learning
-- **Problem**: Irregular study schedule
-- **Solution**: Set daily reminders, start with small goals, build habits gradually
-
-### Maximizing Platform Features
-
-#### Use All Content Types
-- **Read Thoroughly**: Don't skip explanatory text
-- **Study Examples**: Understand how code works
-- **Practice Regularly**: Complete all exercises
-- **Test Knowledge**: Take quizzes seriously
-
-#### Engage with Assessments
-- **Prepare Properly**: Review before taking tests
-- **Learn from Mistakes**: Analyze incorrect answers
-- **Use Revision**: Don't see it as punishment, but as additional learning
-
-#### Track Your Progress
-- **Monitor Regularly**: Check your dashboard weekly
-- **Identify Patterns**: Notice when you learn best
-- **Celebrate Achievements**: Acknowledge your progress
-- **Adjust Strategy**: Modify approach based on what works
+- **Προσδιορίστε Αδύναμες Περιοχές**: Εστιάστε σε θέματα που βρήκατε προκλητικά
+- **Κρατήστε Σημειώσεις**: Γράψτε βασικές έννοιες και παραδείγματα
+- **Εξασκηθείτε Ενεργά**: Μην απλώς διαβάζετε - δοκιμάστε τις ασκήσεις
+- **Ζητήστε Βοήθεια**: Χρησιμοποιήστε φόρουμ συζητήσεων ή επικοινωνήστε με εκπαιδευτικούς
+- **Να είστε Υπομονετικοί**: Η μάθηση παίρνει χρόνο, ειδικά για δύσκολες έννοιες
 
 ---
 
-## Troubleshooting
+## Παρακολούθηση Προόδου
 
-### Technical Issues
+### Επισκόπηση Dashboard
 
-#### Login Problems
-- **Forgot Password**: Use the "Reset Password" link on the login page
-- **Account Locked**: Wait 15 minutes or contact support
-- **Email Not Verified**: Check spam folder for verification email
-- **Two-Factor Issues**: Ensure your device clock is accurate
+Το κύριο dashboard σας παρέχει:
 
-#### Platform Performance
-- **Slow Loading**: Check your internet connection, try refreshing the page
-- **Content Not Appearing**: Clear browser cache and cookies
-- **Exercise Not Working**: Try a different browser or disable ad blockers
-- **Progress Not Saving**: Ensure you're not in incognito/private mode
+#### Συνολική Πρόοδος
+- **Ποσοστό Ολοκλήρωσης**: Πόσο από ολόκληρο το πρόγραμμα σπουδών έχετε ολοκληρώσει
+- **Ενεργές Ημέρες**: Πόσες ημέρες έχετε μαθαίνει
+- **Τρέχον Streak**: Διαδοχικές ημέρες δραστηριότητας μάθησης
+- **Συνολικός Χρόνος**: Συσσωρευτικός χρόνος που αφιερώθηκε στην πλατφόρμα
 
-#### Browser Compatibility
-- **Recommended Browsers**: Chrome, Firefox, Safari, Edge (latest versions)
-- **JavaScript Required**: Ensure JavaScript is enabled
-- **Cookies Required**: Allow cookies for the platform domain
-- **Ad Blockers**: May interfere with platform functionality
+#### Πρόοδος Ενότητας
+- **Κάρτες Ενότητας**: Οπτική πρόοδος για κάθε ενότητα μάθησης
+- **Ολοκλήρωση Μαθήματος**: Πόσα μαθήματα έχετε ολοκληρώσει σε κάθε ενότητα
+- **Αποτελέσματα Τεστ**: Βαθμολογίες και κατάσταση για αξιολογήσεις ενοτήτων
+- **Συστάσεις**: Προτεινόμενες επόμενες ενότητες βάσει της προόδου σας
 
-### Learning Issues
+### Λεπτομερής Προβολή Προόδου
 
-#### Content Concerns
-- **Unclear Instructions**: Use the feedback button to report issues
-- **Technical Errors**: Report bugs through the support system
-- **Missing Content**: Contact support if lessons appear incomplete
-- **Difficulty Level**: Use revision courses or ask for additional resources
+#### Παρακολούθηση Επιπέδου Μαθήματος
+- **Κατάσταση Ολοκλήρωσης**: Ολοκληρωμένο, σε εξέλιξη ή δεν ξεκίνησε
+- **Χρόνος που Αφιερώθηκε**: Πόσο χρόνο αφιερώσατε σε κάθε μάθημα
+- **Απόδοση Ασκήσεων**: Ποσοστό επιτυχίας σε ενσωματωμένες ασκήσεις
+- **Απαιτείται Αναθεώρηση**: Μαθήματα που σημειώθηκαν για επιπλέον αναθεώρηση
 
-#### Progress Problems
-- **Progress Not Updating**: Refresh the page or log out and back in
-- **Missing Exercises**: Ensure you've completed prerequisite lessons
-- **Test Access Denied**: Check if revision is required
-- **Certificate Not Appearing**: Allow 24 hours for processing
+#### Αναλυτικά Ασκήσεων
+- **Ιστορικό Προσπαθειών**: Αρχείο όλων των προσπαθειών ασκήσεων
+- **Ποσοστά Επιτυχίας**: Ποσοστό σωστών απαντήσεων ανά τύπο άσκησης
+- **Συνήθη Λάθη**: Μοτίβα σε λανθασμένες απαντήσεις
+- **Τάσεις Βελτίωσης**: Πώς αλλάζει η απόδοσή σας με τον χρόνο
 
-### Getting Help
+#### Απόδοση Τεστ
+- **Ιστορικό Βαθμολογίας**: Όλες οι προσπάθειες και βαθμολογίες τεστ
+- **Ανάλυση Θεμάτων**: Απόδοση ανά θεματική περιοχή
+- **Διαχείριση Χρόνου**: Πόσο αποδοτικά ολοκληρώσατε τα τεστ
+- **Ανάλυση Επανάληψης**: Βελτίωση μεταξύ προσπαθειών τεστ
 
-#### Self-Service Resources
-- **FAQ Section**: Common questions and answers
-- **User Forums**: Community discussions and peer help
-- **Video Tutorials**: Platform walkthrough videos
-- **Documentation**: Comprehensive platform guides
+### Ιδέες Προόδου
 
-#### Contact Support
-- **Email Support**: support@pythonlearning.com
-- **Response Time**: 24-48 hours for non-urgent issues
-- **Live Chat**: Available during business hours (9 AM - 5 PM EST)
-- **Phone Support**: Premium users only
+#### Μοτίβα Μάθησης
+- **Ώρες Μέγιστης Απόδοσης**: Πότε μαθαίνετε πιο αποτελεσματικά
+- **Προτιμώμενοι Τύποι Περιεχομένου**: Ποιες μορφές μαθημάτων λειτουργούν καλύτερα για εσάς
+- **Περιοχές Δυσκολίας**: Θέματα που σας προκαλούν συνεχώς
+- **Ταχύτητα Μάθησης**: Πόσο γρήγορα προοδεύετε μέσω του υλικού
 
-#### Providing Feedback
-- **Bug Reports**: Use the "Report Bug" button in platform
-- **Feature Requests**: Submit through feedback form
-- **Content Suggestions**: Email educational team
-- **User Experience**: Regular surveys and feedback opportunities
+#### Συστάσεις
+- **Πρόγραμμα Μελέτης**: Προτεινόμενες ώρες και διάρκειες για μάθηση
+- **Περιοχές Εστίασης**: Θέματα που χρειάζονται πρόσθετη προσοχή
+- **Χρονισμός Αναθεώρησης**: Πότε να επανεξετάσετε προηγουμένως μαθημένο υλικό
+- **Επόμενες Ενότητες**: Συνιστώμενη διαδρομή προόδου
 
 ---
 
-## Appendices
+## Διαχείριση Προφίλ
 
-### Keyboard Shortcuts
+### Προσωπικές Πληροφορίες
 
-#### Navigation
-- `Ctrl + Home`: Return to dashboard
-- `Ctrl + →`: Next lesson/exercise
-- `Ctrl + ←`: Previous lesson/exercise
-- `Ctrl + Enter`: Submit exercise/test
+#### Βασικά Στοιχεία
+- **Όνομα Εμφάνισης**: Πώς εμφανίζεται το όνομά σας σε άλλους
+- **Όνομα Χρήστη**: Μοναδικός αναγνωριστικός για τον λογαριασμό σας
+- **Email**: Email επικοινωνίας και διαπιστευτήριο σύνδεσης
+- **Βιογραφικό**: Προαιρετική προσωπική περιγραφή
 
-#### Code Editor
-- `Ctrl + S`: Save code (auto-save enabled)
-- `Ctrl + Z`: Undo
-- `Ctrl + Y`: Redo
-- `Ctrl + /`: Comment/uncomment line
-- `Tab`: Indent selection
-- `Shift + Tab`: Unindent selection
+#### Προτιμήσεις Μάθησης
+- **Στυλ Μάθησης**: Οπτική, πρακτική ή ισορροπημένη προσέγγιση
+- **Προτίμηση Ρυθμού**: Αργή και σταθερή vs. εντατική μάθηση
+- **Ρυθμίσεις Ειδοποιήσεων**: Προτιμήσεις email και ειδοποιήσεων εφαρμογής
+- **Προσβασιμότητα**: Επιλογές για χρήστες με διαφορετικές ανάγκες
 
-### System Requirements
+### Σύστημα Επιτευγμάτων
 
-#### Minimum Requirements
-- **Browser**: Modern browser with JavaScript enabled
-- **Internet**: Stable broadband connection (1 Mbps+)
-- **Screen**: 1024x768 resolution minimum
-- **Memory**: 4GB RAM recommended
+#### Τύποι Επιτευγμάτων
+- **Ολοκλήρωση Ενότητας**: Διακριτικά για ολοκλήρωση κάθε ενότητας
+- **Τέλειες Βαθμολογίες**: Αναγνώριση για 100% απόδοση τεστ
+- **Ορόσημα Streak**: Ανταμοιβές για συνεπή ημερήσια μάθηση
+- **Επιτεύγματα Ταχύτητας**: Ολοκλήρωση ενοτήτων εντός στοχευμένων χρονοδιαγραμμάτων
+- **Διακριτικά Βοηθού**: Συνεισφορά σε συζητήσεις κοινότητας
 
-#### Recommended Setup
-- **Browser**: Chrome, Firefox, Safari, or Edge (latest version)
-- **Internet**: High-speed broadband (5 Mbps+)
-- **Screen**: 1920x1080 or higher resolution
-- **Memory**: 8GB+ RAM for optimal performance
+#### Εμφάνιση Επιτευγμάτων
+- **Βιτρίνα Προφίλ**: Εμφανίστε τα κορυφαία επιτεύγματά σας στο προφίλ σας
+- **Παρακολούθηση Προόδου**: Δείτε πρόοδο προς επερχόμενα επιτεύγματα
+- **Κοινωνική Κοινοποίηση**: Κοινοποιήστε επιτεύγματα με φίλους (προαιρετικό)
 
-### Accessibility Features
+### Ρυθμίσεις Απορρήτου
 
-#### Visual Accessibility
-- **Font Size**: Adjustable text size
-- **High Contrast**: Alternative color schemes
-- **Screen Reader**: Compatible with NVDA, JAWS, VoiceOver
-- **Keyboard Navigation**: Full keyboard accessibility
+#### Έλεγχος Δεδομένων
+- **Ορατότητα Προφίλ**: Επιλέξτε ποιος μπορεί να δει τις πληροφορίες του προφίλ σας
+- **Κοινοποίηση Προόδου**: Ελέγξτε αν η πρόοδός σας είναι ορατή σε άλλους
+- **Κατάσταση Δραστηριότητας**: Εμφανίστε ή αποκρύψτε πότε είστε ενεργοί στην πλατφόρμα
+- **Επικοινωνία**: Διαχειριστείτε ποιος μπορεί να επικοινωνήσει μαζί σας μέσω της πλατφόρμας
 
-#### Motor Accessibility
-- **Large Targets**: Generous click/tap areas
-- **Keyboard Only**: All functions accessible via keyboard
-- **Voice Input**: Compatible with speech recognition software
-- **Customizable**: Adjustable interface elements
+#### Εξαγωγή Δεδομένων
+- **Αναφορά Προόδου**: Κατεβάστε λεπτομερή αναλυτικά μάθησης
+- **Αρχεία Επιτευγμάτων**: Εξάγετε πιστοποιητικά και διακριτικά
+- **Ιστορικό Ασκήσεων**: Πλήρες αρχείο των συνεδριών πρακτικής σας
 
 ---
 
-*This user guide is regularly updated. Last updated: [Current Date]*
-*For the most current information, visit our documentation website.*
+## Συμβουλές για Επιτυχία
+
+### Αποτελεσματικές Στρατηγικές Μάθησης
+
+#### Πριν Ξεκινήσετε
+- **Ορίστε Σαφείς Στόχους**: Καθορίστε τι θέλετε να επιτύχετε
+- **Δημιουργήστε Πρόγραμμα**: Η συνεπής ημερήσια πρακτική είναι καλύτερη από marathonian συνεδρίες
+- **Προετοιμάστε το Περιβάλλον σας**: Βρείτε έναν ήσυχο, άνετο χώρο για μάθηση
+- **Συγκεντρώστε Πόρους**: Έχετε σημειωματάριο, στυλό και νερό κοντά
+
+#### Κατά τις Συνεδρίες Μάθησης
+- **Εστιάστε στην Κατανόηση**: Μην απομνημονεύετε απλώς σύνταξη
+- **Κάντε Διαλείμματα**: Χρησιμοποιήστε την τεχνική Pomodoro (25 λεπτά μελέτη, 5 λεπτά διάλειμμα)
+- **Εξασκηθείτε Ενεργά**: Δοκιμάστε να κωδικοποιήσετε παραδείγματα μόνοι σας
+- **Κρατήστε Σημειώσεις**: Γράψτε σημαντικές έννοιες και παραδείγματα
+
+#### Μετά τις Συνεδρίες Μάθησης
+- **Αναθεωρήστε**: Επανεξετάστε γρήγορα τι μάθατε
+- **Εξασκηθείτε**: Δοκιμάστε επιπλέον ασκήσεις ή δημιουργήστε τα δικά σας προγράμματα
+- **Στοχαστείτε**: Σκεφτείτε πώς οι νέες έννοιες συνδέονται με προηγούμενη μάθηση
+- **Σχεδιάστε**: Αποφασίστε σε τι να εστιάσετε στην επόμενη συνεδρία
+
+### Συνήθεις Προκλήσεις και Λύσεις
+
+#### Αίσθημα Κατακόρυφωσης
+- **Πρόβλημα**: Πάρα πολλές πληροφορίες ταυτόχρονα
+- **Λύση**: Χωρίστε τη μάθηση σε μικρότερα κομμάτια, εστιάστε σε μία έννοια τη φορά
+
+#### Ξεχνώντας Προηγούμενα Μαθήματα
+- **Πρόβλημα**: Δεν μπορείτε να θυμηθείτε προηγούμενο υλικό
+- **Λύση**: Τακτικές συνεδρίες αναθεώρησης, διαστημική επανάληψη, κρατώντας σημειώσεις
+
+#### Κολλημένος σε Ασκήσεις
+- **Πρόβλημα**: Δεν μπορείτε να λύσετε προβλήματα κώδικα
+- **Λύση**: Χωρίστε προβλήματα σε μικρότερα βήματα, χρησιμοποιήστε ψευδοκώδικα, ζητήστε βοήθεια
+
+#### Ασυνεπής Μάθηση
+- **Πρόβλημα**: Ακανόνιστο πρόγραμμα μελέτης
+- **Λύση**: Ορίστε ημερήσιες υπενθυμίσεις, ξεκινήστε με μικρούς στόχους, οικοδομήστε συνήθειες σταδιακά
+
+### Μεγιστοποίηση Χαρακτηριστικών Πλατφόρμας
+
+#### Χρησιμοποιήστε Όλους τους Τύπους Περιεχομένου
+- **Διαβάστε Διεξοδικά**: Μην παραλείπετε επεξηγηματικό κείμενο
+- **Μελετήστε Παραδείγματα**: Κατανοήστε πώς λειτουργεί ο κώδικας
+- **Εξασκηθείτε Τακτικά**: Ολοκληρώστε όλες τις ασκήσεις
+- **Πάρτε τα Τεστ Σοβαρά**: Προετοιμαστείτε κατάλληλα για αξιολογήσεις
+
+#### Εμπλακείτε με Αξιολογήσεις
+- **Προετοιμαστείτε Σωστά**: Αναθεωρήστε πριν δώσετε τεστ
+- **Μάθετε από Λάθη**: Αναλύστε λανθασμένες απαντήσεις
+- **Χρησιμοποιήστε την Επανάληψη**: Μην το βλέπετε ως τιμωρία, αλλά ως επιπλέον μάθηση
+
+#### Παρακολουθήστε την Πρόοδό σας
+- **Παρακολουθήστε Τακτικά**: Ελέγξτε το dashboard σας εβδομαδιαία
+- **Αναγνωρίστε Μοτίβα**: Παρατηρήστε πότε μαθαίνετε καλύτερα
+- **Γιορτάστε Επιτεύγματα**: Αναγνωρίστε την πρόοδό σας
+- **Προσαρμόστε τη Στρατηγική**: Τροποποιήστε την προσέγγιση βάσει αυτού που λειτουργεί
+
+---
+
+## Αντιμετώπιση Προβλημάτων
+
+### Τεχνικά Θέματα
+
+#### Προβλήματα Σύνδεσης
+- **Ξεχάσατε τον Κωδικό**: Χρησιμοποιήστε τον σύνδεσμο "Επαναφορά Κωδικού" στη σελίδα σύνδεσης
+- **Κλειδωμένος Λογαριασμός**: Περιμένετε 15 λεπτά ή επικοινωνήστε με την υποστήριξη
+- **Email δεν Επιβεβαιώθηκε**: Ελέγξτε τον φάκελο spam για email επιβεβαίωσης
+- **Θέματα Δύο Παραγόντων**: Βεβαιωθείτε ότι το ρολόι της συσκευής σας είναι ακριβές
+
+#### Απόδοση Πλατφόρμας
+- **Αργή Φόρτωση**: Ελέγξτε τη σύνδεση διαδικτύου σας, δοκιμάστε να ανανεώσετε τη σελίδα
+- **Περιεχόμενο δεν Εμφανίζεται**: Καθαρίστε την προσωρινή μνήμη και τα cookies του φυλλομετρητή
+- **Άσκηση δεν Λειτουργεί**: Δοκιμάστε διαφορετικό φυλλομετρητή ή απενεργοποιήστε αποκλειστές διαφημίσεων
+- **Πρόοδος δεν Αποθηκεύεται**: Βεβαιωθείτε ότι δεν είστε σε λειτουργία ανωνύμου/ιδιωτικής περιήγησης
+
+#### Συμβατότητα Φυλλομετρητή
+- **Συνιστώμενοι Φυλλομετρητές**: Chrome, Firefox, Safari, Edge (τελευταίες εκδόσεις)
+- **Απαιτείται JavaScript**: Βεβαιωθείτε ότι το JavaScript είναι ενεργοποιημένο
+- **Απαιτούνται Cookies**: Επιτρέψτε cookies για τον τομέα της πλατφόρμας
+- **Αποκλειστές Διαφημίσεων**: Μπορεί να παρεμβάλλουν στη λειτουργικότητα της πλατφόρμας
+
+### Θέματα Μάθησης
+
+#### Ανησυχίες Περιεχομένου
+- **Ασαφείς Οδηγίες**: Χρησιμοποιήστε το κουμπί ανατροφοδότησης για αναφορά θεμάτων
+- **Τεχνικά Σφάλματα**: Αναφέρετε bugs μέσω του συστήματος υποστήριξης
+- **Περιεχόμενο που Λείπει**: Επικοινωνήστε με την υποστήριξη αν τα μαθήματα φαίνονται ελλιπή
+- **Επίπεδο Δυσκολίας**: Χρησιμοποιήστε μαθήματα επανάληψης ή ζητήστε επιπλέον πόρους
+
+#### Προβλήματα Προόδου
+- **Πρόοδος δεν Ενημερώνεται**: Ανανεώστε τη σελίδα ή αποσυνδεθείτε και συνδεθείτε ξανά
+- **Ασκήσεις που Λείπουν**: Βεβαιωθείτε ότι έχετε ολοκληρώσει τα προαπαιτούμενα μαθήματα
+- **Δεν Επιτρέπεται Πρόσβαση σε Τεστ**: Ελέγξτε αν απαιτείται επανάληψη
+- **Πιστοποιητικό δεν Εμφανίζεται**: Επιτρέψτε 24 ώρες για επεξεργασία
+
+### Λήψη Βοήθειας
+
+#### Πόροι Αυτοεξυπηρέτησης
+- **Τμήμα FAQ**: Συνήθεις ερωτήσεις και απαντήσεις
+- **Φόρουμ Χρηστών**: Συζητήσεις κοινότητας και βοήθεια συνομηλίκων
+- **Εκπαιδευτικά Βίντεο**: Βίντεο περιήγησης πλατφόρμας
+- **Τεκμηρίωση**: Περιεκτικοί οδηγοί πλατφόρμας
+
+#### Επικοινωνία με την Υποστήριξη
+- **Υποστήριξη Email**: support@pythonlearning.com
+- **Χρόνος Απόκρισης**: 24-48 ώρες για μη επείγοντα θέματα
+- **Live Chat**: Διαθέσιμο κατά τις ώρες λειτουργίας (9 ΠΜ - 5 ΜΜ EST)
+- **Τηλεφωνική Υποστήριξη**: Μόνο για premium χρήστες
+
+#### Παροχή Ανατροφοδότησης
+- **Αναφορές Bugs**: Χρησιμοποιήστε το κουμπί "Αναφορά Bug" στην πλατφόρμα
+- **Αιτήματα Χαρακτηριστικών**: Υποβάλετε μέσω φόρμας ανατροφοδότησης
+- **Προτάσεις Περιεχομένου**: Email στην εκπαιδευτική ομάδα
+- **Εμπειρία Χρήστη**: Τακτικές έρευνες και ευκαιρίες ανατροφοδότησης
+
+---
+
+## Παραρτήματα
+
+### Συντομεύσεις Πληκτρολογίου
+
+#### Πλοήγηση
+- `Ctrl + Home`: Επιστροφή στο dashboard
+- `Ctrl + →`: Επόμενο μάθημα/άσκηση
+- `Ctrl + ←`: Προηγούμενο μάθημα/άσκηση
+- `Ctrl + Enter`: Υποβολή άσκησης/τεστ
+
+#### Επεξεργαστής Κώδικα
+- `Ctrl + S`: Αποθήκευση κώδικα (ενεργοποιημένη αυτόματη αποθήκευση)
+- `Ctrl + Z`: Αναίρεση
+- `Ctrl + Y`: Επανάληψη
+- `Ctrl + /`: Σχόλιο/κατάργηση σχολίου γραμμής
+- `Tab`: Εσοχή επιλογής
+- `Shift + Tab`: Κατάργηση εσοχής επιλογής
+
+### Απαιτήσεις Συστήματος
+
+#### Ελάχιστες Απαιτήσεις
+- **Φυλλομετρητής**: Σύγχρονος φυλλομετρητής με ενεργοποιημένο JavaScript
+- **Διαδίκτυο**: Σταθερή ευρυζωνική σύνδεση (1 Mbps+)
+- **Οθόνη**: Ανάλυση 1024x768 ελάχιστο
+- **Μνήμη**: 4GB RAM συνιστάται
+
+#### Συνιστώμενη Εγκατάσταση
+- **Φυλλομετρητής**: Chrome, Firefox, Safari ή Edge (τελευταία έκδοση)
+- **Διαδίκτυο**: Υψηλής ταχύτητας ευρυζωνική (5 Mbps+)
+- **Οθόνη**: 1920x1080 ή μεγαλύτερη ανάλυση
+- **Μνήμη**: 8GB+ RAM για βέλτιστη απόδοση
+
+### Χαρακτηριστικά Προσβασιμότητας
+
+#### Οπτική Προσβασιμότητα
+- **Μέγεθος Γραμματοσειράς**: Ρυθμιζόμενο μέγεθος κειμένου
+- **Υψηλή Αντίθεση**: Εναλλακτικά χρωματικά σχήματα
+- **Screen Reader**: Συμβατό με NVDA, JAWS, VoiceOver
+- **Πλοήγηση Πληκτρολογίου**: Πλήρης προσβασιμότητα πληκτρολογίου
+
+#### Κινητική Προσβασιμότητα
+- **Μεγάλοι Στόχοι**: Γενναιόδωρες περιοχές κλικ/αγγίγματος
+- **Μόνο Πληκτρολόγιο**: Όλες οι λειτουργίες προσβάσιμες μέσω πληκτρολογίου
+- **Φωνητική Είσοδος**: Συμβατό με λογισμικό αναγνώρισης ομιλίας
+- **Προσαρμοζόμενο**: Ρυθμιζόμενα στοιχεία διεπαφής
+
+---
+
+*Αυτός ο οδηγός χρήστη ενημερώνεται τακτικά. Τελευταία ενημέρωση: [Τρέχουσα Ημερομηνία]*
+*Για τις πιο πρόσφατες πληροφορίες, επισκεφθείτε την ιστοσελίδα τεκμηρίωσής μας.*

@@ -1,36 +1,36 @@
 
-# Learning Platform Architecture Documentation
+# Τεκμηρίωση Αρχιτεκτονικής Πλατφόρμας Μάθησης
 
-## Overview
+## Επισκόπηση
 
-This learning platform is a modern web application built with React, TypeScript, and Supabase. It provides an interactive learning environment for Python programming with features like lessons, exercises, tests, and adaptive revision courses.
+Αυτή η πλατφόρμα μάθησης είναι μια σύγχρονη εφαρμογή ιστού χτισμένη με React, TypeScript και Supabase. Παρέχει ένα διαδραστικό εκπαιδευτικό περιβάλλον για προγραμματισμό Python με χαρακτηριστικά όπως μαθήματα, ασκήσεις, τεστ και προσαρμοστικά μαθήματα επανάληψης.
 
-## Technology Stack
+## Στοίβα Τεχνολογίας
 
 ### Frontend
-- **React 18** - Modern UI library with hooks and functional components
-- **TypeScript** - Type-safe JavaScript for better development experience
-- **Vite** - Fast build tool and development server
-- **Tailwind CSS** - Utility-first CSS framework for styling
-- **Shadcn/ui** - High-quality component library built on Radix UI
+- **React 18** - Σύγχρονη βιβλιοθήκη UI με hooks και συναρτησιακά components
+- **TypeScript** - Type-safe JavaScript για καλύτερη εμπειρία ανάπτυξης
+- **Vite** - Γρήγορο εργαλείο χτισίματος και διακομιστής ανάπτυξης
+- **Tailwind CSS** - Utility-first CSS framework για styling
+- **Shadcn/ui** - Υψηλής ποιότητας βιβλιοθήκη components χτισμένη σε Radix UI
 - **React Router DOM** - Client-side routing
-- **TanStack React Query** - Server state management and caching
+- **TanStack React Query** - Διαχείριση κατάστασης διακομιστή και caching
 
-### Backend & Database
-- **Supabase** - Backend-as-a-Service providing:
-  - PostgreSQL database with Row Level Security (RLS)
-  - Authentication and user management
+### Backend & Βάση Δεδομένων
+- **Supabase** - Backend-as-a-Service που παρέχει:
+  - PostgreSQL βάση δεδομένων με Row Level Security (RLS)
+  - Πιστοποίηση και διαχείριση χρηστών
   - Real-time subscriptions
-  - Edge Functions for serverless computing
-  - File storage
+  - Edge Functions για serverless computing
+  - Αποθήκευση αρχείων
 
-### State Management
-- **React Context API** - Global state management for:
-  - Authentication state (`AuthContext`)
-  - Learning progress (`ProgressContext`)
-- **React Query** - Server state caching and synchronization
+### Διαχείριση Κατάστασης
+- **React Context API** - Καθολική διαχείριση κατάστασης για:
+  - Κατάσταση πιστοποίησης (`AuthContext`)
+  - Πρόοδος μάθησης (`ProgressContext`)
+- **React Query** - Caching και συγχρονισμός κατάστασης διακομιστή
 
-## System Architecture
+## Αρχιτεκτονική Συστήματος
 
 ```
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
@@ -45,37 +45,37 @@ This learning platform is a modern web application built with React, TypeScript,
     └─────────┘             └─────────┘             └─────────┘
 ```
 
-## Core Features
+## Βασικά Χαρακτηριστικά
 
-### 1. Authentication System
-- User registration and login
-- Profile management with learning preferences
-- Row Level Security for data isolation
-- Automatic profile creation on signup
+### 1. Σύστημα Πιστοποίησης
+- Εγγραφή και σύνδεση χρηστών
+- Διαχείριση προφίλ με προτιμήσεις μάθησης
+- Row Level Security για απομόνωση δεδομένων
+- Αυτόματη δημιουργία προφίλ κατά την εγγραφή
 
-### 2. Learning Management
-- **Modules**: Organized learning units (e.g., "Python Basics")
-- **Lessons**: Individual learning sessions with content blocks
-- **Exercises**: Interactive coding and multiple-choice questions
-- **Tests**: Assessment tools with passing requirements
+### 2. Διαχείριση Μάθησης
+- **Ενότητες**: Οργανωμένες μαθησιακές μονάδες (π.χ., "Python Basics")
+- **Μαθήματα**: Ατομικές μαθησιακές συνεδρίες με μπλοκ περιεχομένου
+- **Ασκήσεις**: Διαδραστικές ερωτήσεις κώδικα και πολλαπλής επιλογής
+- **Τεστ**: Εργαλεία αξιολόγησης με απαιτήσεις επιτυχίας
 
-### 3. Progress Tracking
-- Lesson completion tracking
-- Exercise attempt recording
-- Test results with pass/fail status
-- Module completion calculation
+### 3. Παρακολούθηση Προόδου
+- Παρακολούθηση ολοκλήρωσης μαθημάτων
+- Καταγραφή προσπαθειών ασκήσεων
+- Αποτελέσματα τεστ με κατάσταση επιτυχίας/αποτυχίας
+- Υπολογισμός ολοκλήρωσης ενότητας
 
-### 4. Adaptive Learning
-- **Revision Requirements**: Triggered when tests are failed
-- **Revision Courses**: Structured content to improve understanding
-- **Prerequisite System**: Prevents progression without completing requirements
+### 4. Προσαρμοστική Μάθηση
+- **Απαιτήσεις Επανάληψης**: Ενεργοποιούνται όταν τα τεστ αποτυγχάνουν
+- **Μαθήματα Επανάληψης**: Δομημένο περιεχόμενο για βελτίωση κατανόησης
+- **Σύστημα Προαπαιτούμενων**: Αποτρέπει την πρόοδο χωρίς ολοκλήρωση απαιτήσεων
 
-## Database Schema
+## Σχήμα Βάσης Δεδομένων
 
-### Core Tables
+### Βασικοί Πίνακες
 
 #### `profiles`
-User profile information extending Supabase auth.users
+Πληροφορίες προφίλ χρήστη που επεκτείνουν το Supabase auth.users
 ```sql
 - id (uuid, PK, FK to auth.users)
 - username (text)
@@ -86,7 +86,7 @@ User profile information extending Supabase auth.users
 ```
 
 #### `user_progress`
-Tracks lesson completion
+Παρακολουθεί ολοκλήρωση μαθημάτων
 ```sql
 - id (uuid, PK)
 - user_id (uuid, FK to auth.users)
@@ -97,7 +97,7 @@ Tracks lesson completion
 ```
 
 #### `exercise_attempts`
-Records exercise completion attempts
+Καταγράφει προσπάθειες ολοκλήρωσης ασκήσεων
 ```sql
 - id (uuid, PK)
 - user_id (uuid, FK to auth.users)
@@ -110,7 +110,7 @@ Records exercise completion attempts
 ```
 
 #### `test_results`
-Stores test performance data
+Αποθηκεύει δεδομένα απόδοσης τεστ
 ```sql
 - id (uuid, PK)
 - user_id (uuid, FK to auth.users)
@@ -122,7 +122,7 @@ Stores test performance data
 ```
 
 #### `revision_requirements`
-Manages adaptive learning requirements
+Διαχειρίζεται απαιτήσεις προσαρμοστικής μάθησης
 ```sql
 - id (uuid, PK)
 - user_id (uuid, FK to auth.users)
@@ -134,141 +134,141 @@ Manages adaptive learning requirements
 - revision_completed_at (timestamp)
 ```
 
-### Database Functions & Triggers
+### Συναρτήσεις & Triggers Βάσης Δεδομένων
 
 #### `handle_new_user()`
-Automatically creates user profiles when users sign up
-- Triggered on `auth.users` INSERT
-- Extracts metadata from signup process
+Δημιουργεί αυτόματα προφίλ χρηστών όταν οι χρήστες εγγράφονται
+- Ενεργοποιείται στο INSERT του `auth.users`
+- Εξάγει metadata από τη διαδικασία εγγραφής
 
 #### `handle_test_failure()`
-Creates revision requirements when tests are failed
-- Triggered on `test_results` INSERT
-- Checks if score is below passing threshold
+Δημιουργεί απαιτήσεις επανάληψης όταν τα τεστ αποτυγχάνουν
+- Ενεργοποιείται στο INSERT του `test_results`
+- Ελέγχει αν η βαθμολογία είναι κάτω από το όριο επιτυχίας
 
-## Security Model
+## Μοντέλο Ασφάλειας
 
 ### Row Level Security (RLS)
-All tables implement RLS policies ensuring users can only access their own data:
+Όλοι οι πίνακες υλοποιούν πολιτικές RLS που διασφαλίζουν ότι οι χρήστες μπορούν να προσπελάσουν μόνο τα δικά τους δεδομένα:
 
 ```sql
--- Example policy
+-- Παράδειγμα πολιτικής
 CREATE POLICY "Users can view their own progress" 
   ON user_progress 
   FOR SELECT 
   USING (auth.uid() = user_id);
 ```
 
-### Authentication Flow
-1. User registers/logs in through Supabase Auth
-2. Frontend receives session token
-3. All API calls include authentication headers
-4. RLS policies enforce data isolation
+### Ροή Πιστοποίησης
+1. Ο χρήστης εγγράφεται/συνδέεται μέσω Supabase Auth
+2. Το Frontend λαμβάνει token συνεδρίας
+3. Όλες οι κλήσεις API συμπεριλαμβάνουν headers πιστοποίησης
+4. Οι πολιτικές RLS επιβάλλουν απομόνωση δεδομένων
 
-## Data Flow
+## Ροή Δεδομένων
 
-### Learning Progress Flow
+### Ροή Προόδου Μάθησης
 ```
-User Action → Frontend Component → Context Update → Supabase API → Database → RLS Check → Response
-```
-
-### Test Completion Flow
-```
-Test Submission → Score Calculation → test_results INSERT → Trigger Evaluation → 
-Revision Requirement Creation (if failed) → Progress Context Update → UI Update
+Ενέργεια Χρήστη → Frontend Component → Context Update → Supabase API → Database → RLS Check → Response
 ```
 
-## Performance Considerations
+### Ροή Ολοκλήρωσης Τεστ
+```
+Υποβολή Τεστ → Υπολογισμός Βαθμολογίας → INSERT test_results → Αξιολόγηση Trigger → 
+Δημιουργία Απαίτησης Επανάληψης (αν αποτύχει) → Ενημέρωση Progress Context → Ενημέρωση UI
+```
 
-### Caching Strategy
-- React Query caches server state
-- Context provides optimistic updates
-- Database queries optimized with indexes
+## Θέματα Απόδοσης
 
-### Real-time Updates
-- Supabase real-time subscriptions for live progress updates
-- Efficient re-rendering with React.memo and useMemo
+### Στρατηγική Caching
+- Το React Query cache την κατάσταση διακομιστή
+- Το Context παρέχει αισιόδοξες ενημερώσεις
+- Οι ερωτήματα βάσης δεδομένων βελτιστοποιούνται με ευρετήρια
 
-### Bundle Optimization
-- Code splitting with React.lazy
-- Tree shaking with Vite
-- Component library optimization with Shadcn/ui
+### Real-time Ενημερώσεις
+- Supabase real-time subscriptions για ζωντανές ενημερώσεις προόδου
+- Αποδοτική επαναδημιουργία με React.memo και useMemo
 
-## Scalability Features
+### Βελτιστοποίηση Bundle
+- Code splitting με React.lazy
+- Tree shaking με Vite
+- Βελτιστοποίηση βιβλιοθήκης components με Shadcn/ui
 
-### Horizontal Scaling
-- Stateless frontend deployable to CDN
-- Supabase handles backend scaling automatically
-- Database connection pooling through Supabase
+## Χαρακτηριστικά Επεκτασιμότητας
 
-### Vertical Scaling
-- PostgreSQL optimizations through indexes
-- Efficient queries with proper JOINs
-- RLS policies prevent data leakage
+### Οριζόντια Επέκταση
+- Stateless frontend αναπτύξιμο σε CDN
+- Το Supabase χειρίζεται αυτόματα την επέκταση backend
+- Connection pooling βάσης δεδομένων μέσω Supabase
 
-## Development Patterns
+### Κάθετη Επέκταση
+- Βελτιστοποιήσεις PostgreSQL μέσω ευρετηρίων
+- Αποδοτικά ερωτήματα με κατάλληλα JOINs
+- Οι πολιτικές RLS αποτρέπουν τη διαρροή δεδομένων
 
-### Component Structure
+## Μοτίβα Ανάπτυξης
+
+### Δομή Components
 ```
 src/
 ├── components/
-│   ├── ui/           # Reusable UI components
-│   ├── exercises/    # Exercise-specific components
-│   ├── revision/     # Revision system components
+│   ├── ui/           # Επαναχρησιμοποιήσιμα UI components
+│   ├── exercises/    # Components συγκεκριμένων ασκήσεων
+│   ├── revision/     # Components συστήματος επανάληψης
 │   └── layout/       # Layout components
 ├── contexts/         # React Context providers
 ├── pages/           # Route components
-├── services/        # Data access layer
-└── hooks/           # Custom React hooks
+├── services/        # Επίπεδο πρόσβασης δεδομένων
+└── hooks/           # Προσαρμοσμένα React hooks
 ```
 
 ### Type Safety
-- Comprehensive TypeScript types
-- Supabase auto-generated types
-- Strict type checking enabled
+- Περιεκτικοί τύποι TypeScript
+- Αυτόματα δημιουργημένοι τύποι Supabase
+- Ενεργοποιημένος αυστηρός έλεγχος τύπων
 
-### Error Handling
-- Global error boundaries
-- Toast notifications for user feedback
-- Comprehensive error logging
+### Χειρισμός Σφαλμάτων
+- Καθολικά error boundaries
+- Toast notifications για ανατροφοδότηση χρήστη
+- Περιεκτική καταγραφή σφαλμάτων
 
-## Deployment Architecture
+## Αρχιτεκτονική Ανάπτυξης
 
-### Production Setup
+### Παραγωγική Εγκατάσταση
 ```
 Internet → CDN (Vercel/Netlify) → React SPA → Supabase API → PostgreSQL
 ```
 
-### Environment Configuration
-- Environment variables for API keys
-- Separate dev/staging/production databases
-- CI/CD pipeline integration
+### Διαμόρφωση Περιβάλλοντος
+- Μεταβλητές περιβάλλοντος για API keys
+- Χωριστές βάσεις δεδομένων dev/staging/production
+- Ενσωμάτωση CI/CD pipeline
 
-## Monitoring & Analytics
+## Παρακολούθηση & Αναλυτικά
 
-### Built-in Monitoring
-- Supabase dashboard for database metrics
-- Authentication analytics
-- Performance monitoring through browser dev tools
+### Ενσωματωμένη Παρακολούθηση
+- Supabase dashboard για μετρικές βάσης δεδομένων
+- Αναλυτικά πιστοποίησης
+- Παρακολούθηση απόδοσης μέσω εργαλείων ανάπτυξης φυλλομετρητή
 
-### Custom Analytics
-- User progress tracking
-- Learning effectiveness metrics
-- Test performance analytics
+### Προσαρμοσμένα Αναλυτικά
+- Παρακολούθηση προόδου χρήστη
+- Μετρικές αποτελεσματικότητας μάθησης
+- Αναλυτικά απόδοσης τεστ
 
-## Security Best Practices
+## Βέλτιστες Πρακτικές Ασφάλειας
 
 ### Frontend Security
-- No sensitive data in client-side code
-- Secure authentication token handling
-- XSS protection through React's built-in escaping
+- Κανένα ευαίσθητο δεδομένο στον κώδικα client-side
+- Ασφαλής χειρισμός token πιστοποίησης
+- Προστασία XSS μέσω ενσωματωμένου escaping του React
 
 ### Backend Security
-- RLS policies for data isolation
-- Prepared statements prevent SQL injection
-- Rate limiting through Supabase
+- Πολιτικές RLS για απομόνωση δεδομένων
+- Prepared statements αποτρέπουν SQL injection
+- Rate limiting μέσω Supabase
 
 ### Infrastructure Security
-- HTTPS everywhere
-- Secure environment variable management
-- Regular security updates through dependencies
+- HTTPS παντού
+- Ασφαλής διαχείριση μεταβλητών περιβάλλοντος
+- Τακτικές ενημερώσεις ασφαλείας μέσω dependencies

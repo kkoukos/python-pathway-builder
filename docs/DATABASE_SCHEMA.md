@@ -1,33 +1,33 @@
 
-# Database Schema Documentation
+# Τεκμηρίωση Σχήματος Βάσης Δεδομένων
 
-## Overview
+## Επισκόπηση
 
-The learning platform uses PostgreSQL through Supabase with Row Level Security (RLS) for data isolation. The schema is designed to support a comprehensive learning management system with progress tracking, testing, and adaptive learning features.
+Η πλατφόρμα μάθησης χρησιμοποιεί PostgreSQL μέσω Supabase με Row Level Security (RLS) για απομόνωση δεδομένων. Το σχήμα είναι σχεδιασμένο να υποστηρίζει ένα περιεκτικό σύστημα διαχείρισης μάθησης με παρακολούθηση προόδου, testing και χαρακτηριστικά προσαρμοστικής μάθησης.
 
-## Schema Design Principles
+## Αρχές Σχεδιασμού Σχήματος
 
-### 1. Security First
-- All tables implement Row Level Security (RLS)
-- Users can only access their own data
-- Foreign key references use UUIDs for auth.users
+### 1. Ασφάλεια Πρώτα
+- Όλοι οι πίνακες υλοποιούν Row Level Security (RLS)
+- Οι χρήστες μπορούν να προσπελάσουν μόνο τα δικά τους δεδομένα
+- Οι αναφορές foreign key χρησιμοποιούν UUIDs για auth.users
 
-### 2. Audit Trail
-- All tables include `created_at` timestamps
-- Update operations tracked with `updated_at` timestamps
-- User actions are logged for analytics
+### 2. Ίχνος Ελέγχου
+- Όλοι οι πίνακες συμπεριλαμβάνουν timestamps `created_at`
+- Οι λειτουργίες ενημέρωσης παρακολουθούνται με timestamps `updated_at`
+- Οι ενέργειες χρήστη καταγράφονται για αναλυτικά
 
-### 3. Scalability
-- Efficient indexes on frequently queried columns
-- Normalized data structure to reduce redundancy
-- Optimized for read-heavy workloads
+### 3. Επεκτασιμότητα
+- Αποδοτικά ευρετήρια σε συχνά ερωτούμενες στήλες
+- Κανονικοποιημένη δομή δεδομένων για μείωση πλεονασμού
+- Βελτιστοποιημένη για read-heavy workloads
 
-## Core Tables
+## Βασικοί Πίνακες
 
-### Authentication & Users
+### Πιστοποίηση & Χρήστες
 
 #### `profiles`
-Extends Supabase's auth.users with application-specific data.
+Επεκτείνει το auth.users του Supabase με δεδομένα συγκεκριμένα της εφαρμογής.
 
 ```sql
 CREATE TABLE public.profiles (
@@ -41,18 +41,18 @@ CREATE TABLE public.profiles (
 );
 ```
 
-**Purpose**: Store user profile information and preferences
-**Relationships**: 
+**Σκοπός**: Αποθήκευση πληροφοριών προφίλ χρήστη και προτιμήσεων
+**Σχέσεις**: 
 - `id` → `auth.users.id` (1:1)
 
-**RLS Policies**:
-- Users can view and update their own profiles
-- No public access
+**Πολιτικές RLS**:
+- Οι χρήστες μπορούν να δουν και να ενημερώσουν τα δικά τους προφίλ
+- Καμία δημόσια πρόσβαση
 
-### Learning Progress
+### Πρόοδος Μάθησης
 
 #### `user_progress`
-Tracks completion of individual lessons.
+Παρακολουθεί ολοκλήρωση μεμονωμένων μαθημάτων.
 
 ```sql
 CREATE TABLE public.user_progress (
@@ -68,17 +68,17 @@ CREATE TABLE public.user_progress (
 );
 ```
 
-**Purpose**: Record lesson completion status
-**Indexes**: 
-- `(user_id, module_id)` for module progress queries
-- `(user_id, lesson_id)` for lesson status checks
+**Σκοπός**: Καταγραφή κατάστασης ολοκλήρωσης μαθημάτων
+**Ευρετήρια**: 
+- `(user_id, module_id)` για ερωτήματα προόδου ενότητας
+- `(user_id, lesson_id)` για ελέγχους κατάστασης μαθημάτων
 
-**Business Logic**:
-- `completed_at` is set when `completed` becomes true
-- Unique constraint prevents duplicate progress records
+**Επιχειρησιακή Λογική**:
+- Το `completed_at` ορίζεται όταν το `completed` γίνεται true
+- Unique constraint αποτρέπει διπλότυπες εγγραφές προόδου
 
 #### `exercise_attempts`
-Records all exercise completion attempts.
+Καταγράφει όλες τις προσπάθειες ολοκλήρωσης ασκήσεων.
 
 ```sql
 CREATE TABLE public.exercise_attempts (
@@ -94,20 +94,20 @@ CREATE TABLE public.exercise_attempts (
 );
 ```
 
-**Purpose**: Track exercise attempts and store answers
-**Indexes**:
-- `(user_id, exercise_id)` for exercise history
-- `(user_id, module_id, lesson_id)` for lesson progress
+**Σκοπός**: Παρακολούθηση προσπαθειών ασκήσεων και αποθήκευση απαντήσεων
+**Ευρετήρια**:
+- `(user_id, exercise_id)` για ιστορικό ασκήσεων
+- `(user_id, module_id, lesson_id)` για πρόοδο μαθημάτων
 
-**Business Logic**:
-- Multiple attempts allowed per exercise
-- `answer` stores user's response for review
-- `correct` indicates if attempt was successful
+**Επιχειρησιακή Λογική**:
+- Επιτρέπονται πολλαπλές προσπάθειες ανά άσκηση
+- Το `answer` αποθηκεύει την απόκριση του χρήστη για αναθεώρηση
+- Το `correct` δείχνει αν η προσπάθεια ήταν επιτυχής
 
-### Testing System
+### Σύστημα Testing
 
 #### `test_results`
-Stores test completion results and scores.
+Αποθηκεύει αποτελέσματα ολοκλήρωσης τεστ και βαθμολογίες.
 
 ```sql
 CREATE TABLE public.test_results (
@@ -122,20 +122,20 @@ CREATE TABLE public.test_results (
 );
 ```
 
-**Purpose**: Record test performance and pass/fail status
-**Indexes**:
-- `(user_id, test_id)` for test history
-- `(user_id, module_id)` for module performance
+**Σκοπός**: Καταγραφή απόδοσης τεστ και κατάστασης επιτυχίας/αποτυχίας
+**Ευρετήρια**:
+- `(user_id, test_id)` για ιστορικό τεστ
+- `(user_id, module_id)` για απόδοση ενότητας
 
-**Business Logic**:
-- `score` stored as percentage (0-100)
-- `passed` determined by comparing score to test's passing threshold
-- Multiple attempts allowed (retakes)
+**Επιχειρησιακή Λογική**:
+- Η `score` αποθηκεύεται ως ποσοστό (0-100)
+- Το `passed` καθορίζεται συγκρίνοντας τη βαθμολογία με το όριο επιτυχίας του τεστ
+- Επιτρέπονται πολλαπλές προσπάθειες (επαναλήψεις)
 
-### Adaptive Learning
+### Προσαρμοστική Μάθηση
 
 #### `revision_requirements`
-Manages revision requirements triggered by test failures.
+Διαχειρίζεται απαιτήσεις επανάληψης που ενεργοποιούνται από αποτυχίες τεστ.
 
 ```sql
 CREATE TABLE public.revision_requirements (
@@ -154,18 +154,18 @@ CREATE TABLE public.revision_requirements (
 );
 ```
 
-**Purpose**: Track revision requirements and completion
-**Indexes**:
-- `(user_id, module_id)` for module-level requirements
-- `(user_id, revision_completed)` for pending requirements
+**Σκοπός**: Παρακολούθηση απαιτήσεων επανάληψης και ολοκλήρωσης
+**Ευρετήρια**:
+- `(user_id, module_id)` για απαιτήσεις επιπέδου ενότητας
+- `(user_id, revision_completed)` για εκκρεμείς απαιτήσεις
 
-**Business Logic**:
-- Created automatically when tests are failed
-- `revision_completed` must be true before test retakes
-- Unique constraint prevents duplicate requirements
+**Επιχειρησιακή Λογική**:
+- Δημιουργείται αυτόματα όταν τα τεστ αποτυγχάνουν
+- Το `revision_completed` πρέπει να είναι true πριν τις επαναλήψεις τεστ
+- Unique constraint αποτρέπει διπλότυπες απαιτήσεις
 
 #### `revision_modules` (Legacy)
-Alternate revision assignment system (currently unused).
+Εναλλακτικό σύστημα ανάθεσης επανάληψης (αυτή τη στιγμή αχρησιμοποίητο).
 
 ```sql
 CREATE TABLE public.revision_modules (
@@ -183,7 +183,7 @@ CREATE TABLE public.revision_modules (
 ```
 
 #### `user_performance` (Legacy)
-Performance analytics table (currently unused).
+Πίνακας αναλυτικών απόδοσης (αυτή τη στιγμή αχρησιμοποίητος).
 
 ```sql
 CREATE TABLE public.user_performance (
@@ -202,10 +202,10 @@ CREATE TABLE public.user_performance (
 );
 ```
 
-## Database Functions
+## Συναρτήσεις Βάσης Δεδομένων
 
 ### `handle_new_user()`
-Automatically creates user profiles when users sign up.
+Δημιουργεί αυτόματα προφίλ χρηστών όταν οι χρήστες εγγράφονται.
 
 ```sql
 CREATE OR REPLACE FUNCTION public.handle_new_user()
@@ -226,11 +226,11 @@ END;
 $$;
 ```
 
-**Trigger**: `on_auth_user_created` on `auth.users` INSERT
-**Purpose**: Ensure every authenticated user has a profile record
+**Trigger**: `on_auth_user_created` στο INSERT του `auth.users`
+**Σκοπός**: Διασφάλιση ότι κάθε πιστοποιημένος χρήστης έχει εγγραφή προφίλ
 
 ### `handle_test_failure()`
-Creates revision requirements when tests are failed.
+Δημιουργεί απαιτήσεις επανάληψης όταν τα τεστ αποτυγχάνουν.
 
 ```sql
 CREATE OR REPLACE FUNCTION public.handle_test_failure()
@@ -251,7 +251,7 @@ BEGIN
       NEW.module_id,
       NEW.test_id,
       NEW.score,
-      70.0 -- Default passing score
+      70.0 -- Προεπιλεγμένη βαθμολογία επιτυχίας
     )
     ON CONFLICT DO NOTHING;
   END IF;
@@ -261,54 +261,54 @@ END;
 $$;
 ```
 
-**Trigger**: `on_test_result_insert` on `test_results` INSERT
-**Purpose**: Automatically create revision requirements for failed tests
+**Trigger**: `on_test_result_insert` στο INSERT του `test_results`
+**Σκοπός**: Αυτόματη δημιουργία απαιτήσεων επανάληψης για αποτυχημένα τεστ
 
-## Row Level Security (RLS) Policies
+## Πολιτικές Row Level Security (RLS)
 
-### Standard User Data Policies
-All user data tables implement these standard policies:
+### Τυπικές Πολιτικές Δεδομένων Χρήστη
+Όλοι οι πίνακες δεδομένων χρήστη υλοποιούν αυτές τις τυπικές πολιτικές:
 
 ```sql
--- View own data
+-- Προβολή δικών δεδομένων
 CREATE POLICY "Users can view their own {table}" 
   ON public.{table} 
   FOR SELECT 
   USING (auth.uid() = user_id);
 
--- Create own data
+-- Δημιουργία δικών δεδομένων
 CREATE POLICY "Users can create their own {table}" 
   ON public.{table} 
   FOR INSERT 
   WITH CHECK (auth.uid() = user_id);
 
--- Update own data
+-- Ενημέρωση δικών δεδομένων
 CREATE POLICY "Users can update their own {table}" 
   ON public.{table} 
   FOR UPDATE 
   USING (auth.uid() = user_id);
 
--- Delete own data (where applicable)
+-- Διαγραφή δικών δεδομένων (όπου εφαρμόζεται)
 CREATE POLICY "Users can delete their own {table}" 
   ON public.{table} 
   FOR DELETE 
   USING (auth.uid() = user_id);
 ```
 
-### System-level Policies
-Some tables have additional policies for system operations:
+### Πολιτικές Επιπέδου Συστήματος
+Μερικοί πίνακες έχουν πρόσθετες πολιτικές για λειτουργίες συστήματος:
 
 ```sql
--- Allow system to create revision requirements
+-- Επιτρέπει στο σύστημα να δημιουργεί απαιτήσεις επανάληψης
 CREATE POLICY "System can create revision requirements" 
   ON public.revision_requirements 
   FOR INSERT 
   WITH CHECK (true);
 ```
 
-## Data Relationships
+## Σχέσεις Δεδομένων
 
-### User-Centric Design
+### Σχεδιασμός Κεντρικός στον Χρήστη
 ```
 auth.users (1) ←→ (1) profiles
 auth.users (1) ←→ (∞) user_progress
@@ -317,8 +317,8 @@ auth.users (1) ←→ (∞) test_results
 auth.users (1) ←→ (∞) revision_requirements
 ```
 
-### Content Relationships
-Content data (modules, lessons, exercises, tests) is stored in the application layer (`src/services/mockData.ts`) and referenced by ID in database tables.
+### Σχέσεις Περιεχομένου
+Δεδομένα περιεχομένου (ενότητες, μαθήματα, ασκήσεις, τεστ) αποθηκεύονται στο επίπεδο εφαρμογής (`src/services/mockData.ts`) και αναφέρονται με ID στους πίνακες βάσης δεδομένων.
 
 ```
 Module (1) ←→ (∞) Lessons
@@ -327,16 +327,16 @@ Module (1) ←→ (∞) Tests
 Test (1) ←→ (∞) RevisionRequirements
 ```
 
-## Query Patterns
+## Μοτίβα Ερωτημάτων
 
-### Progress Queries
+### Ερωτήματα Προόδου
 ```sql
--- Get user's completed lessons in a module
+-- Λήψη ολοκληρωμένων μαθημάτων χρήστη σε ενότητα
 SELECT lesson_id 
 FROM user_progress 
 WHERE user_id = $1 AND module_id = $2 AND completed = true;
 
--- Get user's exercise completion rate
+-- Λήψη ποσοστού ολοκλήρωσης ασκήσεων χρήστη
 SELECT 
   COUNT(CASE WHEN correct THEN 1 END) as correct_count,
   COUNT(*) as total_attempts
@@ -344,102 +344,102 @@ FROM exercise_attempts
 WHERE user_id = $1 AND module_id = $2;
 ```
 
-### Performance Queries
+### Ερωτήματα Απόδοσης
 ```sql
--- Get latest test results for a user
+-- Λήψη τελευταίων αποτελεσμάτων τεστ για χρήστη
 SELECT DISTINCT ON (test_id) *
 FROM test_results 
 WHERE user_id = $1 
 ORDER BY test_id, completed_at DESC;
 
--- Check for pending revision requirements
+-- Έλεγχος για εκκρεμείς απαιτήσεις επανάληψης
 SELECT * 
 FROM revision_requirements 
 WHERE user_id = $1 AND revision_completed = false;
 ```
 
-## Indexing Strategy
+## Στρατηγική Ευρετηρίων
 
-### Primary Indexes
-- All tables have UUID primary keys with default generation
-- Unique constraints on business-critical combinations
+### Κύρια Ευρετήρια
+- Όλοι οι πίνακες έχουν UUID πρωτεύοντα κλειδιά με προεπιλεγμένη δημιουργία
+- Unique constraints σε επιχειρησιακά κρίσιμους συνδυασμούς
 
-### Performance Indexes
+### Ευρετήρια Απόδοσης
 ```sql
--- Frequently queried user data
+-- Συχνά ερωτούμενα δεδομένα χρήστη
 CREATE INDEX idx_user_progress_user_module ON user_progress(user_id, module_id);
 CREATE INDEX idx_exercise_attempts_user_exercise ON exercise_attempts(user_id, exercise_id);
 CREATE INDEX idx_test_results_user_test ON test_results(user_id, test_id);
 
--- RLS policy optimization
+-- Βελτιστοποίηση πολιτικών RLS
 CREATE INDEX idx_user_progress_user_id ON user_progress(user_id);
 CREATE INDEX idx_exercise_attempts_user_id ON exercise_attempts(user_id);
 CREATE INDEX idx_test_results_user_id ON test_results(user_id);
 CREATE INDEX idx_revision_requirements_user_id ON revision_requirements(user_id);
 ```
 
-## Data Migration Considerations
+## Θέματα Migration Δεδομένων
 
-### Schema Evolution
-- Use Supabase migrations for schema changes
-- Maintain backward compatibility when possible
-- Include rollback procedures for major changes
+### Εξέλιξη Σχήματος
+- Χρήση migrations Supabase για αλλαγές σχήματος
+- Διατήρηση backwards compatibility όταν είναι δυνατό
+- Συμπερίληψη διαδικασιών rollback για μεγάλες αλλαγές
 
 ### Data Seeding
-- Content data managed in application layer
-- User data created through normal application flow
-- Development data created through seed scripts
+- Δεδομένα περιεχομένου διαχειρίζονται στο επίπεδο εφαρμογής
+- Δεδομένα χρήστη δημιουργούνται μέσω κανονικής ροής εφαρμογής
+- Δεδομένα ανάπτυξης δημιουργούνται μέσω seed scripts
 
-## Backup and Recovery
+## Backup και Recovery
 
-### Supabase Automatic Backups
-- Point-in-time recovery available
-- Daily backups retained per Supabase plan
-- Manual backups available through dashboard
+### Αυτόματα Backups Supabase
+- Διαθέσιμη point-in-time ανάκτηση
+- Ημερήσια backups διατηρούνται ανά πλάνο Supabase
+- Χειροκίνητα backups διαθέσιμα μέσω dashboard
 
-### Data Export
+### Εξαγωγή Δεδομένων
 ```sql
--- Export user progress data
+-- Εξαγωγή δεδομένων προόδου χρήστη
 COPY (
   SELECT * FROM user_progress 
   WHERE created_at >= '2024-01-01'
 ) TO 'user_progress_export.csv' WITH CSV HEADER;
 ```
 
-## Performance Monitoring
+## Παρακολούθηση Απόδοσης
 
-### Key Metrics
-- Query execution times
-- Index usage statistics
-- RLS policy performance
-- Connection pool utilization
+### Βασικές Μετρικές
+- Χρόνοι εκτέλεσης ερωτημάτων
+- Στατιστικά χρήσης ευρετηρίων
+- Απόδοση πολιτικών RLS
+- Χρήση connection pool
 
-### Optimization Queries
+### Ερωτήματα Βελτιστοποίησης
 ```sql
--- Find slow queries
+-- Εύρεση αργών ερωτημάτων
 SELECT query, mean_time, calls 
 FROM pg_stat_statements 
 ORDER BY mean_time DESC;
 
--- Check index usage
+-- Έλεγχος χρήσης ευρετηρίων
 SELECT 
   schemaname, tablename, indexname, idx_tup_read, idx_tup_fetch
 FROM pg_stat_user_indexes;
 ```
 
-## Security Considerations
+## Θέματα Ασφάλειας
 
-### Data Encryption
-- Data encrypted at rest by Supabase
-- TLS encryption for data in transit
-- JWT tokens for authentication
+### Κρυπτογράφηση Δεδομένων
+- Δεδομένα κρυπτογραφημένα σε ηρεμία από Supabase
+- Κρυπτογράφηση TLS για δεδομένα σε μετακίνηση
+- JWT tokens για πιστοποίηση
 
-### Access Control
-- RLS policies enforce data isolation
-- Service role access restricted to backend operations
-- API keys managed through environment variables
+### Έλεγχος Πρόσβασης
+- Πολιτικές RLS επιβάλλουν απομόνωση δεδομένων
+- Πρόσβαση service role περιορισμένη σε backend λειτουργίες
+- API keys διαχειρίζονται μέσω μεταβλητών περιβάλλοντος
 
-### Audit Trail
-- All data modifications tracked with timestamps
-- User actions logged through application layer
-- Database functions logged through Supabase
+### Ίχνος Ελέγχου
+- Όλες οι τροποποιήσεις δεδομένων παρακολουθούνται με timestamps
+- Ενέργειες χρήστη καταγράφονται μέσω επιπέδου εφαρμογής
+- Συναρτήσεις βάσης δεδομένων καταγράφονται μέσω Supabase

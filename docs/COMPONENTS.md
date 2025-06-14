@@ -1,11 +1,11 @@
 
-# Component Documentation
+# Τεκμηρίωση Components
 
-## Overview
+## Επισκόπηση
 
-This document provides detailed information about the React components used in the learning platform, their responsibilities, props, and usage patterns.
+Αυτό το έγγραφο παρέχει λεπτομερείς πληροφορίες για τα React components που χρησιμοποιούνται στην πλατφόρμα μάθησης, τις ευθύνες τους, τα props και τα μοτίβα χρήσης.
 
-## Component Hierarchy
+## Ιεραρχία Components
 
 ```
 App
@@ -28,43 +28,43 @@ App
 
 ### AuthContext (`src/contexts/AuthContext.tsx`)
 
-**Purpose**: Manages user authentication state and operations.
+**Σκοπός**: Διαχειρίζεται την κατάσταση και τις λειτουργίες πιστοποίησης χρήστη.
 
-**State**:
-- `user: UserProfile | null` - Current user profile data
-- `session: Session | null` - Supabase session object
-- `isAuthenticated: boolean` - Authentication status
-- `isLoading: boolean` - Loading state for auth operations
+**Κατάσταση**:
+- `user: UserProfile | null` - Τρέχοντα δεδομένα προφίλ χρήστη
+- `session: Session | null` - Αντικείμενο συνεδρίας Supabase
+- `isAuthenticated: boolean` - Κατάσταση πιστοποίησης
+- `isLoading: boolean` - Κατάσταση φόρτωσης για λειτουργίες auth
 
-**Methods**:
-- `login(email, password)` - User login
-- `register(username, email, password)` - User registration
-- `logout()` - User logout
-- `updateProfile(profile)` - Update user profile
-- `getAvatarUrl()` - Get user avatar URL
+**Μέθοδοι**:
+- `login(email, password)` - Σύνδεση χρήστη
+- `register(username, email, password)` - Εγγραφή χρήστη
+- `logout()` - Αποσύνδεση χρήστη
+- `updateProfile(profile)` - Ενημέρωση προφίλ χρήστη
+- `getAvatarUrl()` - Λήψη URL avatar χρήστη
 
-**Usage**:
+**Χρήση**:
 ```typescript
 const { user, isAuthenticated, login, logout } = useAuth();
 ```
 
 ### ProgressContext (`src/contexts/ProgressContext.tsx`)
 
-**Purpose**: Manages learning progress state and operations.
+**Σκοπός**: Διαχειρίζεται την κατάσταση και τις λειτουργίες προόδου μάθησης.
 
-**State**:
-- `progress: Record<number, ModuleProgress>` - User progress by module
-- `revisionRequirements: RevisionRequirement[]` - Active revision requirements
+**Κατάσταση**:
+- `progress: Record<number, ModuleProgress>` - Πρόοδος χρήστη ανά ενότητα
+- `revisionRequirements: RevisionRequirement[]` - Ενεργές απαιτήσεις επανάληψης
 
-**Methods**:
-- `markLessonComplete(moduleId, lessonId)` - Mark lesson as completed
-- `markExerciseComplete(moduleId, lessonId, exerciseId)` - Mark exercise as completed
-- `markTestComplete(moduleId, testId, score, passed)` - Record test results
-- `markRevisionCompleted(moduleId, testId)` - Complete revision requirement
-- `hasRevisionRequirement(moduleId, testId)` - Check if revision is required
-- `isLessonCompleted(moduleId, lessonId)` - Check lesson completion status
+**Μέθοδοι**:
+- `markLessonComplete(moduleId, lessonId)` - Σήμανση μαθήματος ως ολοκληρωμένου
+- `markExerciseComplete(moduleId, lessonId, exerciseId)` - Σήμανση άσκησης ως ολοκληρωμένης
+- `markTestComplete(moduleId, testId, score, passed)` - Καταγραφή αποτελεσμάτων τεστ
+- `markRevisionCompleted(moduleId, testId)` - Ολοκλήρωση απαίτησης επανάληψης
+- `hasRevisionRequirement(moduleId, testId)` - Έλεγχος αν απαιτείται επανάληψη
+- `isLessonCompleted(moduleId, lessonId)` - Έλεγχος κατάστασης ολοκλήρωσης μαθήματος
 
-**Usage**:
+**Χρήση**:
 ```typescript
 const { markLessonComplete, isLessonCompleted } = useProgress();
 ```
@@ -73,37 +73,37 @@ const { markLessonComplete, isLessonCompleted } = useProgress();
 
 ### MainLayout (`src/components/layout/MainLayout.tsx`)
 
-**Purpose**: Main application layout with header, sidebar, and content area.
+**Σκοπός**: Κύριο layout εφαρμογής με header, sidebar και περιοχή περιεχομένου.
 
-**Features**:
-- Responsive design
-- Navigation management
-- Route outlet for page content
+**Χαρακτηριστικά**:
+- Responsive σχεδιασμός
+- Διαχείριση πλοήγησης
+- Route outlet για περιεχόμενο σελίδας
 
 ### Header (`src/components/layout/Header.tsx`)
 
-**Purpose**: Top navigation bar with user menu and branding.
+**Σκοπός**: Γραμμή πλοήγησης στο επάνω μέρος με μενού χρήστη και branding.
 
-**Features**:
-- User authentication status
-- Navigation links
-- User dropdown menu
-- Responsive mobile menu
+**Χαρακτηριστικά**:
+- Κατάσταση πιστοποίησης χρήστη
+- Σύνδεσμοι πλοήγησης
+- Dropdown μενού χρήστη
+- Responsive mobile μενού
 
 ### Sidebar (`src/components/layout/Sidebar.tsx`)
 
-**Purpose**: Side navigation for main application areas.
+**Σκοπός**: Πλευρική πλοήγηση για κύριες περιοχές εφαρμογής.
 
-**Features**:
-- Module navigation
-- Progress indicators
-- Collapsible design
+**Χαρακτηριστικά**:
+- Πλοήγηση ενοτήτων
+- Δείκτες προόδου
+- Συμπτυσσόμενος σχεδιασμός
 
 ## Exercise Components
 
 ### ExerciseList (`src/components/exercises/ExerciseList.tsx`)
 
-**Purpose**: Displays list of exercises for a lesson with sidebar navigation.
+**Σκοπός**: Εμφανίζει λίστα ασκήσεων για μάθημα με πλευρική πλοήγηση.
 
 **Props**:
 ```typescript
@@ -114,15 +114,15 @@ interface ExerciseListProps {
 }
 ```
 
-**Features**:
-- Exercise selection sidebar
-- Completion status indicators
-- Difficulty badges
-- Responsive layout (sidebar on desktop, accordion on mobile)
+**Χαρακτηριστικά**:
+- Sidebar επιλογής ασκήσεων
+- Δείκτες κατάστασης ολοκλήρωσης
+- Badges δυσκολίας
+- Responsive layout (sidebar σε desktop, accordion σε mobile)
 
 ### ExerciseDetail (`src/components/exercises/ExerciseDetail.tsx`)
 
-**Purpose**: Renders individual exercise content based on exercise type.
+**Σκοπός**: Αποδίδει περιεχόμενο μεμονωμένης άσκησης βάσει τύπου άσκησης.
 
 **Props**:
 ```typescript
@@ -134,14 +134,14 @@ interface ExerciseDetailProps {
 }
 ```
 
-**Features**:
-- Dynamic exercise type rendering
-- Completion tracking
-- Progress callback
+**Χαρακτηριστικά**:
+- Δυναμική απόδοση τύπου άσκησης
+- Παρακολούθηση ολοκλήρωσης
+- Callback προόδου
 
 ### MultipleChoiceExercise (`src/components/exercises/MultipleChoiceExercise.tsx`)
 
-**Purpose**: Interactive multiple choice question component.
+**Σκοπός**: Διαδραστικό component ερώτησης πολλαπλής επιλογής.
 
 **Props**:
 ```typescript
@@ -151,15 +151,15 @@ interface MultipleChoiceExerciseProps {
 }
 ```
 
-**Features**:
-- Option selection
-- Answer validation
-- Hint system
-- Visual feedback
+**Χαρακτηριστικά**:
+- Επιλογή options
+- Επικύρωση απάντησης
+- Σύστημα υποδείξεων
+- Οπτική ανατροφοδότηση
 
 ### CodeExercise (`src/components/exercises/CodeExercise.tsx`)
 
-**Purpose**: Code completion and writing exercise component.
+**Σκοπός**: Component άσκησης συμπλήρωσης και γραψίματος κώδικα.
 
 **Props**:
 ```typescript
@@ -169,17 +169,17 @@ interface CodeExerciseProps {
 }
 ```
 
-**Features**:
-- Code editor interface
+**Χαρακτηριστικά**:
+- Διεπαφή επεξεργαστή κώδικα
 - Syntax highlighting
-- Solution validation
-- Test case execution
+- Επικύρωση λύσης
+- Εκτέλεση test cases
 
 ## Revision System Components
 
 ### RevisionAlert (`src/components/revision/RevisionAlert.tsx`)
 
-**Purpose**: Displays alert when revision is required before test retake.
+**Σκοπός**: Εμφανίζει ειδοποίηση όταν απαιτείται επανάληψη πριν την επανάληψη τεστ.
 
 **Props**:
 ```typescript
@@ -190,14 +190,14 @@ interface RevisionAlertProps {
 }
 ```
 
-**Features**:
-- Warning message display
-- Revision initiation button
-- Test failure score display
+**Χαρακτηριστικά**:
+- Εμφάνιση μηνύματος προειδοποίησης
+- Κουμπί έναρξης επανάληψης
+- Εμφάνιση βαθμολογίας αποτυχίας τεστ
 
 ### RevisionCourse (`src/components/revision/RevisionCourse.tsx`)
 
-**Purpose**: Interactive revision course with step-by-step content.
+**Σκοπός**: Διαδραστικό μάθημα επανάληψης με περιεχόμενο βήμα προς βήμα.
 
 **Props**:
 ```typescript
@@ -208,138 +208,138 @@ interface RevisionCourseProps {
 }
 ```
 
-**Features**:
-- Step-by-step progression
-- Content type indicators (concept, practice, summary)
-- Progress tracking
-- Duration estimates
-- Completion callback
+**Χαρακτηριστικά**:
+- Προοδευτική πρόοδος βήμα προς βήμα
+- Δείκτες τύπου περιεχομένου (έννοια, πρακτική, περίληψη)
+- Παρακολούθηση προόδου
+- Εκτίμηση διάρκειας
+- Callback ολοκλήρωσης
 
 ## Page Components
 
 ### Home (`src/pages/Home.tsx`)
 
-**Purpose**: Landing page with platform overview and getting started information.
+**Σκοπός**: Αρχική σελίδα με επισκόπηση πλατφόρμας και πληροφορίες εκκίνησης.
 
-**Features**:
+**Χαρακτηριστικά**:
 - Hero section
-- Feature highlights
-- Getting started guide
-- Navigation to modules (authenticated users)
+- Επισήμανση χαρακτηριστικών
+- Οδηγός εκκίνησης
+- Πλοήγηση σε ενότητες (για πιστοποιημένους χρήστες)
 
 ### ModuleList (`src/pages/ModuleList.tsx`)
 
-**Purpose**: Displays available learning modules with progress indicators.
+**Σκοπός**: Εμφανίζει διαθέσιμες ενότητες μάθησης με δείκτες προόδου.
 
-**Features**:
-- Module cards with descriptions
-- Progress visualization
-- Completion status
-- Module navigation
+**Χαρακτηριστικά**:
+- Κάρτες ενοτήτων με περιγραφές
+- Οπτικοποίηση προόδου
+- Κατάσταση ολοκλήρωσης
+- Πλοήγηση ενοτήτων
 
 ### ModuleDetail (`src/pages/ModuleDetail.tsx`)
 
-**Purpose**: Detailed view of a specific module with lessons and tests.
+**Σκοπός**: Λεπτομερής προβολή συγκεκριμένης ενότητας με μαθήματα και τεστ.
 
-**Features**:
-- Module information display
-- Lesson list with completion status
-- Test access (with prerequisites)
-- Progress overview
+**Χαρακτηριστικά**:
+- Εμφάνιση πληροφοριών ενότητας
+- Λίστα μαθημάτων με κατάσταση ολοκλήρωσης
+- Πρόσβαση σε τεστ (με προαπαιτούμενα)
+- Επισκόπηση προόδου
 
 ### LessonDetail (`src/pages/LessonDetail.tsx`)
 
-**Purpose**: Individual lesson view with content and exercises.
+**Σκοπός**: Προβολή μεμονωμένου μαθήματος με περιεχόμενο και ασκήσεις.
 
-**Features**:
-- Lesson content rendering
-- Exercise integration
-- Progress tracking
-- Navigation controls
+**Χαρακτηριστικά**:
+- Απόδοση περιεχομένου μαθήματος
+- Ενσωμάτωση ασκήσεων
+- Παρακολούθηση προόδου
+- Χειριστήρια πλοήγησης
 
 ### TestView (`src/pages/TestView.tsx`)
 
-**Purpose**: Test interface with questions and results.
+**Σκοπός**: Διεπαφή τεστ με ερωτήσεις και αποτελέσματα.
 
-**Features**:
-- Question presentation
-- Timer functionality
-- Score calculation
-- Results display
-- Revision requirement handling
+**Χαρακτηριστικά**:
+- Παρουσίαση ερωτήσεων
+- Λειτουργικότητα χρονομέτρου
+- Υπολογισμός βαθμολογίας
+- Εμφάνιση αποτελεσμάτων
+- Χειρισμός απαιτήσεων επανάληψης
 
 ### ModuleTests (`src/pages/ModuleTests.tsx`)
 
-**Purpose**: Overview of tests available for a module.
+**Σκοπός**: Επισκόπηση τεστ διαθέσιμων για ενότητα.
 
-**Features**:
-- Test list display
-- Prerequisite checking
-- Revision alerts
-- Test navigation
+**Χαρακτηριστικά**:
+- Εμφάνιση λίστας τεστ
+- Έλεγχος προαπαιτούμενων
+- Ειδοποιήσεις επανάληψης
+- Πλοήγηση τεστ
 
 ## Profile Components
 
 ### ProfileHeader (`src/components/profile/ProfileHeader.tsx`)
 
-**Purpose**: User profile header with avatar and basic information.
+**Σκοπός**: Header προφίλ χρήστη με avatar και βασικές πληροφορίες.
 
-**Features**:
-- Avatar display
-- User information
-- Edit capabilities
+**Χαρακτηριστικά**:
+- Εμφάνιση avatar
+- Πληροφορίες χρήστη
+- Δυνατότητες επεξεργασίας
 
 ### OverallProgressCard (`src/components/profile/OverallProgressCard.tsx`)
 
-**Purpose**: Displays overall learning progress statistics.
+**Σκοπός**: Εμφανίζει στατιστικά συνολικής προόδου μάθησης.
 
-**Features**:
-- Progress visualization
-- Statistics display
-- Achievement indicators
+**Χαρακτηριστικά**:
+- Οπτικοποίηση προόδου
+- Εμφάνιση στατιστικών
+- Δείκτες επιτευγμάτων
 
 ### ModuleProgressCard (`src/components/profile/ModuleProgressCard.tsx`)
 
-**Purpose**: Shows detailed progress for individual modules.
+**Σκοπός**: Δείχνει λεπτομερή πρόοδο για μεμονωμένες ενότητες.
 
-**Features**:
-- Module-specific progress
-- Lesson completion status
-- Test results
+**Χαρακτηριστικά**:
+- Πρόοδος συγκεκριμένης ενότητας
+- Κατάσταση ολοκλήρωσης μαθημάτων
+- Αποτελέσματα τεστ
 
 ## UI Components (Shadcn/ui)
 
 ### Card Components
 - `Card`, `CardHeader`, `CardTitle`, `CardContent`, `CardFooter`
-- Consistent styling for content containers
+- Συνεπές styling για containers περιεχομένου
 
 ### Form Components
-- `Button` - Various button styles and states
-- `Input` - Text input with validation
-- `Select` - Dropdown selection
+- `Button` - Διάφορα στυλ και καταστάσεις κουμπιών
+- `Input` - Text input με επικύρωση
+- `Select` - Dropdown επιλογή
 - `Checkbox` - Boolean input
-- `RadioGroup` - Single selection from options
+- `RadioGroup` - Μεμονωμένη επιλογή από options
 
 ### Feedback Components
-- `Progress` - Progress bar visualization
-- `Badge` - Status indicators
-- `Alert` - Information and warning messages
-- `Toast` - Temporary notifications
+- `Progress` - Οπτικοποίηση γραμμής προόδου
+- `Badge` - Δείκτες κατάστασης
+- `Alert` - Μηνύματα πληροφοριών και προειδοποίησης
+- `Toast` - Προσωρινές ειδοποιήσεις
 
 ### Navigation Components
-- `Accordion` - Collapsible content sections
-- `Tabs` - Tabbed content organization
-- `Breadcrumb` - Navigation path indicators
+- `Accordion` - Συμπτυσσόμενα τμήματα περιεχομένου
+- `Tabs` - Οργάνωση περιεχομένου σε καρτέλες
+- `Breadcrumb` - Δείκτες διαδρομής πλοήγησης
 
-## Component Design Patterns
+## Μοτίβα Σχεδιασμού Components
 
 ### Composition Pattern
-Components are designed to be composable and reusable:
+Τα components είναι σχεδιασμένα να είναι συνθέσιμα και επαναχρησιμοποιήσιμα:
 
 ```typescript
 <Card>
   <CardHeader>
-    <CardTitle>Exercise Title</CardTitle>
+    <CardTitle>Τίτλος Άσκησης</CardTitle>
   </CardHeader>
   <CardContent>
     <ExerciseDetail exercise={exercise} />
@@ -348,7 +348,7 @@ Components are designed to be composable and reusable:
 ```
 
 ### Render Props Pattern
-Some components use render props for flexible content:
+Μερικά components χρησιμοποιούν render props για ευέλικτο περιεχόμενο:
 
 ```typescript
 <ExerciseList 
@@ -358,7 +358,7 @@ Some components use render props for flexible content:
 ```
 
 ### Custom Hooks Pattern
-Business logic is extracted into custom hooks:
+Η επιχειρησιακή λογική εξάγεται σε προσαρμοσμένα hooks:
 
 ```typescript
 const useExerciseCompletion = (moduleId, lessonId) => {
@@ -372,17 +372,17 @@ const useExerciseCompletion = (moduleId, lessonId) => {
 };
 ```
 
-## Performance Optimizations
+## Βελτιστοποιήσεις Απόδοσης
 
 ### React.memo
-Components are memoized to prevent unnecessary re-renders:
+Τα components είναι memoized για αποφυγή περιττών re-renders:
 
 ```typescript
 export default React.memo(ExerciseList);
 ```
 
-### useMemo and useCallback
-Expensive calculations and functions are memoized:
+### useMemo και useCallback
+Ακριβοί υπολογισμοί και συναρτήσεις είναι memoized:
 
 ```typescript
 const filteredExercises = useMemo(() => 
@@ -392,7 +392,7 @@ const filteredExercises = useMemo(() =>
 ```
 
 ### Code Splitting
-Large components are lazy-loaded:
+Μεγάλα components φορτώνονται lazy:
 
 ```typescript
 const TestView = lazy(() => import('./pages/TestView'));
@@ -401,7 +401,7 @@ const TestView = lazy(() => import('./pages/TestView'));
 ## Error Boundaries
 
 ### Global Error Boundary
-Catches and handles component errors gracefully:
+Συλλαμβάνει και χειρίζεται σφάλματα components με χάρη:
 
 ```typescript
 class ErrorBoundary extends React.Component {
@@ -418,37 +418,37 @@ class ErrorBoundary extends React.Component {
 }
 ```
 
-## Testing Considerations
+## Θέματα Testing
 
 ### Component Testing
-- Unit tests for individual components
-- Integration tests for component interactions
-- Mock data for isolated testing
+- Unit tests για μεμονωμένα components
+- Integration tests για αλληλεπιδράσεις components
+- Mock data για απομονωμένο testing
 
-### Accessibility
-- ARIA labels and roles
-- Keyboard navigation support
-- Screen reader compatibility
-- Color contrast compliance
+### Προσβασιμότητα
+- ARIA labels και roles
+- Υποστήριξη πλοήγησης με πληκτρολόγιο
+- Συμβατότητα με screen readers
+- Συμμόρφωση αντίθεσης χρωμάτων
 
-## Best Practices
+## Βέλτιστες Πρακτικές
 
-### Naming Conventions
-- PascalCase for component names
-- camelCase for props and functions
-- Descriptive, intention-revealing names
+### Συμβάσεις Ονομασίας
+- PascalCase για ονόματα components
+- camelCase για props και συναρτήσεις
+- Περιγραφικά, ονόματα που αποκαλύπτουν πρόθεση
 
-### File Organization
-- One component per file
-- Index files for barrel exports
-- Co-located tests and styles
+### Οργάνωση Αρχείων
+- Ένα component ανά αρχείο
+- Index αρχεία για barrel exports
+- Co-located tests και styles
 
-### Props Interface Design
-- Explicit prop types with TypeScript
-- Optional props with default values
-- Consistent prop naming patterns
+### Σχεδιασμός Props Interface
+- Ρητοί τύποι props με TypeScript
+- Προαιρετικά props με προεπιλεγμένες τιμές
+- Συνεπή μοτίβα ονομασίας props
 
-### State Management
-- Local state for component-specific data
-- Context for shared application state
-- React Query for server state
+### Διαχείριση Κατάστασης
+- Τοπική κατάσταση για δεδομένα συγκεκριμένα του component
+- Context για κοινή κατάσταση εφαρμογής
+- React Query για κατάσταση διακομιστή

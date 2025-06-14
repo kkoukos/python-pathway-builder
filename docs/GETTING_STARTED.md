@@ -1,521 +1,522 @@
 
-# Getting Started Guide
+# Οδηγός Εκκίνησης
 
-## Welcome to Python Learning Platform
+## Καλώς Ήρθατε στην Πλατφόρμα Εκμάθησης Python
 
-This comprehensive guide will help you get started with the Python Learning Platform quickly and effectively. Whether you're a complete beginner or have some programming experience, this guide will walk you through everything you need to know.
+Αυτός ο περιεκτικός οδηγός θα σας βοηθήσει να ξεκινήσετε γρήγορα και αποτελεσματικά με την Πλατφόρμα Εκμάθησης Python. Είτε είστε εντελώς αρχάριος είτε έχετε κάποια εμπειρία προγραμματισμού, αυτός ο οδηγός θα σας καθοδηγήσει σε όλα όσα χρειάζεται να γνωρίζετε.
 
-## Table of Contents
+## Πίνακας Περιεχομένων
 
-1. [Quick Start](#quick-start)
-2. [Account Setup](#account-setup)
-3. [Platform Overview](#platform-overview)
-4. [Your First Lesson](#your-first-lesson)
-5. [Learning Best Practices](#learning-best-practices)
-6. [Setting Learning Goals](#setting-learning-goals)
-7. [Next Steps](#next-steps)
-
----
-
-## Quick Start
-
-### 30-Second Setup
-
-1. **Create Account**: Click "Sign Up" and provide your email
-2. **Verify Email**: Check your inbox and click the verification link
-3. **Complete Profile**: Add your name and learning preferences
-4. **Start Learning**: Begin with "Python Basics" module
-
-### 5-Minute Orientation
-
-1. **Explore Dashboard**: Familiarize yourself with the main interface
-2. **Check Module List**: See all available learning modules
-3. **Try a Sample Lesson**: Complete one lesson to understand the format
-4. **Take First Exercise**: Experience the interactive coding environment
-5. **Review Progress**: See how tracking works
+1. [Γρήγορη Εκκίνηση](#γρήγορη-εκκίνηση)
+2. [Εγκατάσταση Λογαριασμού](#εγκατάσταση-λογαριασμού)
+3. [Επισκόπηση Πλατφόρμας](#επισκόπηση-πλατφόρμας)
+4. [Το Πρώτο σας Μάθημα](#το-πρώτο-σας-μάθημα)
+5. [Βέλτιστες Πρακτικές Μάθησης](#βέλτιστες-πρακτικές-μάθησης)
+6. [Ορισμός Στόχων Μάθησης](#ορισμός-στόχων-μάθησης)
+7. [Επόμενα Βήματα](#επόμενα-βήματα)
 
 ---
 
-## Account Setup
+## Γρήγορη Εκκίνηση
 
-### Creating Your Account
+### Εγκατάσταση 30 Δευτερολέπτων
 
-#### Step 1: Registration
-1. Visit the platform homepage
-2. Click the **"Sign Up"** button (top-right corner)
-3. Fill in the registration form:
+1. **Δημιουργία Λογαριασμού**: Κάντε κλικ στο "Εγγραφή" και δώστε το email σας
+2. **Επιβεβαίωση Email**: Ελέγξτε τα εισερχόμενά σας και κάντε κλικ στον σύνδεσμο επιβεβαίωσης
+3. **Ολοκλήρωση Προφίλ**: Προσθέστε το όνομά σας και τις προτιμήσεις μάθησης
+4. **Έναρξη Μάθησης**: Ξεκινήστε με την ενότητα "Python Basics"
+
+### Προσανατολισμός 5 Λεπτών
+
+1. **Εξερεύνηση Dashboard**: Εξοικειωθείτε με την κύρια διεπαφή
+2. **Έλεγχος Λίστας Ενοτήτων**: Δείτε όλες τις διαθέσιμες ενότητες μάθησης
+3. **Δοκιμή Δείγματος Μαθήματος**: Ολοκληρώστε ένα μάθημα για να κατανοήσετε τη μορφή
+4. **Πρώτη Άσκηση**: Δοκιμάστε το διαδραστικό περιβάλλον κώδικα
+5. **Επανεξέταση Προόδου**: Δείτε πώς λειτουργεί η παρακολούθηση
+
+---
+
+## Εγκατάσταση Λογαριασμού
+
+### Δημιουργία του Λογαριασμού σας
+
+#### Βήμα 1: Εγγραφή
+1. Επισκεφθείτε την αρχική σελίδα της πλατφόρμας
+2. Κάντε κλικ στο κουμπί **"Εγγραφή"** (επάνω δεξιά γωνία)
+3. Συμπληρώστε τη φόρμα εγγραφής:
    ```
-   Username: Choose something unique and memorable
-   Email: Use your primary email address
-   Password: Minimum 8 characters, include letters and numbers
+   Όνομα χρήστη: Επιλέξτε κάτι μοναδικό και αξιομνημόνευτο
+   Email: Χρησιμοποιήστε την κύρια διεύθυνση email σας
+   Κωδικός: Ελάχιστο 8 χαρακτήρες, συμπεριλάβετε γράμματα και αριθμούς
    ```
-4. Click **"Create Account"**
+4. Κάντε κλικ στο **"Δημιουργία Λογαριασμού"**
 
-#### Step 2: Email Verification
-1. Check your email inbox (including spam folder)
-2. Look for email from "Python Learning Platform"
-3. Click the **"Verify Email Address"** link
-4. You'll be redirected to the platform automatically
+#### Βήμα 2: Επιβεβαίωση Email
+1. Ελέγξτε τα εισερχόμενά σας email (συμπεριλαμβανομένου του φακέλου spam)
+2. Αναζητήστε email από "Python Learning Platform"
+3. Κάντε κλικ στον σύνδεσμο **"Επιβεβαίωση Διεύθυνσης Email"**
+4. Θα ανακατευθυνθείτε αυτόματα στην πλατφόρμα
 
-#### Step 3: Profile Completion
-Complete your profile with:
-- **Full Name**: How you'd like to be addressed
-- **Learning Style**: Choose your preference:
-  - **Visual**: Learn best with diagrams, charts, and visual examples
-  - **Hands-on**: Prefer interactive exercises and practical coding
-  - **Balanced**: Combination of visual content and hands-on practice
-- **Profile Picture**: Upload an avatar (optional)
+#### Βήμα 3: Ολοκλήρωση Προφίλ
+Ολοκληρώστε το προφίλ σας με:
+- **Πλήρες Όνομα**: Πώς θα θέλατε να σας αποκαλούν
+- **Στυλ Μάθησης**: Επιλέξτε την προτίμησή σας:
+  - **Οπτικό**: Μαθαίνετε καλύτερα με διαγράμματα, γραφήματα και οπτικά παραδείγματα
+  - **Πρακτικό**: Προτιμάτε διαδραστικές ασκήσεις και πρακτικό κώδικα
+  - **Ισορροπημένο**: Συνδυασμός οπτικού περιεχομένου και πρακτικής εξάσκησης
+- **Φωτογραφία Προφίλ**: Ανεβάστε ένα avatar (προαιρετικό)
 
-### Learning Preferences
+### Προτιμήσεις Μάθησης
 
-#### Learning Style Guide
+#### Οδηγός Στυλ Μάθησης
 
-**Visual Learner Characteristics:**
-- Prefer diagrams and flowcharts
-- Learn better with color-coded examples
-- Like to see the big picture first
-- Benefit from mind maps and visual summaries
+**Χαρακτηριστικά Οπτικού Μαθητή:**
+- Προτιμούν διαγράμματα και ροϊδογραμμάτα
+- Μαθαίνουν καλύτερα με παραδείγματα με χρώματα
+- Θέλουν να δουν την ευρύτερη εικόνα πρώτα
+- Ωφελούνται από χάρτες νου και οπτικές περιλήψεις
 
-**Hands-on Learner Characteristics:**
-- Learn by doing and experimenting
-- Prefer interactive exercises
-- Like to test code immediately
-- Benefit from trial-and-error approach
+**Χαρακτηριστικά Πρακτικού Μαθητή:**
+- Μαθαίνουν κάνοντας και πειραματιζόμενοι
+- Προτιμούν διαδραστικές ασκήσεις
+- Θέλουν να δοκιμάζουν κώδικα αμέσως
+- Ωφελούνται από προσέγγιση δοκιμής και λάθους
 
-**Balanced Learner Characteristics:**
-- Adapt to different learning methods
-- Appreciate variety in content presentation
-- Learn well from both explanation and practice
-- Flexible in learning approach
+**Χαρακτηριστικά Ισορροπημένου Μαθητή:**
+- Προσαρμόζονται σε διαφορετικές μεθόδους μάθησης
+- Εκτιμούν την ποικιλία στην παρουσίαση περιεχομένου
+- Μαθαίνουν καλά και από εξήγηση και από πρακτική
+- Ευέλικτοι στην προσέγγιση μάθησης
 
-#### Customization Options
-- **Notification Preferences**: Choose when to receive emails
-- **Progress Visibility**: Control who can see your achievements
-- **Theme Selection**: Light or dark mode
-- **Accessibility**: Text size, contrast, and other accommodations
-
----
-
-## Platform Overview
-
-### Main Navigation
-
-#### Header Elements
-- **Logo/Home**: Click to return to dashboard
-- **Modules**: Access all learning modules
-- **My Progress**: View detailed progress tracking
-- **Profile Menu**: Account settings and logout
-
-#### Dashboard Components
-
-**Welcome Section:**
-- Personalized greeting
-- Current learning streak
-- Quick access to resume learning
-
-**Module Overview:**
-- Visual cards for each module
-- Progress indicators (completion percentage)
-- Status badges (Not Started, In Progress, Completed)
-- Estimated time to complete
-
-**Recent Activity:**
-- Last lessons accessed
-- Recent test scores
-- Achievement notifications
-
-**Recommendations:**
-- Suggested next modules
-- Review recommendations
-- Skill-building suggestions
-
-### Module Structure
-
-#### Learning Hierarchy
-```
-Platform
-├── Modules (e.g., Python Basics)
-│   ├── Lessons (e.g., Variables and Data Types)
-│   │   ├── Content Blocks (Text, Code, Images)
-│   │   └── Exercises (Interactive practice)
-│   └── Module Test (Final assessment)
-```
-
-#### Module Information
-Each module card displays:
-- **Title and Description**: What you'll learn
-- **Duration**: Estimated time to complete
-- **Prerequisites**: Required prior knowledge
-- **Lessons Count**: Number of lessons included
-- **Difficulty Level**: Beginner, Intermediate, or Advanced
-
-### Content Types
-
-#### Lesson Content
-- **Explanatory Text**: Concepts and theory
-- **Code Examples**: Syntax demonstrations
-- **Visual Aids**: Diagrams and illustrations
-- **Interactive Elements**: Try-it-yourself sections
-
-#### Exercise Types
-- **Multiple Choice**: Test conceptual understanding
-- **Code Completion**: Fill in missing code
-- **Code Writing**: Write complete functions or programs
-- **Debugging**: Find and fix errors in code
+#### Επιλογές Προσαρμογής
+- **Προτιμήσεις Ειδοποιήσεων**: Επιλέξτε πότε να λαμβάνετε emails
+- **Ορατότητα Προόδου**: Ελέγξτε ποιος μπορεί να δει τα επιτεύγματά σας
+- **Επιλογή Θέματος**: Φωτεινή ή σκοτεινή λειτουργία
+- **Προσβασιμότητα**: Μέγεθος κειμένου, αντίθεση και άλλες διευκολύνσεις
 
 ---
 
-## Your First Lesson
+## Επισκόπηση Πλατφόρμας
 
-### Starting Python Basics Module
+### Κύρια Πλοήγηση
 
-#### Accessing the Module
-1. From your dashboard, click on **"Python Basics"** module card
-2. Read the module overview and prerequisites
-3. Click **"Start Module"** or select the first lesson
+#### Στοιχεία Header
+- **Logo/Αρχική**: Κάντε κλικ για επιστροφή στο dashboard
+- **Ενότητες**: Πρόσβαση σε όλες τις ενότητες μάθησης
+- **Η Πρόοδός μου**: Προβολή λεπτομερούς παρακολούθησης προόδου
+- **Μενού Προφίλ**: Ρυθμίσεις λογαριασμού και αποσύνδεση
 
-#### Lesson 1: Introduction to Python
+#### Στοιχεία Dashboard
 
-**What You'll Learn:**
-- What Python is and why it's popular
-- Setting up your mindset for programming
-- Understanding the platform's learning environment
+**Τμήμα Καλωσορίσματος:**
+- Εξατομικευμένος χαιρετισμός
+- Τρέχον streak μάθησης
+- Γρήγορη πρόσβαση για συνέχιση μάθησης
 
-**Lesson Structure:**
-1. **Introduction** (5 minutes)
-   - Read about Python's history and applications
-   - Understand why Python is great for beginners
+**Επισκόπηση Ενοτήτων:**
+- Οπτικές κάρτες για κάθε ενότητα
+- Δείκτες προόδου (ποσοστό ολοκλήρωσης)
+- Σημάδια κατάστασης (Δεν Ξεκίνησε, Σε Εξέλιξη, Ολοκληρώθηκε)
+- Εκτιμώμενος χρόνος ολοκλήρωσης
+
+**Πρόσφατη Δραστηριότητα:**
+- Τελευταία μαθήματα που προσπελάστηκαν
+- Πρόσφατες βαθμολογίες τεστ
+- Ειδοποιήσεις επιτευγμάτων
+
+**Συστάσεις:**
+- Προτεινόμενες επόμενες ενότητες
+- Συστάσεις επανεξέτασης
+- Προτάσεις ανάπτυξης δεξιοτήτων
+
+### Δομή Ενοτήτων
+
+#### Ιεραρχία Μάθησης
+```
+Πλατφόρμα
+├── Ενότητες (π.χ., Python Basics)
+│   ├── Μαθήματα (π.χ., Μεταβλητές και Τύποι Δεδομένων)
+│   │   ├── Μπλοκ Περιεχομένου (Κείμενο, Κώδικας, Εικόνες)
+│   │   └── Ασκήσεις (Διαδραστική εξάσκηση)
+│   └── Τεστ Ενότητας (Τελική αξιολόγηση)
+```
+
+#### Πληροφορίες Ενότητας
+Κάθε κάρτα ενότητας εμφανίζει:
+- **Τίτλο και Περιγραφή**: Τι θα μάθετε
+- **Διάρκεια**: Εκτιμώμενος χρόνος ολοκλήρωσης
+- **Προαπαιτούμενα**: Απαιτούμενη προηγούμενη γνώση
+- **Αριθμό Μαθημάτων**: Αριθμός μαθημάτων που περιλαμβάνονται
+- **Επίπεδο Δυσκολίας**: Αρχάριος, Μεσαίος ή Προχωρημένος
+
+### Τύποι Περιεχομένου
+
+#### Περιεχόμενο Μαθήματος
+- **Επεξηγηματικό Κείμενο**: Έννοιες και θεωρία
+- **Παραδείγματα Κώδικα**: Επιδείξεις σύνταξης
+- **Οπτικά Βοηθήματα**: Διαγράμματα και εικονογραφήσεις
+- **Διαδραστικά Στοιχεία**: Τμήματα δοκιμής-μόνος-σας
+
+#### Τύποι Ασκήσεων
+- **Πολλαπλή Επιλογή**: Δοκιμασία εννοιολογικής κατανόησης
+- **Συμπλήρωση Κώδικα**: Συμπληρώστε κώδικα που λείπει
+- **Γράψιμο Κώδικα**: Γράψτε πλήρεις συναρτήσεις ή προγράμματα
+- **Αποσφαλμάτωση**: Βρείτε και διορθώστε σφάλματα σε κώδικα
+
+---
+
+## Το Πρώτο σας Μάθημα
+
+### Έναρξη της Ενότητας Python Basics
+
+#### Πρόσβαση στην Ενότητα
+1. Από το dashboard σας, κάντε κλικ στην κάρτα ενότητας **"Python Basics"**
+2. Διαβάστε την επισκόπηση ενότητας και τα προαπαιτούμενα
+3. Κάντε κλικ στο **"Έναρξη Ενότητας"** ή επιλέξτε το πρώτο μάθημα
+
+#### Μάθημα 1: Εισαγωγή στην Python
+
+**Τι θα Μάθετε:**
+- Τι είναι η Python και γιατί είναι δημοφιλής
+- Δημιουργία νοοτροπίας για προγραμματισμό
+- Κατανόηση του εκπαιδευτικού περιβάλλοντος της πλατφόρμας
+
+**Δομή Μαθήματος:**
+1. **Εισαγωγή** (5 λεπτά)
+   - Διαβάστε για την ιστορία και τις εφαρμογές της Python
+   - Κατανοήστε γιατί η Python είναι εξαιρετική για αρχάριους
    
-2. **Concept Exploration** (10 minutes)
-   - Learn about programming concepts
-   - See examples of Python in action
+2. **Εξερεύνηση Εννοιών** (10 λεπτά)
+   - Μάθετε για έννοιες προγραμματισμού
+   - Δείτε παραδείγματα Python σε δράση
    
-3. **Interactive Exercise** (10 minutes)
-   - Your first coding exercise
-   - No prior experience required
+3. **Διαδραστική Άσκηση** (10 λεπτά)
+   - Η πρώτη σας άσκηση κώδικα
+   - Δεν απαιτείται προηγούμενη εμπειρία
 
-#### Step-by-Step Walkthrough
+#### Βήμα-προς-Βήμα Καθοδήγηση
 
-**Reading Content:**
-1. Read each section carefully
-2. Pay attention to highlighted key terms
-3. Study code examples thoroughly
-4. Don't rush - understanding is more important than speed
+**Ανάγνωση Περιεχομένου:**
+1. Διαβάστε κάθε τμήμα προσεκτικά
+2. Προσέξτε τους επισημασμένους βασικούς όρους
+3. Μελετήστε τα παραδείγματα κώδικα διεξοδικά
+4. Μην βιάζεστε - η κατανόηση είναι πιο σημαντική από την ταχύτητα
 
-**Taking Notes:**
-- Keep a notebook or digital document open
-- Write down important concepts
-- Copy interesting code examples
-- Note questions for later research
+**Κρατώντας Σημειώσεις:**
+- Κρατήστε ανοιχτό ένα σημειωματάριο ή ψηφιακό έγγραφο
+- Γράψτε σημαντικές έννοιες
+- Αντιγράψτε ενδιαφέροντα παραδείγματα κώδικα
+- Σημειώστε ερωτήσεις για μελλοντική έρευνα
 
-**Interactive Exercises:**
-1. **Read Instructions**: Understand what's being asked
-2. **Study the Example**: Look at provided sample code
-3. **Write Your Solution**: Use the built-in code editor
-4. **Test Your Code**: Click "Run" to see if it works
-5. **Submit Answer**: Click "Submit" when ready
-6. **Review Feedback**: Read explanations for right/wrong answers
+**Διαδραστικές Ασκήσεις:**
+1. **Διαβάστε τις Οδηγίες**: Κατανοήστε τι ζητείται
+2. **Μελετήστε το Παράδειγμα**: Εξετάστε τον παρεχόμενο κώδικα δείγματος
+3. **Γράψτε τη Λύση σας**: Χρησιμοποιήστε τον ενσωματωμένο επεξεργαστή κώδικα
+4. **Δοκιμάστε τον Κώδικά σας**: Κάντε κλικ στο "Εκτέλεση" για να δείτε αν λειτουργεί
+5. **Υποβάλετε την Απάντηση**: Κάντε κλικ στο "Υποβολή" όταν είστε έτοιμοι
+6. **Αναθεωρήστε την Ανατροφοδότηση**: Διαβάστε επεξηγήσεις για σωστές/λάθος απαντήσεις
 
-#### Exercise Example
+#### Παράδειγμα Άσκησης
 
-**Sample Exercise: "Your First Python Program"**
+**Δείγμα Άσκησης: "Το Πρώτο σας Πρόγραμμα Python"**
 
-*Instructions:* Write a Python program that displays "Hello, World!" on the screen.
+*Οδηγίες:* Γράψτε ένα πρόγραμμα Python που εμφανίζει "Hello, World!" στην οθόνη.
 
-*Code Editor:*
+*Επεξεργαστής Κώδικα:*
 ```python
-# Write your code here
-# Use the print() function to display text
+# Γράψτε τον κώδικά σας εδώ
+# Χρησιμοποιήστε τη συνάρτηση print() για εμφάνιση κειμένου
 ```
 
-*Your Solution:*
+*Η Λύση σας:*
 ```python
 print("Hello, World!")
 ```
 
-*Expected Output:*
+*Αναμενόμενη Έξοδος:*
 ```
 Hello, World!
 ```
 
-#### Completing Your First Lesson
-1. **Finish All Content**: Read through all sections
-2. **Complete Exercises**: Attempt all practice problems
-3. **Review Understanding**: Make sure concepts are clear
-4. **Mark Complete**: The system will automatically track completion
-5. **Move Forward**: Proceed to the next lesson
+#### Ολοκλήρωση του Πρώτου σας Μαθήματος
+1. **Ολοκληρώστε όλο το Περιεχόμενο**: Διαβάστε όλα τα τμήματα
+2. **Ολοκληρώστε τις Ασκήσεις**: Δοκιμάστε όλα τα προβλήματα πρακτικής
+3. **Αναθεωρήστε την Κατανόηση**: Βεβαιωθείτε ότι οι έννοιες είναι σαφείς
+4. **Σημάνετε ως Ολοκληρωμένο**: Το σύστημα θα παρακολουθήσει αυτόματα την ολοκλήρωση
+5. **Προχωρήστε**: Συνεχίστε στο επόμενο μάθημα
 
 ---
 
-## Learning Best Practices
+## Βέλτιστες Πρακτικές Μάθησης
 
-### Creating an Effective Study Environment
+### Δημιουργία Αποτελεσματικού Εκπαιδευτικού Περιβάλλοντος
 
-#### Physical Environment
-- **Quiet Space**: Minimize distractions and interruptions
-- **Comfortable Seating**: Good posture prevents fatigue
-- **Proper Lighting**: Reduce eye strain
-- **Temperature Control**: Stay comfortable but alert
-- **Materials Ready**: Notebook, pen, water, snacks
+#### Φυσικό Περιβάλλον
+- **Ήσυχος Χώρος**: Ελαχιστοποιήστε αποσπάσεις και διακοπές
+- **Άνετο Κάθισμα**: Καλή στάση αποτρέπει την κόπωση
+- **Κατάλληλος Φωτισμός**: Μειώστε την καταπόνηση των ματιών
+- **Έλεγχος Θερμοκρασίας**: Μείνετε άνετοι αλλά σε εγρήγορση
+- **Έτοιμα Υλικά**: Σημειωματάριο, στυλό, νερό, σνακ
 
-#### Digital Environment
-- **Stable Internet**: Ensure reliable connection
-- **Updated Browser**: Use latest version for best experience
-- **Close Distractions**: Limit social media and other tabs
-- **Enable Focus Mode**: Use browser extensions if needed
-- **Backup Plan**: Have alternative internet access available
+#### Ψηφιακό Περιβάλλον
+- **Σταθερό Διαδίκτυο**: Διασφαλίστε αξιόπιστη σύνδεση
+- **Ενημερωμένος Φυλλομετρητής**: Χρησιμοποιήστε την τελευταία έκδοση για καλύτερη εμπειρία
+- **Κλείστε Αποσπάσεις**: Περιορίστε τα μέσα κοινωνικής δικτύωσης και άλλες καρτέλες
+- **Ενεργοποίηση Focus Mode**: Χρησιμοποιήστε επεκτάσεις φυλλομετρητή αν χρειάζεται
+- **Εφεδρικό Σχέδιο**: Έχετε εναλλακτική πρόσβαση διαδικτύου διαθέσιμη
 
-### Time Management
+### Διαχείριση Χρόνου
 
-#### Study Schedule Options
+#### Επιλογές Προγράμματος Μελέτης
 
-**Daily Learning (Recommended):**
-- 30-60 minutes per day
-- Consistent time each day
-- Better retention through repetition
-- Manageable commitment
+**Ημερήσια Μάθηση (Συνιστάται):**
+- 30-60 λεπτά την ημέρα
+- Συνεπής ώρα κάθε μέρα
+- Καλύτερη διατήρηση μέσω επανάληψης
+- Διαχειρίσιμη δέσμευση
 
-**Weekend Sessions:**
-- 2-4 hours on weekends
-- Good for busy weekday schedules
-- Allows for deeper dives
-- Requires more focus stamina
+**Σεσιόν Σαββατοκύριακου:**
+- 2-4 ώρες τα σαββατοκύριακα
+- Καλό για απασχολημένα προγράμματα εργάσιμων ημερών
+- Επιτρέπει βαθύτερες εμβαθύνσεις
+- Απαιτεί περισσότερη αντοχή εστίασης
 
-**Intensive Learning:**
-- Several hours per session
-- Faster completion
-- Risk of burnout
-- Better for motivated learners
+**Εντατική Μάθηση:**
+- Αρκετές ώρες ανά σεσιόν
+- Ταχύτερη ολοκλήρωση
+- Κίνδυνος burnout
+- Καλύτερο για παρακινημένους μαθητές
 
-#### Time Blocking Technique
+#### Τεχνική Time Blocking
 ```
-Example Daily Schedule:
-9:00-9:30 AM: Review previous lesson
-9:30-10:15 AM: New lesson content
-10:15-10:30 AM: Break
-10:30-11:00 AM: Practice exercises
-11:00-11:15 AM: Note review and planning
+Παράδειγμα Ημερήσιου Προγράμματος:
+9:00-9:30 ΠΜ: Επανεξέταση προηγούμενου μαθήματος
+9:30-10:15 ΠΜ: Νέο περιεχόμενο μαθήματος
+10:15-10:30 ΠΜ: Διάλειμμα
+10:30-11:00 ΠΜ: Ασκήσεις πρακτικής
+11:00-11:15 ΠΜ: Επανεξέταση σημειώσεων και σχεδιασμός
 ```
 
-### Active Learning Strategies
+### Στρατηγικές Ενεργής Μάθησης
 
-#### Engagement Techniques
-1. **Take Notes**: Write key concepts in your own words
-2. **Ask Questions**: What, why, and how questions
-3. **Make Connections**: Link new concepts to prior knowledge
-4. **Teach Others**: Explain concepts to friends or family
-5. **Apply Knowledge**: Try creating your own programs
+#### Τεχνικές Εμπλοκής
+1. **Κρατήστε Σημειώσεις**: Γράψτε βασικές έννοιες με τα δικά σας λόγια
+2. **Κάντε Ερωτήσεις**: Τι, γιατί και πώς ερωτήσεις
+3. **Κάντε Συνδέσεις**: Συνδέστε νέες έννοιες με προηγούμενη γνώση
+4. **Διδάξτε Άλλους**: Εξηγήστε έννοιες σε φίλους ή οικογένεια
+5. **Εφαρμόστε Γνώση**: Δοκιμάστε να δημιουργήσετε τα δικά σας προγράμματα
 
-#### Practice Strategies
-- **Code Along**: Type examples yourself, don't just read
-- **Experiment**: Modify examples to see what happens
-- **Debug Practice**: Intentionally break code and fix it
-- **Mini Projects**: Create small programs using new concepts
-- **Peer Discussion**: Join forums or study groups
+#### Στρατηγικές Πρακτικής
+- **Κωδικοποιήστε Μαζί**: Πληκτρολογήστε παραδείγματα μόνοι σας, μην τα διαβάζετε μόνο
+- **Πειραματιστείτε**: Τροποποιήστε παραδείγματα για να δείτε τι συμβαίνει
+- **Πρακτική Αποσφαλμάτωσης**: Σπάστε σκόπιμα κώδικα και διορθώστε τον
+- **Μίνι Έργα**: Δημιουργήστε μικρά προγράμματα χρησιμοποιώντας νέες έννοιες
+- **Συζήτηση Συνομηλίκων**: Συμμετέχετε σε φόρουμ ή ομάδες μελέτης
 
-### Learning from Mistakes
+### Μάθηση από Λάθη
 
-#### Common Beginner Mistakes
-1. **Rushing Through Content**: Take time to understand
-2. **Skipping Exercises**: Practice is essential
-3. **Fear of Errors**: Mistakes are part of learning
-4. **Comparing to Others**: Focus on your own progress
-5. **Perfectionism**: Good enough is good enough to move on
+#### Συνήθη Λάθη Αρχαρίων
+1. **Βιάζεστε με το Περιεχόμενο**: Αφιερώστε χρόνο για κατανόηση
+2. **Παραλείπετε Ασκήσεις**: Η πρακτική είναι απαραίτητη
+3. **Φόβος Σφαλμάτων**: Τα λάθη είναι μέρος της μάθησης
+4. **Σύγκριση με Άλλους**: Εστιάστε στη δική σας πρόοδο
+5. **Τελειομανία**: Το αρκετά καλό είναι αρκετά καλό για να προχωρήσετε
 
-#### How to Handle Difficulties
-- **Stay Patient**: Learning takes time
-- **Ask for Help**: Use forums, documentation, or support
-- **Take Breaks**: Sometimes stepping away helps
-- **Review Basics**: Go back to foundational concepts
-- **Celebrate Small Wins**: Acknowledge progress
+#### Πώς να Χειριστείτε Δυσκολίες
+- **Μείνετε Υπομονετικοί**: Η μάθηση παίρνει χρόνο
+- **Ζητήστε Βοήθεια**: Χρησιμοποιήστε φόρουμ, τεκμηρίωση ή υποστήριξη
+- **Κάντε Διαλείμματα**: Μερικές φορές το να αποχωρήσετε βοηθά
+- **Επανεξετάστε τα Βασικά**: Επιστρέψτε σε θεμελιώδεις έννοιες
+- **Γιορτάστε Μικρές Νίκες**: Αναγνωρίστε την πρόοδο
 
 ---
 
-## Setting Learning Goals
+## Ορισμός Στόχων Μάθησης
 
-### Types of Goals
+### Τύποι Στόχων
 
-#### Short-term Goals (1-2 weeks)
-- Complete one module
-- Master specific concept (variables, functions, etc.)
-- Achieve consistent daily practice
-- Pass first module test
+#### Βραχυπρόθεσμοι Στόχοι (1-2 εβδομάδες)
+- Ολοκλήρωση μιας ενότητας
+- Εξοικείωση με συγκεκριμένη έννοια (μεταβλητές, συναρτήσεις, κλπ.)
+- Επίτευξη συνεπούς ημερήσιας πρακτικής
+- Επιτυχία στο πρώτο τεστ ενότητας
 
-#### Medium-term Goals (1-3 months)
-- Complete beginner track
-- Build first complete project
-- Understand core programming concepts
-- Develop debugging skills
+#### Μεσοπρόθεσμοι Στόχοι (1-3 μήνες)
+- Ολοκλήρωση διαδρομής αρχαρίου
+- Κατασκευή πρώτου πλήρους έργου
+- Κατανόηση βασικών εννοιών προγραμματισμού
+- Ανάπτυξη δεξιοτήτων αποσφαλμάτωσης
 
-#### Long-term Goals (3-12 months)
-- Complete all available modules
-- Build portfolio projects
-- Apply for Python-related opportunities
-- Contribute to open-source projects
+#### Μακροπρόθεσμοι Στόχοι (3-12 μήνες)
+- Ολοκλήρωση όλων των διαθέσιμων ενοτήτων
+- Κατασκευή έργων portfolio
+- Αίτηση για ευκαιρίες σχετικές με Python
+- Συνεισφορά σε open-source έργα
 
 ### SMART Goals Framework
 
-Make your goals **Specific, Measurable, Achievable, Relevant, Time-bound**:
+Κάντε τους στόχους σας **Συγκεκριμένους, Μετρήσιμους, Εφικτούς, Σχετικούς, Χρονικά Οριοθετημένους**:
 
-**Example SMART Goal:**
+**Παράδειγμα SMART Στόχου:**
 ```
-Goal: "I will complete the Python Basics module by practicing 
-30 minutes daily for the next 2 weeks, achieving at least 80% 
-on all exercises and passing the module test with 70% or higher."
+Στόχος: "Θα ολοκληρώσω την ενότητα Python Basics εξασκούμενος 
+30 λεπτά ημερησίως για τις επόμενες 2 εβδομάδες, επιτυγχάνοντας 
+τουλάχιστον 80% σε όλες τις ασκήσεις και περνώντας το τεστ 
+ενότητας με 70% ή παραπάνω."
 
-Specific: Complete Python Basics module
-Measurable: 30 minutes daily, 80% exercise scores, 70% test score
-Achievable: Realistic time commitment and expectations
-Relevant: Foundation for Python programming
-Time-bound: 2 weeks deadline
+Συγκεκριμένος: Ολοκλήρωση ενότητας Python Basics
+Μετρήσιμος: 30 λεπτά ημερησίως, 80% βαθμολογίες ασκήσεων, 70% βαθμολογία τεστ
+Εφικτός: Ρεαλιστική δέσμευση χρόνου και προσδοκίες
+Σχετικός: Θεμέλιο για προγραμματισμό Python
+Χρονικά Οριοθετημένος: Προθεσμία 2 εβδομάδων
 ```
 
-### Tracking Progress
+### Παρακολούθηση Προόδου
 
-#### Daily Tracking
-- Time spent learning
-- Lessons completed
-- Exercises attempted/completed
-- New concepts learned
-- Challenges encountered
+#### Ημερήσια Παρακολούθηση
+- Χρόνος που αφιερώθηκε στη μάθηση
+- Μαθήματα που ολοκληρώθηκαν
+- Ασκήσεις που δοκιμάστηκαν/ολοκληρώθηκαν
+- Νέες έννοιες που μαθεύτηκαν
+- Προκλήσεις που αντιμετωπίστηκαν
 
-#### Weekly Review
-- Goals achieved vs. planned
-- Strong and weak areas
-- Time allocation effectiveness
-- Adjustments needed for next week
+#### Εβδομαδιαία Επανεξέταση
+- Στόχοι που επιτεύχθηκαν vs. σχεδιασμένοι
+- Δυνατές και αδύναμες περιοχές
+- Αποτελεσματικότητα κατανομής χρόνου
+- Προσαρμογές που χρειάζονται για την επόμενη εβδομάδα
 
-#### Monthly Assessment
-- Overall progress evaluation
-- Skill development review
-- Goal refinement
-- Celebration of achievements
-
----
-
-## Next Steps
-
-### After Your First Lesson
-
-#### Immediate Actions
-1. **Continue to Lesson 2**: Build momentum
-2. **Join Community**: Connect with other learners
-3. **Set Schedule**: Plan your learning routine
-4. **Bookmark Resources**: Save helpful links
-
-#### Within Your First Week
-- Complete 3-5 lessons in Python Basics
-- Attempt all exercises (don't skip any)
-- Join community discussions
-- Set up note-taking system
-- Establish daily learning habit
-
-### Module Progression Path
-
-#### Recommended Learning Sequence
-1. **Python Basics** (Foundation)
-   - Variables and data types
-   - Basic operations
-   - Input and output
-
-2. **Control Structures** (Logic)
-   - Conditional statements
-   - Loops and iteration
-   - Program flow
-
-3. **Functions and Modules** (Organization)
-   - Function definition and use
-   - Code reusability
-   - Importing and using modules
-
-#### Advanced Learning
-- Object-Oriented Programming
-- Data Structures and Algorithms
-- Web Development with Python
-- Data Science and Analytics
-
-### Community Engagement
-
-#### Ways to Connect
-- **Discussion Forums**: Ask questions and help others
-- **Study Groups**: Find learning partners
-- **Project Sharing**: Show off your creations
-- **Mentorship**: Find experienced guides
-
-#### Contributing Back
-- Help newer learners
-- Share useful resources
-- Provide feedback on content
-- Suggest improvements
-
-### Building Projects
-
-#### Beginner Projects
-- Calculator program
-- Guessing game
-- Simple text processor
-- Basic data analyzer
-
-#### Portfolio Development
-- Document your learning journey
-- Create progressively complex projects
-- Share code on platforms like GitHub
-- Build projects that interest you personally
+#### Μηνιαία Αξιολόγηση
+- Συνολική αξιολόγηση προόδου
+- Επανεξέταση ανάπτυξης δεξιοτήτων
+- Βελτίωση στόχων
+- Γιορτή επιτευγμάτων
 
 ---
 
-## Support and Resources
+## Επόμενα Βήματα
 
-### Getting Help
+### Μετά το Πρώτο σας Μάθημα
 
-#### Self-Service Options
-- Platform documentation
-- Video tutorials
-- FAQ section
-- Community forums
+#### Άμεσες Ενέργειες
+1. **Συνεχίστε στο Μάθημα 2**: Οικοδομήστε momentum
+2. **Συμμετάσχετε στην Κοινότητα**: Συνδεθείτε με άλλους μαθητές
+3. **Ορίστε Πρόγραμμα**: Σχεδιάστε τη ρουτίνα μάθησής σας
+4. **Σελιδοδείκτες Πόρων**: Αποθηκεύστε χρήσιμους συνδέσμους
 
-#### Direct Support
-- Email support for technical issues
-- Live chat during business hours
-- Community mentors
-- Peer support networks
+#### Μέσα στην Πρώτη σας Εβδομάδα
+- Ολοκληρώστε 3-5 μαθήματα στο Python Basics
+- Δοκιμάστε όλες τις ασκήσεις (μην παραλείπετε καμία)
+- Συμμετάσχετε σε συζητήσεις κοινότητας
+- Στήστε σύστημα κρατήματος σημειώσεων
+- Δημιουργήστε ημερήσια συνήθεια μάθησης
 
-### Additional Resources
+### Διαδρομή Προόδου Ενοτήτων
 
-#### External Learning Materials
-- Python official documentation
-- Free coding practice websites
-- YouTube Python tutorials
-- Programming books and ebooks
+#### Συνιστώμενη Ακολουθία Μάθησης
+1. **Python Basics** (Θεμέλιο)
+   - Μεταβλητές και τύποι δεδομένων
+   - Βασικές λειτουργίες
+   - Είσοδος και έξοδος
 
-#### Tools and Software
-- Text editors (VS Code, PyCharm)
-- Version control (Git/GitHub)
-- Online Python interpreters
-- Development environment setup
+2. **Δομές Ελέγχου** (Λογική)
+   - Δηλώσεις όρων
+   - Βρόχοι και επανάληψη
+   - Ροή προγράμματος
 
-### Staying Motivated
+3. **Συναρτήσεις και Ενότητες** (Οργάνωση)
+   - Ορισμός και χρήση συναρτήσεων
+   - Επαναχρησιμοποίηση κώδικα
+   - Εισαγωγή και χρήση ενοτήτων
 
-#### Motivation Techniques
-- Set small, achievable milestones
-- Celebrate completions and achievements
-- Find programming applications you're passionate about
-- Connect learning to personal or career goals
-- Track and visualize your progress
+#### Προχωρημένη Μάθηση
+- Αντικειμενοστραφής Προγραμματισμός
+- Δομές Δεδομένων και Αλγόριθμοι
+- Ανάπτυξη Ιστού με Python
+- Data Science και Αναλυτικά
 
-#### Overcoming Challenges
-- Remember why you started learning
-- Focus on progress, not perfection
-- Take breaks when frustrated
-- Seek help when stuck
-- Learn from others' experiences
+### Εμπλοκή Κοινότητας
+
+#### Τρόποι Σύνδεσης
+- **Φόρουμ Συζητήσεων**: Κάντε ερωτήσεις και βοηθήστε άλλους
+- **Ομάδες Μελέτης**: Βρείτε εταίρους μάθησης
+- **Κοινοποίηση Έργων**: Δείξτε τις δημιουργίες σας
+- **Μεντορία**: Βρείτε έμπειρους οδηγούς
+
+#### Ανταπόδοση
+- Βοηθήστε νεότερους μαθητές
+- Κοινοποιήστε χρήσιμους πόρους
+- Παρέχετε ανατροφοδότηση στο περιεχόμενο
+- Προτείνετε βελτιώσεις
+
+### Κατασκευή Έργων
+
+#### Έργα Αρχαρίων
+- Πρόγραμμα αριθμομηχανής
+- Παιχνίδι μαντέματος
+- Απλός επεξεργαστής κειμένου
+- Βασικός αναλυτής δεδομένων
+
+#### Ανάπτυξη Portfolio
+- Τεκμηριώστε το ταξίδι μάθησής σας
+- Δημιουργήστε προοδευτικά πολύπλοκα έργα
+- Κοινοποιήστε κώδικα σε πλατφόρμες όπως το GitHub
+- Κατασκευάστε έργα που σας ενδιαφέρουν προσωπικά
 
 ---
 
-**Welcome to your Python learning journey! You're about to embark on an exciting adventure that will open up new possibilities and opportunities. Remember, every expert programmer started exactly where you are now. Be patient with yourself, stay curious, and enjoy the process of learning.**
+## Υποστήριξη και Πόροι
 
-*Good luck, and happy coding!*
+### Λήψη Βοήθειας
+
+#### Επιλογές Αυτοεξυπηρέτησης
+- Τεκμηρίωση πλατφόρμας
+- Εκπαιδευτικά βίντεο
+- Τμήμα FAQ
+- Φόρουμ κοινότητας
+
+#### Άμεση Υποστήριξη
+- Υποστήριξη email για τεχνικά θέματα
+- Live chat κατά τις ώρες λειτουργίας
+- Μέντορες κοινότητας
+- Δίκτυα υποστήριξης συνομηλίκων
+
+### Πρόσθετοι Πόροι
+
+#### Εξωτερικό Εκπαιδευτικό Υλικό
+- Επίσημη τεκμηρίωση Python
+- Δωρεάν ιστοσελίδες εξάσκησης κώδικα
+- YouTube εκπαιδευτικά Python
+- Βιβλία και ebooks προγραμματισμού
+
+#### Εργαλεία και Λογισμικό
+- Επεξεργαστές κειμένου (VS Code, PyCharm)
+- Έλεγχος εκδόσεων (Git/GitHub)
+- Online διερμηνείς Python
+- Εγκατάσταση αναπτυξιακού περιβάλλοντος
+
+### Διατήρηση Κινήτρου
+
+#### Τεχνικές Κινήτρου
+- Ορίστε μικρά, εφικτά ορόσημα
+- Γιορτάστε ολοκληρώσεις και επιτεύγματα
+- Βρείτε εφαρμογές προγραμματισμού που σας παθιαίνουν
+- Συνδέστε τη μάθηση με προσωπικούς ή επαγγελματικούς στόχους
+- Παρακολουθήστε και οπτικοποιήστε την πρόοδό σας
+
+#### Ξεπερνώντας Προκλήσεις
+- Θυμηθείτε γιατί ξεκινήσατε να μαθαίνετε
+- Εστιάστε στην πρόοδο, όχι στην τελειότητα
+- Κάντε διαλείμματα όταν νιώθετε απογοήτευση
+- Ζητήστε βοήθεια όταν κολλάτε
+- Μάθετε από τις εμπειρίες των άλλων
 
 ---
 
-*This getting started guide is designed to be your companion during the first weeks of learning. Bookmark this page and refer back to it whenever you need guidance or motivation.*
+**Καλώς ήρθατε στο ταξίδι εκμάθησης Python! Είστε έτοιμοι να ξεκινήσετε μια συναρπαστική περιπέτεια που θα ανοίξει νέες δυνατότητες και ευκαιρίες. Θυμηθείτε, κάθε έμπειρος προγραμματιστής ξεκίνησε ακριβώς από εκεί που είστε τώρα. Να είστε υπομονετικοί με τον εαυτό σας, να μείνετε περίεργοι και να απολαμβάνετε τη διαδικασία μάθησης.**
+
+*Καλή τύχη και καλό κώδικα!*
+
+---
+
+*Αυτός ο οδηγός εκκίνησης είναι σχεδιασμένος να είναι ο σύντροφός σας κατά τις πρώτες εβδομάδες μάθησης. Κάντε σελιδοδείκτη αυτή τη σελίδα και επιστρέφετε σε αυτή όποτε χρειάζεστε καθοδήγηση ή κίνητρο.*
